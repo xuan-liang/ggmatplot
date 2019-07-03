@@ -1,0 +1,12 @@
+Package: ggmatplot
+Title: Creat a Plot for data with Multiple Columns.
+Version: 0.0.0.9000
+Authors@R:c(person("Xuan", "Liang", email = "xuan.liang@anu.edu.au", role = c("aut", "cre")),person("Francis", "Hui", email = "fhui28@gmail.com", role = c("aut")))
+Description: A quick way to plot the columns of one matrix against the columns of another.
+Depends: R (>= 3.6.0), tidyverse
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
+Imports: 
+    magrittr

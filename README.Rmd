@@ -1,0 +1,48 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+# ggmatplot
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+The goal of ggmatplot is to plot the columns of one matrix against the columns of another.
+
+## Installation
+
+You can install the released version of ggmatplot by the following commands:
+
+```r
+library(devtools)
+install_github("xuan-liang/ggmatplot")
+```
+
+## Example
+
+This is a basic example which shows you how to use this package:
+
+```{r example}
+library(ggmatplot)
+
+iris_sub <- subset(iris, Species == "setosa")
+
+# Original way by matplot function
+matplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
+
+# Use default legend and axis
+ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
+
+# Modify legend label and axis
+ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
+```

@@ -62,7 +62,7 @@ matplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 
 # Modify legend label and axis
-ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
+ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("S","P"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
 ```
 
 ### Example 3: Linear regression

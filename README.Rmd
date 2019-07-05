@@ -34,7 +34,18 @@ This is a basic example which shows you how to use this package:
 
 ```{r example}
 library(ggmatplot)
+## Example 1:
+X <- 1:10
+Y=X^2
+Z=X^2-2*X
+# Original way by matplot function
+matplot(X,cbind(Y,Z),pch=c(16,1),xlab="x",ylab="X^2 and X^2-2*X")
+legend(1,100,legend=c("y","Z"),pch=c(16,1)) 
+# Use ggmatplot
+ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),legend_title = "")
 
+
+## Example 2: Iris data
 iris_sub <- subset(iris, Species == "setosa")
 
 # Original way by matplot function
@@ -46,7 +57,7 @@ ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 # Modify legend label and axis
 ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
 
-# Linear regression
+# Example 3: Linear regression
 x <- rnorm(100,sd=2)
 y <- x*0.5+rnorm(100,sd=1)
 fit.y <- fitted(lm(y~x))

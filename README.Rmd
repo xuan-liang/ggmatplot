@@ -47,7 +47,7 @@ matplot(X,cbind(Y,Z),pch=c(16,1),xlab="x",ylab="X^2 and X^2-2*X")
 legend(1,100,legend=c("y","Z"),pch=c(16,1)) 
 
 # Use ggmatplot
-ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),legend_title = "")
+ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),legend_title = "",geom=c("point","line"))
 ```
 
 #### Example 2: Iris data

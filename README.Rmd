@@ -45,4 +45,10 @@ ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 
 # Modify legend label and axis
 ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
+
+# Linear regression
+x <- rnorm(100,sd=2)
+y <- x*0.5+rnorm(100,sd=1)
+fit.y <- fitted(lm(y~x))
+ggmatplot(x,cbind(y,fit.y))
 ```

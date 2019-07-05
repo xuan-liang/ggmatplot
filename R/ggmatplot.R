@@ -39,10 +39,14 @@ ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,
 
   if (!missing(x)){
     ncolx <- ncol(as.data.frame(x))
+  } else{
+    ncolx=1
   }
 
   if (!missing(y)){
     ncoly <- ncol(as.data.frame(y))
+  }else{
+    ncoly=1
   }
 
   if (missing(y) & ncolx == 1) {
@@ -61,7 +65,7 @@ ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,
     data <- rename(data, new_namey = old_namey)
     p <- qplot(x = Observation_number, y = new_namey, data = data, geom = geom) + ylab(old_namey) + xlab("Observation Number")
   } else if (missing(x) & ncoly > 1) {
-    data <- mutate(y, Observation_number = 1:n()) %>% gather(key = "Column", value = "Value", -(ncolx+1))
+    data <- mutate(y, Observation_number = 1:n()) %>% gather(key = "Column", value = "Value", -(ncoly+1))
     p <- qplot(x = Observation_number, y = Value, data = data, color = Column, shape = Column, linetype = Column, geom = geom)  + xlab("Observation Number")
   } else if (ncolx == 1 & ncoly == 1) {
     data <- data.frame(x,y)

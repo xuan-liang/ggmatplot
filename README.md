@@ -39,7 +39,7 @@ legend(1,100,legend=c("y","Z"),pch=c(16,1))
 ``` r
 
 # Use ggmatplot
-ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),legend_title = "")
+ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),geom=c("point","line"))
 ```
 
 <img src="man/figures/README-example1-2.png" width="100%" />
@@ -66,7 +66,7 @@ ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 ``` r
 
 # Modify legend label and axis
-ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
+ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], color = 1 ,shape = c("S","P"), xlab = "Length", ylab="Width")
 ```
 
 <img src="man/figures/README-example2-3.png" width="100%" />

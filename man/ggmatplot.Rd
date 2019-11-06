@@ -21,9 +21,10 @@ ggmatplot(x, y, color = NULL, shape = NULL, linetype = NULL,
 
 \item{xlim, ylim}{ranges of x and y axes, as in [plot()].}
 
-\item{log}{Which variables to log transform ("x", "y", or "xy")
-s@param main,xlab,ylab Character vector giving plot title,
-  x axis label, and y axis label respectively.}
+\item{log}{Which variables to log transform ("x", "y", or "xy")}
+
+\item{main, xlab, ylab}{Character vector giving plot title,
+x axis label, and y axis label respectively.}
 
 \item{legend_label}{Character vector giving legend tables for different groups.}
 

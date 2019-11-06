@@ -8,7 +8,7 @@
 #' @param linetype vector of linetypes colors  and they are used cyclically.
 #' @param xlim,ylim ranges of x and y axes, as in [plot()].
 #' @param log Which variables to log transform ("x", "y", or "xy")
-#' s@param main,xlab,ylab Character vector giving plot title,
+#' @param main,xlab,ylab Character vector giving plot title,
 #'   x axis label, and y axis label respectively.
 #' @param legend_label Character vector giving legend tables for different groups.
 #' @param legend_title Character giving legend title
@@ -87,169 +87,50 @@ ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,
     p <- qplot(x = Value, y = new_namey, data = data, color = Column, shape = Column, linetype = Column, geom = geom) + ylab(old_namey)
   } else if (ncolx > 1 & ncoly > 1 & ncolx == ncoly) {
     colnames(x) = colnames(y) = paste0("Column ", 1:ncolx)
-    x <- gather(x, key = "Column", value = "x") %>% mutate(Observation_number = 1:n())
-    y <- gather(y, key = "Column", value = "y") %>% mutate(Observation_number = 1:n())
-    data <- full_join(x, y, by = "Observation_number") %>% rename(Group = Column.x)
-    p <- qplot(x = x, y = y, data = data, color = Group, shape = Group, linetype = Group, geom = geom)
+    x <- gather(x, key = "Group", value = "x") %>% mutate(Observation_number = 1:n())
+    y <- gather(y, key = "Group", value = "y") %>% mutate(Observation_number = 1:n())
+    data <- full_join(x, y, by = "Observation_number") %>% rename(Column = Group.x)
+    p <- qplot(x = x, y = y, data = data, color = Column, shape = Column, linetype = Column, geom = geom)
   } else{
     stop("`x`` and `y` must have only 1 or the same number of columns", call. = FALSE)
   }
 
-  if (!is.null(legend_title) & !is.null(legend_label)){
-
-    if (!is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color) +
-        scale_shape_manual(name = legend_title, labels = legend_label, values = shape) +
-        scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
-
-    if (!is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color) +
-        scale_shape_manual(name = legend_title, labels = legend_label, values = shape) +
-        scale_linetype_discrete(name = legend_title, labels = legend_label)
-
-    if (!is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color) +
-        scale_shape_discrete(name = legend_title, labels = legend_label) +
-        scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
-
-    if (is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title, labels = legend_label) +
-        scale_shape_manual(name = legend_title, labels = legend_label, values = shape) +
-        scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
-
-    if (!is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color) +
-        scale_shape_discrete(name = legend_title, labels = legend_label) +
-        scale_linetype_discrete(name = legend_title, labels = legend_label)
-
-    if (is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title, labels = legend_label) +
-        scale_shape_manual(name = legend_title, labels = legend_label, values = shape) +
-        scale_linetype_discrete(name = legend_title, labels = legend_label)
-
-    if (is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title, labels = legend_label) +
-        scale_shape_discrete(name = legend_title, labels = legend_label) +
-        scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
-
-    if (is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title, labels = legend_label) +
-        scale_shape_discrete(name = legend_title, labels = legend_label) +
-        scale_linetype_discrete(name = legend_title, labels = legend_label)
-
-  } else if (!is.null(legend_title)){
-
-    if (!is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, values = color) +
-        scale_shape_manual(name = legend_title, values = shape) +
-        scale_linetype_manual(name = legend_title, values = linetype)
-
-    if (!is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, values = color) +
-        scale_shape_discrete(name = legend_title, values = shape) +
-        scale_linetype_discrete(name = legend_title)
-
-    if (!is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, values = color) +
-        scale_shape_discrete(name = legend_title) +
-        scale_linetype_manual(name = legend_title, values = linetype)
-
-    if (is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title) +
-        scale_shape_manual(name = legend_title, values = shape) +
-        scale_linetype_manual(name = legend_title, values = linetype)
-
-    if (!is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(name = legend_title, values = color) +
-        scale_shape_discrete(name = legend_title) +
-        scale_linetype_discrete(name = legend_title)
-
-    if (is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title) +
-        scale_shape_manual(name = legend_title, values = shape) +
-        scale_linetype_discrete(name = legend_title)
-
-    if (is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title) +
-        scale_shape_discrete(name = legend_title) +
-        scale_linetype_manual(name = legend_title, values = linetype)
-
-    if (is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(name = legend_title) +
-        scale_shape_discrete(name = legend_title) +
-        scale_linetype_discrete(name = legend_title)
-
-  } else if (!is.null(legend_label)){
-
-    if (!is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(labels = legend_label, values = color) +
-        scale_shape_manual(labels = legend_label, values = shape) +
-        scale_linetype_manual(labels = legend_label, values = linetype)
-
-    if (!is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(labels = legend_label, values = color) +
-        scale_shape_manual(labels = legend_label, values = shape) +
-        scale_linetype_discrete(labels = legend_label)
-
-    if (!is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(labels = legend_label, values = color) +
-        scale_shape_discrete(labels = legend_label) +
-        scale_linetype_manual(labels = legend_label, values = linetype)
-
-    if (is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(labels = legend_label) +
-        scale_shape_manual(labels = legend_label, values = shape) +
-        scale_linetype_manual(labels = legend_label, values = linetype)
-
-    if (!is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(labels = legend_label, values = color) +
-        scale_shape_discrete(labels = legend_label) +
-        scale_linetype_discrete(labels = legend_label)
-
-    if (is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(labels = legend_label) +
-        scale_shape_manual(labels = legend_label, values = shape) +
-        scale_linetype_discrete(labels = legend_label)
-
-    if (is.null(color) & is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_discrete(labels = legend_label) +
-        scale_shape_discrete(labels = legend_label) +
-        scale_linetype_manual(labels = legend_label, values = linetype)
-
-    if (is.null(color) & is.null(shape) & is.null(linetype))
-      p <- p + scale_color_discrete(labels = legend_label) +
-        scale_shape_discrete(labels = legend_label) +
-        scale_linetype_discrete(labels = legend_label)
-
-  } else {
-
-    if (!is.null(color) & !is.null(shape) & !is.null(linetype))
-      p <- p + scale_color_manual(values = color) +
-        scale_shape_manual(values = shape) +
-        scale_linetype_manual(values = linetype)
-
-    if (!is.null(color) & !is.null(shape) & is.null(linetype))
-      p <- p + scale_color_manual(values = color) +
-        scale_shape_manual(values = shape) +
-
-        if (!is.null(color) & is.null(shape) & !is.null(linetype))
-          p <- p + scale_color_manual(values = color) +
-            scale_linetype_manual(values = linetype)
-
-        if (is.null(color) & !is.null(shape) & !is.null(linetype))
-          p <- p + scale_shape_manual(values = shape) +
-            scale_linetype_manual(values = linetype)
-
-        if (!is.null(color) & is.null(shape) & is.null(linetype))
-          p <- p + scale_color_manual(values = color)
-
-        if (is.null(color) & !is.null(shape) & is.null(linetype))
-          p <- p + scale_shape_manual(values = shape)
-
-        if (is.null(color) & is.null(shape) & !is.null(linetype))
-          p <- p + scale_linetype_manual(values = linetype)
-
+  maxcol= max(ncolx,ncoly)
+  maxshape = maxcol
+  maxlinetyoe = maxcol
+  if(!is.null(color) & length(color) != maxcol){
+    color=rep(color,maxcol)[1:maxcol]
   }
+
+  if(!is.null(shape) & length(shape) != maxcol){
+    shape=rep(shape,maxcol)[1:maxcol]
+  }
+
+  if(!is.null(linetype) & length(linetype) != maxcol){
+    linetype=rep(shape,maxcol)[1:maxcol]
+  }
+
+  if(is.null(legend_title)){
+    legend_title = ""
+  }
+  if(is.null(legend_label)){
+    legend_label = unique(data$Column)
+  }
+
+  if (!is.null(color))
+    p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color)
+  if (is.null(color))
+    p <- p + scale_color_discrete(name = legend_title, labels = legend_label)
+
+  if (!is.null(shape))
+    p <- p + scale_shape_manual(name = legend_title, labels = legend_label, values = shape)
+  if (is.null(shape))
+    p <- p + scale_shape_discrete(name = legend_title, labels = legend_label)
+
+  if (!is.null(linetype))
+    p <- p + scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
+  if (is.null(linetype))
+    p <- p + scale_linetype_discrete(name = legend_title, labels = legend_label)
 
   if (!is.null(main)) p <- p + ggtitle(main)
 

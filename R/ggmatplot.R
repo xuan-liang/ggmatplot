@@ -15,14 +15,11 @@
 #' @param geom Character vector specifying geom(s) to draw. Defaults to
 #'  "point". Other options are "line" or c("point","line").
 #' @param asp The y/x aspect ratio
-#'
-#' @return
 #' @export
 #'
 #' @examples
 #' # Define a data set
 #' iris_sub <- subset(iris, Species == "setosa")
-#' # Use default legend and axis
 #' ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
 #' # Modify legend label and axis
 #' ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")

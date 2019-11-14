@@ -44,7 +44,7 @@ ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),geom=
 
 <img src="man/figures/README-example1-2.png" width="100%" />
 
-#### Example 2: Iris data
+### Example 2: Iris data
 
 ``` r
 iris_sub <- subset(iris, Species == "setosa")

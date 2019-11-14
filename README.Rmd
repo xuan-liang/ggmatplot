@@ -50,7 +50,7 @@ legend(1,100,legend=c("y","Z"),pch=c(16,1))
 ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),geom=c("point","line"))
 ```
 
-#### Example 2: Iris data
+### Example 2: Iris data
 
 ```{r example2}
 iris_sub <- subset(iris, Species == "setosa")

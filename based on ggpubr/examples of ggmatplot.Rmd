@@ -1,0 +1,107 @@
+---
+title: "Examples of ggmatplot"
+author: "Xuan Liang"
+output: 
+    html_document:
+        toc: true
+        toc_float: true
+        theme: journal
+editor_options: 
+  chunk_output_type: inline
+---
+    
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, tidy = TRUE)
+```
+
+```{r setup data, message=FALSE}
+library(tidyverse)
+library(ggpubr)
+
+source("ggmatlist.R") # The function is to convert a list to a matrix
+source("ggmatclean.R") # The function is to transfrom a wide format data to a long format data
+source("ggmatplot.R") # Plot function without ... option as an argument
+source("getoption.R") # Used in ggmatplot1() function to extract what arguments can be allowed in a function of ggpubr, for example, I only tried it for plot.type "histogram". 
+source("ggmatplot1.R") # Plot1 function with ... option as an argument. It seems here are some issues ralated with ... option.
+
+# Default plot type: Scatterplot
+x <- rnorm(100,sd=2)
+y <- x*0.5+rnorm(100,sd=1)
+fit.y <- fitted(lm(y~x))
+p <- ggmatplot(x,cbind(y,fit.y)) 
+p
+class(p)
+
+# Plot.type = "line" or "both"
+X <- 1:10
+Y <- X^2
+Z <- X^2-2*X
+
+ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),plot.type = "line")
+ggmatplot(X,cbind(Y,Z), shape = c(16,1),legend_label =  c("X^2","X^2-2*X"),plot.type = "both")
+
+# Plot.type = "density" or "histogram" or "boxplot"
+iris_sub <- subset(iris, Species == "setosa")
+
+ggmatplot(iris_sub[1:4], plot.type = "density")
+
+ggmatplot(iris_sub[1:4], plot.type = "histogram")
+
+ggmatplot(iris_sub[1:4], plot.type = "boxplot")
+
+ggmatplot(iris_sub[1:4], plot.type = "dotplot")
+
+ggmatplot(iris_sub[1:2], plot.type = "errorplot")
+
+ggmatplot(iris_sub[1:4], plot.type = "violin")
+
+ggmatplot(iris_sub[1:4], plot.type = "ecdf", xlab="Length", ylab="ecdf")
+
+# Use a list as input
+x <- list(low = rnorm(30, -5, 2),
+          medium = rnorm(20),
+          high = rnorm(40, 3, 0.5)) 
+
+ggmatplot(x, plot.type = "both", legend_title = "Level")
+
+ggmatplot(x, plot.type = "density", legend_title = "Level")
+
+# Test if the ... option in ggmatplot1 works well
+# Correct additional argument
+ggmatplot1(x, plot.type = "density", legend_title = "Level", alpha=0.3, rug=TRUE)
+
+# Wrong additional argument but no errors or warnings show up
+ggmatplot1(x, plot.type = "density", legend_title = "Level", alpha=0.3, rugg=TRUE)
+ggmatplot1(x, plot.type = "density", legend_title = "Level", alpha=0.3, bins=20)
+ggmatplot1(x, plot.type = "density", legend_title = "Level", alpha=0.3, binwdith=20)
+
+ggmatplot(x, plot.type = "histogram", legend_title = "Level")
+ggmatplot1(x, plot.type = "histogram",legend_title = "Level", bins=20)
+ggmatplot1(x, plot.type = "histogram",legend_title = "Level", bins=20, rug=TRUE, add="mean",alpha=0.3)
+
+ggmatplot(x, plot.type = "boxplot", legend_title = "Level")
+
+
+# Data
+stocks <- data.frame(
+  X = rnorm(10, 0, 1),
+  Y = rnorm(10, 0, 2),
+  Z = rnorm(10, 0, 4)
+)
+stocklong <- stocks %>% gather(stock, price)
+
+# some nice features in ggpubr
+p1 <- ggboxplot(stocklong, x = "stock", y = "price",add = "jitter",color="stock", shape = "stock")
+p1
+
+my_comparisons <- list( c("X", "Y"), c("Y", "Z"), c("X", "Z") )
+p1 + stat_compare_means(comparisons = my_comparisons)+ # Add pairwise comparisons p-value
+  stat_compare_means(label.y = 12)
+
+# test the features in ggmatplot
+ggmatplot(stocks, plot.type = "boxplot", legend_title = "Level")+ 
+  stat_compare_means(comparisons = my_comparisons)+ # Add pairwise comparisons p-value
+  stat_compare_means(label.y = 12)
+
+
+```

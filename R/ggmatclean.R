@@ -41,7 +41,9 @@ ggmatclean <- function (x, y){
     y <- testfunc1(y, names_to = "Group", values_to = "yy")
     y <- y[with(y, order(Group)),]
     y$Observation_number <- 1:nrow(y)
-    data <- full_join(x, y, by = "Observation_number") %>% rename(Group = Group.x) %>% select(-Group.y)
+    data <- merge(x, y, by = "Observation_number", all = TRUE)
+    names(data)[names(data) == "Group.x"] <- "Group"
+    subset(data, select = -c(Group.y))
     xname <- "x"
     yname <- "yy"
     group <- "Group"

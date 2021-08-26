@@ -4,49 +4,49 @@ ggmatclean <- function (x, y){
   ncolx <- ncol(x)
 
   if (!missing(y)){
-    ncoly <- ncol(as.data.frame(y))
     y <- data.frame(y)
+    ncoly <- ncol(y)
   }else{
     ncoly<-1
   }
 
   if (missing(y)){
-    x$Observation_number <- 1:nrow(x)
-    data <- ggpivotlonger(x, names_to = "Group", values_to = "yy", ncolx+1)
     xname <- "Observation_number"
     yname <- "yy"
     group <- "Group"
+    x$Observation_number <- 1:nrow(x)
+    data <- ggpivotlonger(x, names_to = group, values_to = yname, ncolx+1)
   }else if(ncolx>ncoly&ncoly==1){
+    xname <- "x"
+    yname <- colnames(y)
+    group <- "Group"
     data <- data.frame(x,y)
     ncol <- ncol(data)
     yname <- colnames(data)[ncol]
     data$Observation_number <- 1:nrow(data)
-    data <- ggpivotlonger(data, names_to = "Group", values_to = "x", c(ncol,(ncol+1)))
-    xname <- "x"
-    yname <- colnames(y)
-    group <- "Group"
+    data <- ggpivotlonger(data, names_to = group, values_to = xname, c(ncol,(ncol+1)))
   }else if(ncoly>ncolx&ncolx==1){
-    data <- data.frame(x,y)
-    ncol <- ncol(data)
-    data$Observation_number <- 1:nrow(data)
-    data <- ggpivotlonger(data, names_to = "Group", values_to = "yy", c(1,(ncol+1)))
     xname <- colnames(x)
     yname <- "yy"
     group <- "Group"
+    data <- data.frame(x,y)
+    ncol <- ncol(data)
+    data$Observation_number <- 1:nrow(data)
+    data <- ggpivotlonger(data, names_to = group, values_to = yname, c(1,(ncol+1)))
   }else if(ncolx==ncoly){
-    colnames(x) = colnames(y) = paste0("Column ", 1:ncolx)
-    x <- testfunc1(x, names_to = "Group", values_to = "x")
-    x <- x[with(x, order(Group)),]
-    x$Observation_number <- 1:nrow(x)
-    y <- testfunc1(y, names_to = "Group", values_to = "yy")
-    y <- y[with(y, order(Group)),]
-    y$Observation_number <- 1:nrow(y)
-    data <- merge(x, y, by = "Observation_number", all = TRUE)
-    names(data)[names(data) == "Group.x"] <- "Group"
-    subset(data, select = -c(Group.y))
     xname <- "x"
     yname <- "yy"
     group <- "Group"
+    colnames(x) = colnames(y) = paste0("Column ", 1:ncolx)
+    x <- ggpivotlonger(x, names_to = group, values_to = xname)
+    x <- x[with(x, order(Group)),]
+    x$Observation_number <- 1:nrow(x)
+    y <- ggpivotlonger(y, names_to = group, values_to = yname)
+    y <- y[with(y, order(Group)),]
+    y$Observation_number <- 1:nrow(y)
+    data <- merge(x, y, by = "Observation_number", all = TRUE)
+    names(data)[names(data) == paste0(group,".x")] <- group
+    data <- subset(data, select = -c(get(paste0(group,".y"))))
   }else{
     stop("`x`` and `y` must have only 1 or the same number of columns", call. = FALSE)
   }

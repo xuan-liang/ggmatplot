@@ -1,3 +1,18 @@
+#' Function to convert two matrices into a wide format dataframe
+#'
+#' @param x,y vector or matrices of data. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used.
+#'
+#' @return a list containing the long format dataframe, number and names of the id columns, number and names of the pivoted columns (column with group names and values)
+#' @NoRd
+#'
+#' @examples
+#' # Define x and y matrices
+#' iris_sub <- subset(iris, Species == "setosa")[1:4]
+#' x <- iris_sub[,1:2]
+#' y <- iris_sub[,3:4]
+#' # Use the defined x and y matrices as parameters
+#' ggmatclean(x,y)
+
 ggmatclean <- function (x, y){
 
   x <- data.frame(x)

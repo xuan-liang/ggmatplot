@@ -27,7 +27,7 @@ ggmatclean <- function (x, y){
 
   if (missing(y)){
     xname <- "Observation_number"
-    yname <- "yy"
+    yname <- "y"
     group <- "Group"
     x$Observation_number <- 1:nrow(x)
     data <- ggpivotlonger(x, names_to = group, values_to = yname, ncolx+1)
@@ -42,7 +42,7 @@ ggmatclean <- function (x, y){
     data <- ggpivotlonger(data, names_to = group, values_to = xname, c(ncol,(ncol+1)))
   }else if(ncoly>ncolx&ncolx==1){
     xname <- colnames(x)
-    yname <- "yy"
+    yname <- "y"
     group <- "Group"
     data <- data.frame(x,y)
     ncol <- ncol(data)
@@ -50,7 +50,7 @@ ggmatclean <- function (x, y){
     data <- ggpivotlonger(data, names_to = group, values_to = yname, c(1,(ncol+1)))
   }else if(ncolx==ncoly){
     xname <- "x"
-    yname <- "yy"
+    yname <- "y"
     group <- "Group"
     colnames(x) = colnames(y) = paste0("Column ", 1:ncolx)
     x <- ggpivotlonger(x, names_to = group, values_to = xname)

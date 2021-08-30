@@ -21,26 +21,22 @@
 #' @examples
 #' # Define a data set
 #' iris_sub <- subset(iris, Species == "setosa")
-#' ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
-#' ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
-
-
-
-
-ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL, fill=NULL,
-                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
-                       main = NULL, xlab = NULL, ylab = NULL,
-                       legend_label =  NULL, legend_title = NULL,
-                       plot.type = "point", asp = NA){
-
-  if (!plot.type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot","errorplot", "violin","ecdf"))
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c("s", "S"), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = NULL,
+                      xlim = c(NA, NA), ylim = c(NA, NA), log = "",
+                      main = NULL, xlab = NULL, ylab = NULL,
+                      legend_label = NULL, legend_title = NULL,
+                      plot.type = "point", asp = NA) {
+  if (!plot.type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
     stop("`plot.type` can not take this value", call. = FALSE)
-  if (!missing(x)&!missing(y)){
-    data.list <- ggmatclean (x=x, y=y)
-  } else if (!missing(x)){
-    data.list <- ggmatclean (x=x)
-  } else{
+  }
+  if (!missing(x) & !missing(y)) {
+    data.list <- ggmatclean(x = x, y = y)
+  } else if (!missing(x)) {
+    data.list <- ggmatclean(x = x)
+  } else {
     stop("`x` can not be missing", call. = FALSE)
   }
 
@@ -51,23 +47,28 @@ ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL, fill=N
   ncoly <- data.list$ncoly
   group <- data.list$group
 
-  p <- ggplot(data = data,
-              mapping = aes(
-                x = get(xname),
-                y= get(yname),
-                group = get(group),
-                color = get(group)))
+  p <- ggplot(
+    data = data,
+    mapping = aes(
+      x = get(xname),
+      y = get(yname),
+      group = get(group),
+      color = get(group)
+    )
+  )
 
-  if(plot.type=="point"){
+  if (plot.type == "point") {
     # handle single matrix input
     p <- p +
       geom_point()
   }
 
   p <- p +
-    labs(x = xname,
-         y = yname,
-         color = "")
+    labs(
+      x = xname,
+      y = yname,
+      color = ""
+    )
 
 
   print(data.list)

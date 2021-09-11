@@ -11,8 +11,8 @@
 #' x <- iris_sub[, 1:2]
 #' y <- iris_sub[, 3:4]
 #' # Use the defined x and y matrices as parameters
-#' ggmatclean(x, y)
-ggmatclean <- function(x, y) {
+#' matclean(x, y)
+matclean <- function(x, y) {
   x <- data.frame(x)
   ncolx <- ncol(x)
 
@@ -28,7 +28,7 @@ ggmatclean <- function(x, y) {
     yname <- "y"
     group <- "Group"
     x$Observation_number <- 1:nrow(x)
-    data <- ggpivotlonger(x, names_to = group, values_to = yname, ncolx + 1)
+    data <- pivotlonger(x, names_to = group, values_to = yname, ncolx + 1)
   } else if (ncolx > ncoly & ncoly == 1) {
     xname <- "x"
     yname <- colnames(y)
@@ -37,7 +37,7 @@ ggmatclean <- function(x, y) {
     ncol <- ncol(data)
     yname <- colnames(data)[ncol]
     data$Observation_number <- 1:nrow(data)
-    data <- ggpivotlonger(data, names_to = group, values_to = xname, c(ncol, (ncol + 1)))
+    data <- pivotlonger(data, names_to = group, values_to = xname, c(ncol, (ncol + 1)))
   } else if (ncoly > ncolx & ncolx == 1) {
     xname <- colnames(x)
     yname <- "y"
@@ -45,16 +45,16 @@ ggmatclean <- function(x, y) {
     data <- data.frame(x, y)
     ncol <- ncol(data)
     data$Observation_number <- 1:nrow(data)
-    data <- ggpivotlonger(data, names_to = group, values_to = yname, c(1, (ncol + 1)))
+    data <- pivotlonger(data, names_to = group, values_to = yname, c(1, (ncol + 1)))
   } else if (ncolx == ncoly) {
     xname <- "x"
     yname <- "y"
     group <- "Group"
     colnames(x) <- colnames(y) <- paste0("Column ", 1:ncolx)
-    x <- ggpivotlonger(x, names_to = group, values_to = xname)
+    x <- pivotlonger(x, names_to = group, values_to = xname)
     x <- x[with(x, order(Group)), ]
     x$Observation_number <- 1:nrow(x)
-    y <- ggpivotlonger(y, names_to = group, values_to = yname)
+    y <- pivotlonger(y, names_to = group, values_to = yname)
     y <- y[with(y, order(Group)), ]
     y$Observation_number <- 1:nrow(y)
     data <- merge(x, y, by = "Observation_number", all = TRUE)

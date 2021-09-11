@@ -12,8 +12,8 @@
 #' # Define a data set
 #' iris_sub <- subset(iris, Species == "setosa")[1:4]
 #' # Use first two columns as ID columns and pivot the second two columns to long format
-#' ggpivotlonger(iris_sub, names_to = "Measurement", values_to = "Value", c(1, 2))
-ggpivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
+#' pivotlonger(iris_sub, names_to = "Measurement", values_to = "Value", c(1, 2))
+pivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
   long_df <- data.frame(matrix(ncol = 2 + length(id_cols), nrow = 0))
   colnames(long_df) <- c(colnames(data[id_cols]), names_to, values_to)
   n_widecols <- ncol(data) - length(id_cols)

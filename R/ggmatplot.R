@@ -33,49 +33,83 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
     stop("`plot.type` can not take this value", call. = FALSE)
   }
   if (!missing(x) & !missing(y)) {
-    data.list <- ggmatclean(x = x, y = y)
+    data.list <- matclean(x = x, y = y)
   } else if (!missing(x)) {
-    data.list <- ggmatclean(x = x)
+    data.list <- matclean(x = x)
   } else {
     stop("`x` can not be missing", call. = FALSE)
   }
 
-  data <- data.list$data %>% drop_na()
+  data <- data.list$data
   xname <- data.list$xname
   yname <- data.list$yname
-  ncolx <- data.list$ncolx
-  ncoly <- data.list$ncoly
-  group <- data.list$group
+
+
 
   p <- ggplot(
     data = data,
     mapping = aes(
-      x = get(xname),
-      y = get(yname),
-      group = get(group),
-      color = get(group)
+      group = Group,
+      fill = Group,
+      color = Group
     )
-  )
-
-  if (plot.type == "point") {
-    # handle single matrix input
-    p <- p +
-      geom_point()
-  }
-
-  p <- p +
+  ) +
     labs(
       x = xname,
       y = yname,
-      color = ""
+      color = "",
+      fill = ""
     )
 
 
-  print(data.list)
-  print(p)
+  if (plot.type == "point") {
+    p <- p +
+      geom_point(mapping = aes(
+        x = .data[[xname]],
+        y = .data[[yname]]
+      ))
+  } else if (plot.type == "line") {
+    p <- p +
+      geom_line(mapping = aes(
+        x = .data[[xname]],
+        y = .data[[yname]]
+      ))
+  } else if (plot.type == "both") {
+    p <- p +
+      geom_point(mapping = aes(
+        x = .data[[xname]],
+        y = .data[[yname]]
+      )) +
+      geom_line(mapping = aes(
+        x = .data[[xname]],
+        y = .data[[yname]]
+      ))
+  } else if (plot.type == "density") {
+    p <- p +
+      geom_density(mapping = aes(x = .data[[yname]])) +
+      labs(y = "density")
+  } else if (plot.type == "histogram") {
+    p <- p +
+      geom_histogram(mapping = aes(x = .data[[yname]])) +
+      labs(y = "count")
+  } else if (plot.type == "violin") {
+    p <- p +
+      geom_violin(mapping = aes(x = Group,
+                                 y = .data[[yname]])) +
+      labs(x = Group,
+           y = yname)
+  } else if (plot.type == "boxplot") {
+    p <- p +
+      geom_boxplot(mapping = aes(x = Group,
+                                y = .data[[yname]])) +
+      labs(x = Group,
+           y = yname)
+  }
+
+  return(p)
 }
 
-#
+
 # ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,
 #                        xlim = c(NA, NA), ylim = c(NA, NA), log = "",
 #                        main = NULL, xlab = NULL, ylab = NULL,

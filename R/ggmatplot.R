@@ -33,6 +33,9 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
     stop("`plot.type` can not take this value", call. = FALSE)
   }
   if (!missing(x) & !missing(y)) {
+    if (plot.type %in% c("density", "histogram", "boxplot", "violin")) {
+      stop("This plot type only uses a single matrix input", call. = FALSE)
+    }
     data.list <- matclean(x = x, y = y)
   } else if (!missing(x)) {
     data.list <- matclean(x = x)
@@ -44,22 +47,16 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   xname <- data.list$xname
   yname <- data.list$yname
 
-
-
   p <- ggplot(
     data = data,
     mapping = aes(
       group = Group,
       fill = Group,
-      color = Group
+      color = Group,
+      shape = Group,
+      linetype = Group
     )
-  ) +
-    labs(
-      x = xname,
-      y = yname,
-      color = "",
-      fill = ""
-    )
+  )
 
 
   if (plot.type == "point") {
@@ -86,28 +83,75 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
       ))
   } else if (plot.type == "density") {
     p <- p +
-      geom_density(mapping = aes(x = .data[[yname]])) +
-      labs(y = "density")
+      geom_density(mapping = aes(x = .data[[yname]]))
   } else if (plot.type == "histogram") {
     p <- p +
-      geom_histogram(mapping = aes(x = .data[[yname]])) +
-      labs(y = "count")
+      geom_histogram(mapping = aes(x = .data[[yname]]))
   } else if (plot.type == "violin") {
     p <- p +
-      geom_violin(mapping = aes(x = Group,
-                                 y = .data[[yname]])) +
-      labs(x = Group,
-           y = yname)
+      geom_violin(mapping = aes(
+        x = Group,
+        y = .data[[yname]]
+      ))
   } else if (plot.type == "boxplot") {
     p <- p +
-      geom_boxplot(mapping = aes(x = Group,
-                                y = .data[[yname]])) +
-      labs(x = Group,
-           y = yname)
+      geom_boxplot(mapping = aes(
+        x = Group,
+        y = .data[[yname]]
+      ))
   }
+
+  # number of unique groups
+  maxGroups = length(unique(data$Group))
+
+  if (!is.null(color)) {
+    p <- p + scale_color_manual(values = color)
+    if(is.null(fill)) {
+      p <- p + scale_fill_manual(values = color)
+    }
+  }
+
+  if (!is.null(shape)) {
+    # same shape for all groups
+    if (!maxGroups == 1 & length(shape) == 1){
+      shape <- rep(shape,maxGroups)
+    }
+    # shapes > number of unique groups
+    if (length(shape) > maxGroups) {
+      stop(paste0("Incorrect number of shape values. Only ", maxGroups, " needed but ", length(shape), " provided."), call. = FALSE)
+    }
+    # shapes < number of unique groups
+    else if (length(shape) < maxGroups) {
+      stop(paste0("Insufficient number of shape values. ", maxGroups, " needed but only ", length(shape), " provided."), call. = FALSE)
+    }
+    p <- p + scale_shape_manual(values = shape)
+  }
+
+  if (!is.null(linetype)) {
+    p <- p + scale_linetype_manual(values = linetype)
+  }
+
+  if (!is.null(fill)) {
+    p <- p + scale_fill_manual(values = fill)
+    if(is.null(color)) {
+      p <- p + scale_color_manual(values = fill)
+    }
+  }
+
+  if (!is.null(xlab)) {
+    p <- p + xlab(xlab)
+  }
+
+  if (!is.null(ylab)) {
+    p <- p + ylab(ylab)
+  }
+
 
   return(p)
 }
+
+
+#     p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color)
 
 
 # ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,

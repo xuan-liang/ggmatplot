@@ -52,9 +52,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
     mapping = aes(
       group = Group,
       fill = Group,
-      color = Group,
-      shape = Group,
-      linetype = Group
+      color = Group
     )
   )
 
@@ -63,23 +61,27 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
     p <- p +
       geom_point(mapping = aes(
         x = .data[[xname]],
-        y = .data[[yname]]
+        y = .data[[yname]],
+        shape = Group
       ))
   } else if (plot.type == "line") {
     p <- p +
       geom_line(mapping = aes(
         x = .data[[xname]],
-        y = .data[[yname]]
+        y = .data[[yname]],
+        linetype = Group
       ))
   } else if (plot.type == "both") {
     p <- p +
       geom_point(mapping = aes(
         x = .data[[xname]],
-        y = .data[[yname]]
+        y = .data[[yname]],
+        shape = Group
       )) +
       geom_line(mapping = aes(
         x = .data[[xname]],
-        y = .data[[yname]]
+        y = .data[[yname]],
+        linetype = Group
       ))
   } else if (plot.type == "density") {
     p <- p +
@@ -102,9 +104,10 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   # number of unique groups
-  maxGroups = length(unique(data$Group))
+  maxGroups <<- length(unique(data$Group))
 
   if (!is.null(color)) {
+    color <- checkValidNumValues(color)
     p <- p + scale_color_manual(values = color)
     if(is.null(fill)) {
       p <- p + scale_fill_manual(values = color)
@@ -112,26 +115,17 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(shape)) {
-    # same shape for all groups
-    if (!maxGroups == 1 & length(shape) == 1){
-      shape <- rep(shape,maxGroups)
-    }
-    # shapes > number of unique groups
-    if (length(shape) > maxGroups) {
-      stop(paste0("Incorrect number of shape values. Only ", maxGroups, " needed but ", length(shape), " provided."), call. = FALSE)
-    }
-    # shapes < number of unique groups
-    else if (length(shape) < maxGroups) {
-      stop(paste0("Insufficient number of shape values. ", maxGroups, " needed but only ", length(shape), " provided."), call. = FALSE)
-    }
+    shape <- checkValidNumValues(shape)
     p <- p + scale_shape_manual(values = shape)
   }
 
   if (!is.null(linetype)) {
+    linetype <- checkValidNumValues(linetype)
     p <- p + scale_linetype_manual(values = linetype)
   }
 
   if (!is.null(fill)) {
+    fill <- checkValidNumValues(fill)
     p <- p + scale_fill_manual(values = fill)
     if(is.null(color)) {
       p <- p + scale_color_manual(values = fill)
@@ -151,7 +145,22 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
 }
 
 
-#     p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color)
+checkValidNumValues <- function(parameterValues){
+  # same for all groups
+  if (!maxGroups == 1 & length(parameterValues) == 1){
+    return(rep(parameterValues,maxGroups))
+  }
+  # values > number of unique groups
+  else if (length(parameterValues) > maxGroups) {
+    stop(paste0("Too many ", substitute(parameterValues), " values. Only ", maxGroups, " needed but ", length(parameterValues), " provided."), call. = FALSE)
+  }
+  # values < number of unique groups
+  else if (length(parameterValues) < maxGroups) {
+    stop(paste0("Insufficient ", substitute(parameterValues), " values. ", maxGroups, " needed but only ", length(parameterValues), " provided."), call. = FALSE)
+  }
+  else
+    return(parameterValues)
+}
 
 
 # ggmatplot <- function (x, y, color = NULL, shape = NULL, linetype = NULL,

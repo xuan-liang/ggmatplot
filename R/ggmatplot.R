@@ -158,25 +158,25 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   # number of unique groups
-  maxGroups <<- length(unique(data$Group))
+  numGroups <- length(unique(data$Group))
 
   if (is.null(legend_title)) legend_title <- "Group"
 
   if (!is.null(legend_label)) {
     # values > number of unique groups
-    if (length(legend_label) > maxGroups) {
-      stop(paste0("Too many legend_label values. Only ", maxGroups, " needed but ", length(legend_label), " provided."), call. = FALSE)
+    if (length(legend_label) > numGroups) {
+      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but ", length(legend_label), " provided."), call. = FALSE)
     }
     # values < number of unique groups
-    else if (length(legend_label) < maxGroups) {
-      stop(paste0("Insufficient legend_label values. ", maxGroups, " needed but only ", length(legend_label), " provided."), call. = FALSE)
+    else if (length(legend_label) < numGroups) {
+      stop(paste0("Insufficient legend_label values. ", numGroups, " needed but only ", length(legend_label), " provided."), call. = FALSE)
     }
   } else {
     legend_label <- unique(data$Group)
   }
 
   if (!is.null(color)) {
-    color <- checkValidNumValues(color)
+    color <- numParameterHandler(color, numGroups)
     p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color)
     if (is.null(fill)) {
       p <- p + scale_fill_manual(name = legend_title, labels = legend_label, values = color)
@@ -184,7 +184,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(fill)) {
-    fill <- checkValidNumValues(fill)
+    fill <- numParameterHandler(fill, numGroups)
     p <- p + scale_fill_manual(name = legend_title, labels = legend_label, values = fill)
     if (is.null(color)) {
       p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = fill)
@@ -198,14 +198,14 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(shape)) {
-    shape <- checkValidNumValues(shape)
+    shape <- numParameterHandler(shape, numGroups)
     p <- p + scale_shape_manual(name = legend_title, labels = legend_label, values = shape)
   } else {
     p <- p + scale_shape_discrete(name = legend_title, labels = legend_label)
   }
 
   if (!is.null(linetype)) {
-    linetype <- checkValidNumValues(linetype)
+    linetype <- numParameterHandler(linetype, numGroups)
     p <- p + scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
   } else {
     p <- p + scale_linetype_discrete(name = legend_title, labels = legend_label)
@@ -226,22 +226,4 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   if (!is.na(asp)) p <- p + theme(aspect.ratio = asp)
 
   return(p)
-}
-
-
-checkValidNumValues <- function(parameterValues) {
-  # same for all groups
-  if (!maxGroups == 1 & length(parameterValues) == 1) {
-    return(rep(parameterValues, maxGroups))
-  }
-  # values > number of unique groups
-  else if (length(parameterValues) > maxGroups) {
-    stop(paste0("Too many ", substitute(parameterValues), " values. Only ", maxGroups, " needed but ", length(parameterValues), " provided."), call. = FALSE)
-  }
-  # values < number of unique groups
-  else if (length(parameterValues) < maxGroups) {
-    stop(paste0("Insufficient ", substitute(parameterValues), " values. ", maxGroups, " needed but only ", length(parameterValues), " provided."), call. = FALSE)
-  } else {
-    return(parameterValues)
-  }
 }

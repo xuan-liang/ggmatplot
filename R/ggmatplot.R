@@ -28,7 +28,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
                       main = NULL, xlab = NULL, ylab = NULL,
                       legend_label = NULL, legend_title = NULL,
-                      plot.type = "point", asp = NA) {
+                      plot.type = "point", asp = NA, ...) {
   if (!plot.type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
     stop("`plot.type` can not take this value", call. = FALSE)
   }
@@ -42,6 +42,8 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   } else {
     stop("`x` can not be missing", call. = FALSE)
   }
+
+  params <- list(...)
 
   data <- data.list$data
   xname <- data.list$xname
@@ -59,48 +61,100 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
 
   if (plot.type == "point") {
     p <- p +
-      geom_point(mapping = aes(
-        x = .data[[xname]],
-        y = .data[[yname]],
-        shape = Group
-      ))
+      do.call(
+        "geom_point",
+        c(
+          list(mapping = aes(
+            x = .data[[xname]],
+            y = .data[[yname]],
+            shape = Group
+          )),
+          params
+        )
+      )
   } else if (plot.type == "line") {
     p <- p +
-      geom_line(mapping = aes(
-        x = .data[[xname]],
-        y = .data[[yname]],
-        linetype = Group
-      ))
+      do.call(
+        "geom_line",
+        c(
+          list(mapping = aes(
+            x = .data[[xname]],
+            y = .data[[yname]],
+            linetype = Group
+          )),
+          params
+        )
+      )
   } else if (plot.type == "both") {
     p <- p +
-      geom_point(mapping = aes(
-        x = .data[[xname]],
-        y = .data[[yname]],
-        shape = Group
-      )) +
-      geom_line(mapping = aes(
-        x = .data[[xname]],
-        y = .data[[yname]],
-        linetype = Group
-      ))
+      do.call(
+        "geom_point",
+        c(
+          list(mapping = aes(
+            x = .data[[xname]],
+            y = .data[[yname]],
+            shape = Group
+          )),
+          params
+        )
+      ) +
+      do.call(
+        "geom_line",
+        c(
+          list(mapping = aes(
+            x = .data[[xname]],
+            y = .data[[yname]],
+            linetype = Group
+          )),
+          params
+        )
+      )
   } else if (plot.type == "density") {
     p <- p +
-      geom_density(mapping = aes(x = .data[[yname]]))
+      do.call(
+        "geom_density",
+        c(
+          list(mapping = aes(
+            x = .data[[yname]]
+          )),
+          params
+        )
+      )
   } else if (plot.type == "histogram") {
     p <- p +
-      geom_histogram(mapping = aes(x = .data[[yname]]))
+      do.call(
+        "geom_histogram",
+        c(
+          list(mapping = aes(
+            x = .data[[yname]]
+          )),
+          params
+        )
+      )
   } else if (plot.type == "violin") {
     p <- p +
-      geom_violin(mapping = aes(
-        x = Group,
-        y = .data[[yname]]
-      ))
+      do.call(
+        "geom_violin",
+        c(
+          list(mapping = aes(
+            x = Group,
+            y = .data[[yname]]
+          )),
+          params
+        )
+      )
   } else if (plot.type == "boxplot") {
     p <- p +
-      geom_boxplot(mapping = aes(
-        x = Group,
-        y = .data[[yname]]
-      ))
+      do.call(
+        "geom_boxplot",
+        c(
+          list(mapping = aes(
+            x = Group,
+            y = .data[[yname]]
+          )),
+          params
+        )
+      )
   }
 
   # number of unique groups
@@ -160,8 +214,8 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   if (!is.null(main)) p <- p + ggtitle(main)
 
   logv <- function(var) var %in% strsplit(log, "")[[1]]
-  if (logv("x")) p <- p + scale_x_log10() + xlab(paste0("log(",p$labels$x,")"))
-  if (logv("y")) p <- p + scale_y_log10() + ylab(paste0("log(",p$labels$y,")"))
+  if (logv("x")) p <- p + scale_x_log10() + xlab(paste0("log(", p$labels$x, ")"))
+  if (logv("y")) p <- p + scale_y_log10() + ylab(paste0("log(", p$labels$y, ")"))
 
   if (!is.null(xlab)) p <- p + xlab(xlab)
   if (!is.null(ylab)) p <- p + ylab(ylab)

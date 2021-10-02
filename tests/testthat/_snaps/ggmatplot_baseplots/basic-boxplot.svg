@@ -29,11 +29,11 @@
 <rect x='27.90' y='22.78' width='603.48' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <line x1='192.49' y1='172.22' x2='192.49' y2='46.53' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
 <line x1='192.49' y1='416.63' x2='192.49' y2='458.52' style='stroke-width: 1.07; stroke: #F8766D; stroke-linecap: butt;' />
-<polygon points='89.62,172.22 89.62,416.63 295.35,416.63 295.35,172.22 89.62,172.22 ' style='stroke-width: 1.07; stroke: #F8766D; fill: #F8766D;' />
+<polygon points='89.62,172.22 89.62,416.63 295.35,416.63 295.35,172.22 89.62,172.22 ' style='stroke-width: 1.07; stroke: #F8766D; fill: #F8766D; fill-opacity: 0.50;' />
 <line x1='89.62' y1='224.59' x2='295.35' y2='224.59' style='stroke-width: 2.13; stroke: #F8766D; stroke-linecap: butt;' />
 <line x1='466.80' y1='402.66' x2='466.80' y2='353.78' style='stroke-width: 1.07; stroke: #00BFC4; stroke-linecap: butt;' />
 <line x1='466.80' y1='507.40' x2='466.80' y2='521.37' style='stroke-width: 1.07; stroke: #00BFC4; stroke-linecap: butt;' />
-<polygon points='363.93,402.66 363.93,507.40 569.66,507.40 569.66,402.66 363.93,402.66 ' style='stroke-width: 1.07; stroke: #00BFC4; fill: #00BFC4;' />
+<polygon points='363.93,402.66 363.93,507.40 569.66,507.40 569.66,402.66 363.93,402.66 ' style='stroke-width: 1.07; stroke: #00BFC4; fill: #00BFC4; fill-opacity: 0.50;' />
 <line x1='363.93' y1='437.57' x2='569.66' y2='437.57' style='stroke-width: 2.13; stroke: #00BFC4; stroke-linecap: butt;' />
 <rect x='27.90' y='22.78' width='603.48' height='522.33' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
@@ -57,12 +57,12 @@
 <rect x='642.34' y='274.33' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <polyline points='650.98,289.89 650.98,287.29 ' style='stroke-width: 1.07; stroke: #F8766D;' />
 <polyline points='650.98,278.65 650.98,276.06 ' style='stroke-width: 1.07; stroke: #F8766D;' />
-<rect x='644.50' y='278.65' width='12.96' height='8.64' style='stroke-width: 1.07; stroke: #F8766D; fill: #F8766D;' />
+<rect x='644.50' y='278.65' width='12.96' height='8.64' style='stroke-width: 1.07; stroke: #F8766D; fill: #F8766D; fill-opacity: 0.50;' />
 <polyline points='644.50,282.97 657.46,282.97 ' style='stroke-width: 1.07; stroke: #F8766D;' />
 <rect x='642.34' y='291.61' width='17.28' height='17.28' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <polyline points='650.98,307.17 650.98,304.57 ' style='stroke-width: 1.07; stroke: #00BFC4;' />
 <polyline points='650.98,295.93 650.98,293.34 ' style='stroke-width: 1.07; stroke: #00BFC4;' />
-<rect x='644.50' y='295.93' width='12.96' height='8.64' style='stroke-width: 1.07; stroke: #00BFC4; fill: #00BFC4;' />
+<rect x='644.50' y='295.93' width='12.96' height='8.64' style='stroke-width: 1.07; stroke: #00BFC4; fill: #00BFC4; fill-opacity: 0.50;' />
 <polyline points='644.50,300.25 657.46,300.25 ' style='stroke-width: 1.07; stroke: #00BFC4;' />
 <text x='665.10' y='286.00' style='font-size: 8.80px; font-family: sans;' textLength='49.42px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
 <text x='665.10' y='303.28' style='font-size: 8.80px; font-family: sans;' textLength='45.00px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>

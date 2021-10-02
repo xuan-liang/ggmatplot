@@ -110,6 +110,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
         )
       )
   } else if (plot.type == "density") {
+    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
         "geom_density",
@@ -121,6 +122,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
         )
       )
   } else if (plot.type == "histogram") {
+    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
         "geom_histogram",
@@ -132,6 +134,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
         )
       )
   } else if (plot.type == "violin") {
+    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
         "geom_violin",
@@ -144,6 +147,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
         )
       )
   } else if (plot.type == "boxplot") {
+    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
         "geom_boxplot",

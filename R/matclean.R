@@ -1,9 +1,12 @@
-#' Function to convert two matrices into a wide format dataframe
+#' Function to convert two matrices into a wide format data frame
 #'
-#' @param x,y vector or matrices of data. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used.
+#' @param x,y Vectors or matrices of data. The number of rows of x and y should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used.
 #'
-#' @return a list containing the long format dataframe, number and names of the id columns, number and names of the pivoted columns (column with group names and values)
-#' @NoRd
+#' @return A list of containing:
+#'  * data - the long format data frame.
+#'  * xname - name(s) of the ID column(s)
+#'  * yname - names of the pivoted columns(columns with group names and values)
+#' @noRd
 #'
 #' @examples
 #' # Define x and y matrices
@@ -12,6 +15,7 @@
 #' y <- iris_sub[, 3:4]
 #' # Use the defined x and y matrices as parameters
 #' matclean(x, y)
+#'
 matclean <- function(x, y) {
   x <- data.frame(x)
   ncolx <- ncol(x)

@@ -1,20 +1,17 @@
-#' Quick matplot function
+#' Quick function to plot 2 matrices against each other.
 #'
-#' `ggmatplot` is a quick way to make a simplier and similar plot as what `matplot` does but with a ggplot version.
+#' ggmatplot is a quick way to plot 2 matrices against each other using ggplot2.
 #'
-#' @param x,y vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.
-#' @param color vector of colors and they are used cyclically.
-#' @param shape vector of shapes and they are used cyclically.
-#' @param linetype vector of linetypes colors  and they are used cyclically.
-#' @param xlim,ylim ranges of x and y axes, as in [plot()].
-#' @param log Which variables to log transform ("x", "y", or "xy")
-#' @param main,xlab,ylab Character vector giving plot title,
-#'   x axis label, and y axis label respectively.
-#' @param legend_label Character vector giving legend tables for different groups.
-#' @param legend_title Character giving legend title
-#' @param geom Character vector specifying geom(s) to draw. Defaults to
-#'  "point". Other options are "line" or c("point","line").
-#' @param asp The y/x aspect ratio
+#' @param x,y Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.
+#' @param color,fill Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.
+#' @param shape,linetype A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.
+#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of the data will be used.
+#' @param log A string defining which axes to transform into a log scale. ("x", "y", or "xy")
+#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label, y axis label and legend title respectively.
+#' @param legend_label A vector of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.
+#' @param plot.type A string specifying the type of plot to draw. Possible plot types are: "point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf". Defaults to "point".
+#' @param asp The y/x aspect ratio.
+#' @param ... Other arguments specific to each plot type.
 #' @import ggplot2
 #' @export
 #'
@@ -23,7 +20,8 @@
 #' iris_sub <- subset(iris, Species == "setosa")
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
-#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c("s", "S"), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4,6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+#'
 ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = NULL,
                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
                       main = NULL, xlab = NULL, ylab = NULL,
@@ -180,7 +178,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(color)) {
-    color <- numParameterHandler(color, numGroups)
+    color <- validateNumParams(color, numGroups)
     p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = color)
     if (is.null(fill)) {
       p <- p + scale_fill_manual(name = legend_title, labels = legend_label, values = color)
@@ -188,7 +186,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(fill)) {
-    fill <- numParameterHandler(fill, numGroups)
+    fill <- validateNumParams(fill, numGroups)
     p <- p + scale_fill_manual(name = legend_title, labels = legend_label, values = fill)
     if (is.null(color)) {
       p <- p + scale_color_manual(name = legend_title, labels = legend_label, values = fill)
@@ -202,14 +200,14 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(shape)) {
-    shape <- numParameterHandler(shape, numGroups)
+    shape <- validateNumParams(shape, numGroups)
     p <- p + scale_shape_manual(name = legend_title, labels = legend_label, values = shape)
   } else {
     p <- p + scale_shape_discrete(name = legend_title, labels = legend_label)
   }
 
   if (!is.null(linetype)) {
-    linetype <- numParameterHandler(linetype, numGroups)
+    linetype <- validateNumParams(linetype, numGroups)
     p <- p + scale_linetype_manual(name = legend_title, labels = legend_label, values = linetype)
   } else {
     p <- p + scale_linetype_discrete(name = legend_title, labels = legend_label)

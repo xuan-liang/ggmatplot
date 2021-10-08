@@ -8,21 +8,29 @@
 
 <title>ggmatplot — ggmatplot • ggmatplot</title>
 
-<!-- jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<!-- Bootstrap -->
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script>
+<!-- jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
+
+<!-- bootstrap-toc -->
+<link rel="stylesheet" href="../bootstrap-toc.css">
+<script src="../bootstrap-toc.js"></script>
 
 <!-- Font Awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous" />
 
 <!-- clipboard.js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script>
 
-<!-- sticky kit -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+<!-- headroom.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -30,11 +38,11 @@
 
 
 
-<meta property="og:title" content="ggmatplot — ggmatplot" />
 
-<meta property="og:description" content="This package was created as a way to make a matplot with ggplot version
-`ggmatplot` is a quick way to make a simplier and similar plot as what `matplot` does but with a ggplot version." />
-<meta name="twitter:card" content="summary" />
+<meta property="og:title" content="ggmatplot — ggmatplot" />
+<meta property="og:description" content="This package was created as a way to make a matplot with ggplot version.
+ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." />
+
 
 
 
@@ -48,9 +56,10 @@
 <![endif]-->
 
 
+
   </head>
 
-  <body>
+  <body data-spy="scroll" data-target="#toc">
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -64,7 +73,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">ggmatplot</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.1</span>
       </span>
     </div>
 
@@ -72,15 +81,14 @@
       <ul class="nav navbar-nav">
         <li>
   <a href="../index.html">
-    <span class="fa fa-home fa-lg"></span>
+    <span class="fa fa-home"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/ggmatplot.html">References</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -90,6 +98,7 @@
 </div><!--/.navbar -->
 
       
+
       </header>
 
 <div class="row">
@@ -101,86 +110,92 @@
     </div>
 
     <div class="ref-description">
-    
-    <p>This package was created as a way to make a matplot with ggplot version</p>
-<p>`ggmatplot` is a quick way to make a simplier and similar plot as what `matplot` does but with a ggplot version.</p>
-    
+    <p>This package was created as a way to make a matplot with ggplot version.</p>
+<p>ggmatplot is a quick way to plot 2 matrices against each other using ggplot2.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>ggmatplot</span>(<span class='no'>x</span>, <span class='no'>y</span>, <span class='kw'>color</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>shape</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>linetype</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xlim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>ylim</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>NA</span>, <span class='fl'>NA</span>), <span class='kw'>log</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>main</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>ylab</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>legend_label</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>legend_title</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>geom</span> <span class='kw'>=</span> <span class='st'>"point"</span>, <span class='kw'>asp</span> <span class='kw'>=</span> <span class='fl'>NA</span>)</pre>
-    
+    <pre class="usage"><span class='fu'>ggmatplot</span><span class='op'>(</span>
+  <span class='va'>x</span>,
+  <span class='va'>y</span>,
+  color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  shape <span class='op'>=</span> <span class='cn'>NULL</span>,
+  linetype <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fill <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
+  log <span class='op'>=</span> <span class='st'>""</span>,
+  main <span class='op'>=</span> <span class='cn'>NULL</span>,
+  xlab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
+  legend_label <span class='op'>=</span> <span class='cn'>NULL</span>,
+  legend_title <span class='op'>=</span> <span class='cn'>NULL</span>,
+  plot.type <span class='op'>=</span> <span class='st'>"point"</span>,
+  asp <span class='op'>=</span> <span class='cn'>NA</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x, y</th>
-      <td><p>vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.</p></td>
+      <td><p>Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.</p></td>
     </tr>
     <tr>
-      <th>color</th>
-      <td><p>vector of colors and they are used cyclically.</p></td>
+      <th>color, fill</th>
+      <td><p>Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.</p></td>
     </tr>
     <tr>
-      <th>shape</th>
-      <td><p>vector of shapes and they are used cyclically.</p></td>
-    </tr>
-    <tr>
-      <th>linetype</th>
-      <td><p>vector of linetypes colors  and they are used cyclically.</p></td>
+      <th>shape, linetype</th>
+      <td><p>A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.</p></td>
     </tr>
     <tr>
       <th>xlim, ylim</th>
-      <td><p>ranges of x and y axes, as in [plot()].</p></td>
+      <td><p>Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of the data will be used.</p></td>
     </tr>
     <tr>
       <th>log</th>
-      <td><p>Which variables to log transform ("x", "y", or "xy")</p></td>
+      <td><p>A string defining which axes to transform into a log scale. ("x", "y", or "xy")</p></td>
     </tr>
     <tr>
-      <th>main, xlab, ylab</th>
-      <td><p>Character vector giving plot title,
-x axis label, and y axis label respectively.</p></td>
+      <th>main, xlab, ylab, legend_title</th>
+      <td><p>Strings to update plot title, x axis label, y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>legend_label</th>
-      <td><p>Character vector giving legend tables for different groups.</p></td>
+      <td><p>A vector of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.</p></td>
     </tr>
     <tr>
-      <th>legend_title</th>
-      <td><p>Character giving legend title</p></td>
-    </tr>
-    <tr>
-      <th>geom</th>
-      <td><p>Character vector specifying geom(s) to draw. Defaults to
-"point". Other options are "line" or c("point","line").</p></td>
+      <th>plot.type</th>
+      <td><p>A string specifying the type of plot to draw. Possible plot types are: "point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf". Defaults to "point".</p></td>
     </tr>
     <tr>
       <th>asp</th>
-      <td><p>The y/x aspect ratio</p></td>
+      <td><p>The y/x aspect ratio.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Other arguments specific to each plot type.</p></td>
     </tr>
     </table>
-    
+
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Define a data set</span>
-<span class='no'>iris_sub</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/subset'>subset</a></span>(<span class='no'>iris</span>, <span class='no'>Species</span> <span class='kw'>==</span> <span class='st'>"setosa"</span>)
-<span class='co'># Use default legend and axis</span>
-<span class='fu'>ggmatplot</span>(<span class='no'>iris_sub</span>[,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>)], <span class='no'>iris_sub</span>[,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)])</div><div class='img'><img src='ggmatplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Modify legend label and axis</span>
-<span class='fu'>ggmatplot</span>(<span class='no'>iris_sub</span>[,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>1</span>,<span class='fl'>3</span>)], <span class='no'>iris_sub</span>[,<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='fl'>2</span>,<span class='fl'>4</span>)], <span class='kw'>shape</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"s"</span>,<span class='st'>"S"</span>), <span class='kw'>legend_label</span> <span class='kw'>=</span>  <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"Sepal"</span>,<span class='st'>"Petal"</span>), <span class='kw'>legend_title</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>xlab</span> <span class='kw'>=</span> <span class='st'>"Length"</span>, <span class='kw'>ylab</span><span class='kw'>=</span><span class='st'>"Width"</span>)</div><div class='img'><img src='ggmatplot-2.png' alt='' width='700' height='433' /></div></pre>
+<span class='va'>iris_sub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>iris</span>, <span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"setosa"</span><span class='op'>)</span>
+<span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
+</div><div class='img'><img src='ggmatplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Modify legend label and axis</span>
+<span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>6</span><span class='op'>)</span>, legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span>
+</div><div class='img'><img src='ggmatplot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-            
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
+    <nav id="toc" data-toggle="toc" class="sticky-top">
+      <h2 data-toc-skip>Contents</h2>
+    </nav>
   </div>
 </div>
+
 
       <footer>
       <div class="copyright">
@@ -188,13 +203,16 @@ x axis label, and y axis label respectively.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
+
       </footer>
    </div>
 
   
 
+
   </body>
 </html>
+
 

@@ -3,48 +3,59 @@
 \docType{package}
 \name{ggmatplot}
 \alias{ggmatplot}
-\alias{ggmatplot-package}
 \title{ggmatplot}
 \usage{
-ggmatplot(x, y, color = NULL, shape = NULL, linetype = NULL,
-  xlim = c(NA, NA), ylim = c(NA, NA), log = "", main = NULL,
-  xlab = NULL, ylab = NULL, legend_label = NULL,
-  legend_title = NULL, geom = "point", asp = NA)
+ggmatplot(
+  x,
+  y,
+  color = NULL,
+  shape = NULL,
+  linetype = NULL,
+  fill = NULL,
+  xlim = c(NA, NA),
+  ylim = c(NA, NA),
+  log = "",
+  main = NULL,
+  xlab = NULL,
+  ylab = NULL,
+  legend_label = NULL,
+  legend_title = NULL,
+  plot.type = "point",
+  asp = NA,
+  ...
+)
 }
 \arguments{
-\item{x, y}{vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.}
+\item{x, y}{Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.}
 
-\item{color}{vector of colors and they are used cyclically.}
+\item{color, fill}{Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.}
 
-\item{shape}{vector of shapes and they are used cyclically.}
+\item{shape, linetype}{A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.}
 
-\item{linetype}{vector of linetypes colors  and they are used cyclically.}
+\item{xlim, ylim}{Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of the data will be used.}
 
-\item{xlim, ylim}{ranges of x and y axes, as in [plot()].}
+\item{log}{A string defining which axes to transform into a log scale. ("x", "y", or "xy")}
 
-\item{log}{Which variables to log transform ("x", "y", or "xy")}
+\item{main, xlab, ylab, legend_title}{Strings to update plot title, x axis label, y axis label and legend title respectively.}
 
-\item{main, xlab, ylab}{Character vector giving plot title,
-x axis label, and y axis label respectively.}
+\item{legend_label}{A vector of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.}
 
-\item{legend_label}{Character vector giving legend tables for different groups.}
+\item{plot.type}{A string specifying the type of plot to draw. Possible plot types are: "point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf". Defaults to "point".}
 
-\item{legend_title}{Character giving legend title}
+\item{asp}{The y/x aspect ratio.}
 
-\item{geom}{Character vector specifying geom(s) to draw. Defaults to
-"point". Other options are "line" or c("point","line").}
-
-\item{asp}{The y/x aspect ratio}
+\item{...}{Other arguments specific to each plot type.}
 }
 \description{
 This package was created as a way to make a matplot with ggplot version.
 
-`ggmatplot` is a quick way to make a simplier and similar plot as what `matplot` does but with a ggplot version.
+ggmatplot is a quick way to plot 2 matrices against each other using ggplot2.
 }
 \examples{
 # Define a data set
 iris_sub <- subset(iris, Species == "setosa")
-ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)])
+ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 # Modify legend label and axis
-ggmatplot(iris_sub[,c(1,3)], iris_sub[,c(2,4)], shape = c("s","S"), legend_label =  c("Sepal","Petal"), legend_title = "", xlab = "Length", ylab="Width")
+ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4,6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+
 }

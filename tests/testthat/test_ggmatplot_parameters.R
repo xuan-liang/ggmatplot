@@ -47,11 +47,11 @@ test_that("plot axis limits are updated based on xlim and ylim parameters", {
 
 test_that("plot axes are transformed to a log scale based on log parameter values", {
   # log(x)
-  expect_doppelganger("line plot with log transformed x axis", ggmatplot(x,y, plot.type = "line", log = "x"))
+  expect_doppelganger("line plot with log x", ggmatplot(x,y, plot.type = "line", log = "x"))
   # log(y)
-  expect_doppelganger("scatterplot with log transformed y axis", ggmatplot(x,y, plot.type = "point", log = "y"))
+  expect_doppelganger("scatterplot with log y", ggmatplot(x,y, plot.type = "point", log = "y"))
   # log(x) and log(y)
-  expect_doppelganger("point + line plot with log transformed x and y axis", ggmatplot(x,y, plot.type = "both", log = "xy"))
+  expect_doppelganger("point + line plot with log x and y", ggmatplot(x,y, plot.type = "both", log = "xy"))
 })
 
 test_that("plot title is updated based on main paramter", {

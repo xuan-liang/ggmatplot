@@ -60,6 +60,6 @@
 <text x='665.10' y='277.36' style='font-size: 8.80px; font-family: sans;' textLength='47.45px' lengthAdjust='spacingAndGlyphs'>Sepal.Width</text>
 <text x='665.10' y='294.64' style='font-size: 8.80px; font-family: sans;' textLength='49.42px' lengthAdjust='spacingAndGlyphs'>Petal.Length</text>
 <text x='665.10' y='311.92' style='font-size: 8.80px; font-family: sans;' textLength='45.00px' lengthAdjust='spacingAndGlyphs'>Petal.Width</text>
-<text x='27.90' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='205.44px' lengthAdjust='spacingAndGlyphs'>line plot with log transformed x axis</text>
+<text x='27.90' y='14.56' style='font-size: 13.20px; font-family: sans;' textLength='104.19px' lengthAdjust='spacingAndGlyphs'>line plot with log x</text>
 </g>
 </svg>

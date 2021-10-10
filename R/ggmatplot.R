@@ -28,7 +28,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
                       legend_label = NULL, legend_title = NULL,
                       plot.type = "point", asp = NA, ...) {
   if (!plot.type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
-    stop("`plot.type` can not take this value", call. = FALSE)
+    stop("plot.type can not take this value", call. = FALSE)
   }
   if (!missing(x) & !missing(y)) {
     if (plot.type %in% c("density", "histogram", "boxplot", "violin")) {
@@ -38,7 +38,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   } else if (!missing(x)) {
     data.list <- matclean(x = x)
   } else {
-    stop("`x` can not be missing", call. = FALSE)
+    stop("x can not be missing", call. = FALSE)
   }
 
   params <- list(...)

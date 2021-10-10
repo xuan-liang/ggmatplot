@@ -14,6 +14,24 @@ test_that("plot colors by color values", {
   expect_error(ggmatplot(y, plot.type = "violin", color = c("red", "blue", "yellow", "green")), "Too many color values. Only 3 needed but 4 provided.")
 })
 
+test_that("plot colors by fill values", {
+  # single fill value
+  expect_doppelganger("single fill density plot", ggmatplot(y, plot.type = "density", fill = "red"))
+  # fill values = number of groups
+  expect_doppelganger("three fill color violin plot", ggmatplot(y, plot.type = "violin", fill = c("red", "blue", "#123456")))
+  # fill values < number of groups
+  expect_error(ggmatplot(y, plot.type = "violin", fill = c("red", "blue")), "Insufficient fill values. 3 needed but only 2 provided.")
+  # fill values > number of groups
+  expect_error(ggmatplot(y, plot.type = "violin", fill = c("red", "blue", "yellow", "green")), "Too many fill values. Only 3 needed but 4 provided.")
+})
+
+test_that("plot colors by color and fill values simultaneously", {
+  # single color value, fill values = number of groups
+  expect_doppelganger("color and fill density plot", ggmatplot(y, plot.type = "density", color = "red", fill = c("red", "blue", "#123456")))
+  # single fill value, color values < number of groups
+  expect_error(ggmatplot(y, plot.type = "violin", fill = "black", color = c("red", "blue")), "Insufficient fill values. 3 needed but only 2 provided.")
+})
+
 test_that("point shapes updated based on shape values", {
   # single shape value
   expect_doppelganger("single shape scatterplot", ggmatplot(y, plot.type = "point", shape = "square"))
@@ -64,29 +82,37 @@ test_that("plot axis labels are updated based on xlab and ylab paramters", {
   expect_equal(ggmatplot(y, plot.type = "point", ylab="ylab test")$labels$y, "ylab test")
 })
 
+test_that("invalid plot types are no allowed", {
+  expect_error(ggmatplot(x,y, plot.type = "scatterplot"), "plot.type can not take this value")
+})
+
+test_that("legend labels are updated", {
+  # legend label values = number of groups
+  expect_doppelganger("plot with updated legend labels", ggmatplot(x,y, legend_label = c("lab1","lab2","lab3")))
+  # legend label values < number of groups
+  expect_error(ggmatplot(x,y, legend_label = c("lab1")), "Insufficient legend_label values. 3 needed but only 1 provided.")
+  # legend label values > number of groups
+  expect_error(ggmatplot(x,y, legend_label = c("lab1","lab2","lab3","lab4")), "Too many legend_label values. Only 3 needed but 4 provided.")
+})
+
+test_that("legend title is updated", {
+  expect_doppelganger("plot with updated legend title", ggmatplot(x,y, legend_title = "Legend Title"))
+})
+
+test_that("plot is resized by aspect ratio(asp)", {
+  expect_doppelganger("plot resized by aspect ratio", ggmatplot(x,y, asp = 0.5))
+})
 
 test_that("invalid parameter values throw errors", {
   # invalid shape value
   expect_error(ggmatplot(x, y, plot.type = "point", shape = "red"), "ERROR")
-  # invalid shape value
+  # invalid linetype value
   expect_error(ggmatplot(x, y, plot.type = "line", linetype = "red"), "ERROR")
   # invalid limits
   expect_error(ggmatplot(y, plot.type = "line", xlim = c(-4,a)), "ERROR")
   expect_error(ggmatplot(y, plot.type = "line", xlim = 5), "ERROR")
-  # density plot with y axis limits
-  expect_error(ggmatplot(y, plot.type = "density", ylim = c(3,4)), "ERROR")
   # invalid log value
-  expect_error(ggmatplot(y, plot.type = "scatterplot", log = 1), "ERROR")
-
-  # only first value is considered
-  #ggmatplot(y, plot.type = "density", log = c("x","y"))
-
-
-  # negative axis values transformed using log scale
-  #z <- iris[, 1]-5
-  #ggmatplot(z,y, plot.type = "point",log = "x")
-
-  # log transformations on density, histogram y axis
+  expect_error(ggmatplot(y, plot.type = "point", log = 1), "ERROR")
 })
 
 test_that("unknown parameter values for plots throw errors", {

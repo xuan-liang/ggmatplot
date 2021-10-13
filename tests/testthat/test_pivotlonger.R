@@ -36,12 +36,3 @@ test_that("id columns can have different data types", {
   expect_equal(pv$Group, rep(names(df[,3]), nrow(df)))
   expect_equal(pv$Value, c(31, 32, 33))
 })
-
-
-# Should multiple data types be allowed or handled
-#
-# test_that("pivoted columns can't have different data types", {
-#   df <- tibble(x = 1:3, y = c("a","b","c"), z = 31:33)
-#   pv <- pivotlonger(df, names_to = "Group", values_to = "Value", id_cols = 1)
-#
-# })

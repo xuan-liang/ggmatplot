@@ -1,17 +1,18 @@
 #' Quick function to plot 2 matrices against each other.
 #'
-#' ggmatplot is a quick way to plot 2 matrices against each other using ggplot2.
+#' `ggmatplot` is a quick way to plot wide format data. This can be done by passing the id columns and columns to be pivoted into long format, to the `ggmatplot` function as 2 matrices. The `ggmatplot` function will then plot these matrices against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
 #'
 #' @param x,y Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.
 #' @param color,fill Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.
 #' @param shape,linetype A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.
-#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of the data will be used.
-#' @param log A string defining which axes to transform into a log scale. ("x", "y", or "xy")
+#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of data will be used.
+#' @param log A string defining which axes to transform into a log scale. (`x`, `y` or `xy`)
 #' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label, y axis label and legend title respectively.
-#' @param legend_label A vector of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.
-#' @param plot.type A string specifying the type of plot to draw. Possible plot types are: "point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf". Defaults to "point".
+#' @param legend_label A list of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.
+#' @param plot_type A string specifying the type of plot to draw. Possible plot types are `point`, `line`, `both`(point + line), `density`, `histogram`, `boxplot`, `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is `point`.
 #' @param asp The y/x aspect ratio.
-#' @param ... Other arguments specific to each plot type.
+#' @param ... Other arguments passed on to the plot. They can be aesthetics, used to set an aesthetic to a fixed value, like `alpha = 0.4` or `size = 2`. They may also be parameters passed on to the corresponding [geoms](https://ggplot2.tidyverse.org/reference/).
+#'
 #' @import ggplot2
 #' @export
 #'
@@ -26,12 +27,12 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
                       main = NULL, xlab = NULL, ylab = NULL,
                       legend_label = NULL, legend_title = NULL,
-                      plot.type = "point", asp = NA, ...) {
-  if (!plot.type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
-    stop("plot.type can not take this value", call. = FALSE)
+                      plot_type = "point", asp = NA, ...) {
+  if (!plot_type %in% c("point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
+    stop("plot_type can not take this value", call. = FALSE)
   }
   if (!missing(x) & !missing(y)) {
-    if (plot.type %in% c("density", "histogram", "boxplot", "violin")) {
+    if (plot_type %in% c("density", "histogram", "boxplot", "violin")) {
       stop("This plot type only uses a single matrix input", call. = FALSE)
     }
     data.list <- matclean(x = x, y = y)
@@ -57,7 +58,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   )
 
 
-  if (plot.type == "point") {
+  if (plot_type == "point") {
     p <- p +
       do.call(
         "geom_point",
@@ -70,7 +71,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "line") {
+  } else if (plot_type == "line") {
     p <- p +
       do.call(
         "geom_line",
@@ -83,7 +84,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "both") {
+  } else if (plot_type == "both") {
     p <- p +
       do.call(
         "geom_point",
@@ -107,7 +108,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "density") {
+  } else if (plot_type == "density") {
     params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
@@ -119,7 +120,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "histogram") {
+  } else if (plot_type == "histogram") {
     params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
@@ -131,7 +132,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "violin") {
+  } else if (plot_type == "violin") {
     params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(
@@ -144,7 +145,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
           params
         )
       )
-  } else if (plot.type == "boxplot") {
+  } else if (plot_type == "boxplot") {
     params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
     p <- p +
       do.call(

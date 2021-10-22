@@ -1,4 +1,4 @@
-#' Quick function to plot 2 matrices against each other.
+#' ggmatplot
 #'
 #' `ggmatplot` is a quick way to plot wide format data. This can be done by passing the id columns and columns to be pivoted into long format, to the `ggmatplot` function as 2 matrices. The `ggmatplot` function will then plot these matrices against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
 #'
@@ -21,8 +21,7 @@
 #' iris_sub <- subset(iris, Species == "setosa")
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
-#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4,6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
-#'
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
 ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = NULL,
                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
                       main = NULL, xlab = NULL, ylab = NULL,
@@ -57,108 +56,114 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
     )
   )
 
-
-  if (plot_type == "point") {
-    p <- p +
-      do.call(
-        "geom_point",
-        c(
-          list(mapping = aes(
-            x = .data[[xname]],
-            y = .data[[yname]],
-            shape = Group
-          )),
-          params
+  withCallingHandlers(
+    if (plot_type == "point") {
+      p <- p +
+        do.call(
+          "geom_point",
+          c(
+            list(mapping = aes(
+              x = .data[[xname]],
+              y = .data[[yname]],
+              shape = Group
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "line") {
-    p <- p +
-      do.call(
-        "geom_line",
-        c(
-          list(mapping = aes(
-            x = .data[[xname]],
-            y = .data[[yname]],
-            linetype = Group
-          )),
-          params
+    } else if (plot_type == "line") {
+      p <- p +
+        do.call(
+          "geom_line",
+          c(
+            list(mapping = aes(
+              x = .data[[xname]],
+              y = .data[[yname]],
+              linetype = Group
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "both") {
-    p <- p +
-      do.call(
-        "geom_point",
-        c(
-          list(mapping = aes(
-            x = .data[[xname]],
-            y = .data[[yname]],
-            shape = Group
-          )),
-          params
+    } else if (plot_type == "both") {
+      p <- p +
+        do.call(
+          "geom_point",
+          c(
+            list(mapping = aes(
+              x = .data[[xname]],
+              y = .data[[yname]],
+              shape = Group
+            )),
+            params
+          )
+        ) +
+        do.call(
+          "geom_line",
+          c(
+            list(mapping = aes(
+              x = .data[[xname]],
+              y = .data[[yname]],
+              linetype = Group
+            )),
+            params
+          )
         )
-      ) +
-      do.call(
-        "geom_line",
-        c(
-          list(mapping = aes(
-            x = .data[[xname]],
-            y = .data[[yname]],
-            linetype = Group
-          )),
-          params
+    } else if (plot_type == "density") {
+      params$alpha <- if (is.null(params$alpha)) 0.5 else params$alpha
+      p <- p +
+        do.call(
+          "geom_density",
+          c(
+            list(mapping = aes(
+              x = .data[[yname]]
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "density") {
-    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
-    p <- p +
-      do.call(
-        "geom_density",
-        c(
-          list(mapping = aes(
-            x = .data[[yname]]
-          )),
-          params
+    } else if (plot_type == "histogram") {
+      params$alpha <- if (is.null(params$alpha)) 0.5 else params$alpha
+      p <- p +
+        do.call(
+          "geom_histogram",
+          c(
+            list(mapping = aes(
+              x = .data[[yname]]
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "histogram") {
-    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
-    p <- p +
-      do.call(
-        "geom_histogram",
-        c(
-          list(mapping = aes(
-            x = .data[[yname]]
-          )),
-          params
+    } else if (plot_type == "violin") {
+      params$alpha <- if (is.null(params$alpha)) 0.5 else params$alpha
+      p <- p +
+        do.call(
+          "geom_violin",
+          c(
+            list(mapping = aes(
+              x = Group,
+              y = .data[[yname]]
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "violin") {
-    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
-    p <- p +
-      do.call(
-        "geom_violin",
-        c(
-          list(mapping = aes(
-            x = Group,
-            y = .data[[yname]]
-          )),
-          params
+    } else if (plot_type == "boxplot") {
+      params$alpha <- if (is.null(params$alpha)) 0.5 else params$alpha
+      p <- p +
+        do.call(
+          "geom_boxplot",
+          c(
+            list(mapping = aes(
+              x = Group,
+              y = .data[[yname]]
+            )),
+            params
+          )
         )
-      )
-  } else if (plot_type == "boxplot") {
-    params$alpha <- if(is.null(params$alpha)) 0.5 else params$alpha
-    p <- p +
-      do.call(
-        "geom_boxplot",
-        c(
-          list(mapping = aes(
-            x = Group,
-            y = .data[[yname]]
-          )),
-          params
-        )
-      )
-  }
+    },
+    warning = function(w) {
+      # if(grepl('Ignoring unknown parameters', w$message)){
+      #   unknown_params_wmsg <- w$message}
+      print(w)
+    }
+  )
 
   # number of unique groups
   numGroups <- length(unique(data$Group))
@@ -201,6 +206,9 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = 
   }
 
   if (!is.null(shape)) {
+    if (!plot_type %in% c("point", "both")) {
+      unknown_params
+    }
     shape <- validateNumParams(shape, numGroups)
     p <- p + scale_shape_manual(name = legend_title, labels = legend_label, values = shape)
   } else {

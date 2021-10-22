@@ -11,3 +11,7 @@ navbar:
       href: index.html
     - text: "References"
       href: reference/ggmatplot.html
+
+  right:
+    - icon: fa-github
+      href: https://github.com/xuan-liang/ggmatplot

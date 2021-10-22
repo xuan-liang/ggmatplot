@@ -1,9 +1,20 @@
 Package: ggmatplot
-Title: Plot Two Matrices Against
+Title: Plot Two Matrices Against Eachother Using ggplot2
 Version: 0.0.0.1
-Authors@R: c(person("Xuan", "Liang", email = "xuan.liang@anu.edu.au", role = c("aut", "cre")),person("Francis", "Hui", email = "fhui28@gmail.com", role = c("aut")))
-Description: A quick way to plot the columns of one matrix against the columns of another.
+Authors@R: c(
+    person("Xuan", "Liang", 
+            email = "xuan.liang@anu.edu.au",
+            role = c("aut", "cre")),
+    person("Francis", "Hui",
+            email = "fhui28@gmail.com",
+            role = c("aut")))
+Description: A quick and easy way of plotting two matrices against each other 
+    using ggplot2. Can also be used as an alternative to pivoting data into long
+    format before plotting, by using the index column(s) and the columns to be 
+    plotted against the index as the two matrix inputs for 'ggmatplot'.
 Depends: R (>= 3.4.0)
+URL: https://github.com/xuan-liang/ggmatplot
+BugReports: https://github.com/xuan-liang/ggmatplot/issues
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
@@ -14,5 +25,6 @@ Suggests:
     rmarkdown,
     knitr,
     testthat,
-    vdiffr
+    vdiffr,
+    tibble
 VignetteBuilder: knitr

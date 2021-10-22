@@ -29,7 +29,7 @@ test_that("plot colors by color and fill values simultaneously", {
   # single color value, fill values = number of groups
   expect_doppelganger("color and fill density plot", ggmatplot(y, plot_type = "density", color = "red", fill = c("red", "blue", "#123456")))
   # single fill value, color values < number of groups
-  expect_error(ggmatplot(y, plot_type = "violin", fill = "black", color = c("red", "blue")), "Insufficient fill values. 3 needed but only 2 provided.")
+  expect_error(ggmatplot(y, plot_type = "violin", fill = "black", color = c("red", "blue")), "Insufficient color values. 3 needed but only 2 provided.")
 })
 
 test_that("point shapes updated based on shape values", {

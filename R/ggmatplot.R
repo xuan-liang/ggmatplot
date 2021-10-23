@@ -1,27 +1,70 @@
 #' ggmatplot
 #'
-#' `ggmatplot` is a quick way to plot wide format data. This can be done by passing the id columns and columns to be pivoted into long format, to the `ggmatplot` function as 2 matrices. The `ggmatplot` function will then plot these matrices against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
 #'
-#' @param x,y Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.
-#' @param color,fill Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.
-#' @param shape,linetype A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.
-#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of data will be used.
-#' @param log A string defining which axes to transform into a log scale. (`x`, `y` or `xy`)
-#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label, y axis label and legend title respectively.
-#' @param legend_label A list of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.
-#' @param plot_type A string specifying the type of plot to draw. Possible plot types are `point`, `line`, `both`(point + line), `density`, `histogram`, `boxplot`, `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is `point`.
+#' `ggmatplot` is a quick and easy way of plotting two matrices against each
+#' other. Can also be used as an alternative to pivoting data into long format
+#' before plotting, by using the index column(s) and the columns to be plotted
+#' against the index as the two matrix inputs for `ggmatplot()`.
+#'
+#' @param x,y Vectors or matrices of data for plotting.
+#'
+#' * The number of rows of `x` and `y` should be the same.
+#' * Missing values (NAs) are allowed.
+#' * If either `x` or `y` is missing, the other is used as `y` and a vector of
+#' `1:n` is used as `x`.
+#'
+#' @param color,fill Vectors of colors. Defining only one of them will update
+#' both `color` and `fill` aesthetics of the plot by default, unless they are
+#' both defined simultaneously.
+#'
+#' * The number of colors should match the higher number of columns of
+#' matrices `x` or `y`, and will correspond to each of those columns.
+#' * If only a single color is given, the same color will be used for all columns.
+#'
+#' @param shape,linetype A vector of shapes or line types respectively.
+#'
+#' * The number of shapes/line types should match the higher number of columns of
+#' matrices `x` or `y`, and will correspond to each of those columns.
+#' * If only a single shape/line type is given, the same shape/line type will be
+#' used for all columns.
+#'
+#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element
+#' vector specifying the lower and upper limits of the scale. If the larger
+#' value is given first, the scale will be reversed. If one of the limits is
+#' given as `NA`, the corresponding limit from the range of data will be used.
+#'
+#' @param log A string defining which axes to transform into a log scale.
+#' (`x`, `y` or `xy`)
+#'
+#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label,
+#'  y axis label and legend title respectively.
+#'
+#' @param legend_label A list of strings, to rename the legend labels.
+#'
+#' @param plot_type A string specifying the type of plot to draw. Possible plot
+#' types are `point`, `line`, `both`(point + line), `density`, `histogram`,
+#' `boxplot`, `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is
+#'  `point`.
+#'
 #' @param asp The y/x aspect ratio.
-#' @param ... Other arguments passed on to the plot. They can be aesthetics, used to set an aesthetic to a fixed value, like `alpha = 0.4` or `size = 2`. They may also be parameters passed on to the corresponding [geoms](https://ggplot2.tidyverse.org/reference/).
+#'
+#' @param ... Other arguments passed on to the plot. They can be used to set an
+#' aesthetic to a fixed value, like `alpha = 0.4` or `size = 2`. They may also
+#' be parameters passed on to the corresponding [geoms](https://ggplot2.tidyverse.org/reference/).
 #'
 #' @import ggplot2
 #' @export
+#' @md
 #'
 #' @examples
+#'
 #' # Define a data set
 #' iris_sub <- subset(iris, Species == "setosa")
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+#'
+#'
 ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL, fill = NULL,
                       xlim = c(NA, NA), ylim = c(NA, NA), log = "",
                       main = NULL, xlab = NULL, ylab = NULL,

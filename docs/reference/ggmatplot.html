@@ -40,8 +40,10 @@
 
 
 <meta property="og:title" content="ggmatplot — ggmatplot" />
-<meta property="og:description" content="This package was created as a way to make a matplot with ggplot version.
-ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." />
+<meta property="og:description" content="ggmatplot is a quick and easy way of plotting two matrices against each
+other. Can also be used as an alternative to pivoting data into long format
+before plotting, by using the index column(s) and the columns to be plotted
+against the index as the two matrix inputs for ggmatplot()." />
 
 
 
@@ -90,7 +92,12 @@ ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." /
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/xuan-liang/ggmatplot">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -105,13 +112,15 @@ ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." /
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>ggmatplot</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/xuan-liang/ggmatplot/blob/master/R/ggmatplot.R'><code>R/ggmatplot.R</code></a></small>
     <div class="hidden name"><code>ggmatplot.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This package was created as a way to make a matplot with ggplot version.</p>
-<p>ggmatplot is a quick way to plot 2 matrices against each other using ggplot2.</p>
+    <p><code>ggmatplot</code> is a quick and easy way of plotting two matrices against each
+other. Can also be used as an alternative to pivoting data into long format
+before plotting, by using the index column(s) and the columns to be plotted
+against the index as the two matrix inputs for <code>ggmatplot()</code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggmatplot</span><span class='op'>(</span>
@@ -129,7 +138,7 @@ ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." /
   ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend_label <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend_title <span class='op'>=</span> <span class='cn'>NULL</span>,
-  plot.type <span class='op'>=</span> <span class='st'>"point"</span>,
+  plot_type <span class='op'>=</span> <span class='st'>"point"</span>,
   asp <span class='op'>=</span> <span class='cn'>NA</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -139,35 +148,59 @@ ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." /
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x, y</th>
-      <td><p>Vectors or matrices of data for plotting. The number of rows should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used. Missing values (NAs) are allowed.</p></td>
+      <td><p>Vectors or matrices of data for plotting.</p><ul>
+<li><p>The number of rows of <code>x</code> and <code>y</code> should be the same.</p></li>
+<li><p>Missing values (NAs) are allowed.</p></li>
+<li><p>If either <code>x</code> or <code>y</code> is missing, the other is used as <code>y</code> and a vector of
+<code>1:n</code> is used as <code>x</code>.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>color, fill</th>
-      <td><p>Vectors of colors. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same color will be used for all groups. Defining only one of them will update both `color` and `fill` aesthetics of the plot by default, unless they are both defined simultaneously.</p></td>
+      <td><p>Vectors of colors. Defining only one of them will update
+both <code>color</code> and <code>fill</code> aesthetics of the plot by default, unless they are
+both defined simultaneously.</p><ul>
+<li><p>The number of colors should match the higher number of columns of
+matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
+<li><p>If only a single color is given, the same color will be used for all columns.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>shape, linetype</th>
-      <td><p>A vector of shapes or line types respectively. Should match the number of unique groups created when x and y are pivoted into long format. If a single string, the same shape or line type will be used for all groups.</p></td>
+      <td><p>A vector of shapes or line types respectively.</p><ul>
+<li><p>The number of shapes/line types should match the higher number of columns of
+matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
+<li><p>If only a single shape/line type is given, the same shape/line type will be
+used for all columns.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>xlim, ylim</th>
-      <td><p>Ranges of x and y axes. Each of them should be a two element vector specifying the lower and upper limits of the scale. If the larger value is given first, the scale will be reversed. If one of the limits is given as `NA`, the corresponding limit from the range of the data will be used.</p></td>
+      <td><p>Ranges of x and y axes. Each of them should be a two element
+vector specifying the lower and upper limits of the scale. If the larger
+value is given first, the scale will be reversed. If one of the limits is
+given as <code>NA</code>, the corresponding limit from the range of data will be used.</p></td>
     </tr>
     <tr>
       <th>log</th>
-      <td><p>A string defining which axes to transform into a log scale. ("x", "y", or "xy")</p></td>
+      <td><p>A string defining which axes to transform into a log scale.
+(<code>x</code>, <code>y</code> or <code>xy</code>)</p></td>
     </tr>
     <tr>
       <th>main, xlab, ylab, legend_title</th>
-      <td><p>Strings to update plot title, x axis label, y axis label and legend title respectively.</p></td>
+      <td><p>Strings to update plot title, x axis label,
+y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>legend_label</th>
-      <td><p>A vector of strings, to rename the legend labels. Should match the number of unique groups created when x and y are pivoted into long format.</p></td>
+      <td><p>A list of strings, to rename the legend labels.</p></td>
     </tr>
     <tr>
-      <th>plot.type</th>
-      <td><p>A string specifying the type of plot to draw. Possible plot types are: "point", "line", "both", "density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf". Defaults to "point".</p></td>
+      <th>plot_type</th>
+      <td><p>A string specifying the type of plot to draw. Possible plot
+types are <code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>,
+<code>boxplot</code>, <code>dotplot</code>, <code>errorplot</code>, <code>violin</code>, and <code>ecdf</code>. Default plot_type is
+<code>point</code>.</p></td>
     </tr>
     <tr>
       <th>asp</th>
@@ -175,18 +208,22 @@ ggmatplot is a quick way to plot 2 matrices against each other using ggplot2." /
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments specific to each plot type.</p></td>
+      <td><p>Other arguments passed on to the plot. They can be used to set an
+aesthetic to a fixed value, like <code>alpha = 0.4</code> or <code>size = 2</code>. They may also
+be parameters passed on to the corresponding <a href='https://ggplot2.tidyverse.org/reference/'>geoms</a>.</p></td>
     </tr>
     </table>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># Define a data set</span>
+    <pre class="examples"><div class='input'>
+<span class='co'># Define a data set</span>
 <span class='va'>iris_sub</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/subset.html'>subset</a></span><span class='op'>(</span><span class='va'>iris</span>, <span class='va'>Species</span> <span class='op'>==</span> <span class='st'>"setosa"</span><span class='op'>)</span>
 <span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span>
 </div><div class='img'><img src='ggmatplot-1.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># Modify legend label and axis</span>
-<span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>,<span class='fl'>6</span><span class='op'>)</span>, legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span>
+<span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>, legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span>
 </div><div class='img'><img src='ggmatplot-2.png' alt='' width='700' height='433' /></div><div class='input'>
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -13,7 +13,7 @@ ggmatplot(
   fill = NULL,
   xlim = c(NA, NA),
   ylim = c(NA, NA),
-  log = "",
+  log = NULL,
   main = NULL,
   xlab = NULL,
   ylab = NULL,
@@ -76,9 +76,7 @@ be parameters passed on to the corresponding \href{https://ggplot2.tidyverse.org
 }
 \description{
 \code{ggmatplot} is a quick and easy way of plotting two matrices against each
-other. Can also be used as an alternative to pivoting data into long format
-before plotting, by using the index column(s) and the columns to be plotted
-against the index as the two matrix inputs for \code{ggmatplot()}.
+other.
 }
 \examples{
 
@@ -87,6 +85,4 @@ iris_sub <- subset(iris, Species == "setosa")
 ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 # Modify legend label and axis
 ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
-
-
 }

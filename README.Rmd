@@ -12,13 +12,37 @@ knitr::opts_chunk$set(
 ```
 # ggmatplot
 
-`ggmatplot` plots two matrices against each other using [`ggplot2`](https://ggplot2.tidyverse.org/) 
+`ggmatplot` is a quick and easy way of plotting the columns of two matrices against each other. It is built upon [ggplot2](https://ggplot2.tidyverse.org/), and is aimed at providing a more direct and simple approach to creating plots using matrices.
+
+`ggmatplot` can also be considered as an alternative to pivoting data into long format for visualizing using `ggplot2`.
 
 ## Installation
 
-You can install the released version of ggmatplot from [GitHub](https://github.com/xuan-liang/ggmatplot):
+You can install the released version of `ggmatplot` from [GitHub](https://github.com/xuan-liang/ggmatplot):
 
 ```r
 # install.packages("remotes")
 remotes::install_github("xuan-liang/ggmatplot")
+```
+
+## Examples
+
+```{r message=FALSE}
+library(ggmatplot)
+```
+
+```{r}
+USPersonalExpenditure
+
+ggmatplot(
+  rownames(USPersonalExpenditure),
+  USPersonalExpenditure[, 1:5],
+  plot_type = "point",
+  xlab = "Category",
+  ylab = "Expenditure (in Billions of Dollars)",
+  legend_title = "Year",
+  legend_label = c(1940, 1945, 1950, 1955, 1960)
+) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```

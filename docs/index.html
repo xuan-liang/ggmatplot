@@ -72,13 +72,43 @@
 <div id="ggmatplot" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ggmatplot" class="anchor"></a>ggmatplot</h1></div>
+<p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices against each other. It is built upon <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, and is aimed at providing a more direct approach to creating simple plots using matrices.</p>
+<p><code>ggmatplot</code> can also be considered as an alternative to pivoting data into long format for visualizing using <code>ggplot2</code>.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
+<p>You can install the released version of <code>ggmatplot</code> from <a href="https://github.com/xuan-liang/ggmatplot">GitHub</a>:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html">install_github</a></span><span class="op">(</span><span class="st">"xuan-liang/ggmatplot"</span><span class="op">)</span></code></pre></div>
 </div>
 <div id="examples" class="section level2">
 <h2 class="hasAnchor">
 <a href="#examples" class="anchor"></a>Examples</h2>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot">ggmatplot</a></span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">USPersonalExpenditure</span>
+<span class="co">#&gt;                       1940   1945  1950 1955  1960</span>
+<span class="co">#&gt; Food and Tobacco    22.200 44.500 59.60 73.2 86.80</span>
+<span class="co">#&gt; Household Operation 10.500 15.500 29.00 36.5 46.20</span>
+<span class="co">#&gt; Medical and Health   3.530  5.760  9.71 14.0 21.10</span>
+<span class="co">#&gt; Personal Care        1.040  1.980  2.45  3.4  5.40</span>
+<span class="co">#&gt; Private Education    0.341  0.974  1.80  2.6  3.64</span>
+
+<span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span>
+  <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">USPersonalExpenditure</span><span class="op">)</span>,
+  <span class="va">USPersonalExpenditure</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">5</span><span class="op">]</span>,
+  plot_type <span class="op">=</span> <span class="st">"both"</span>,
+  xlab <span class="op">=</span> <span class="st">"Category"</span>,
+  ylab <span class="op">=</span> <span class="st">"Expenditure (in Billions of Dollars)"</span>,
+  legend_title <span class="op">=</span> <span class="st">"Year"</span>,
+  legend_label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">1940</span>, <span class="fl">1945</span>, <span class="fl">1950</span>, <span class="fl">1955</span>, <span class="fl">1960</span><span class="op">)</span>
+<span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme_bw</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">theme</span><span class="op">(</span>axis.text.x <span class="op">=</span> <span class="fu">element_text</span><span class="op">(</span>angle <span class="op">=</span> <span class="fl">45</span>, hjust <span class="op">=</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Warning: Ignoring unknown parameters: plot_type</span></code></pre></div>
+<p><img src="reference/figures/README-unnamed-chunk-3-1.png" width="100%"></p>
 </div>
 </div>
   </div>

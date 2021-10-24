@@ -261,7 +261,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
     if (plot_type %in% c("point", "both")) {
       shape <- validateNumParams(shape, numGroups)
     } else {
-      warning("Ignoring unknown parameters: shape", call. = FALSE)
+      warning(paste0("shape is an invalid parameter for plot type: ", plot_type), call. = FALSE)
     }
     p <- p + scale_shape_manual(
       name = legend_title, labels = legend_label,
@@ -276,7 +276,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
     if (!plot_type %in% c("point")) {
       linetype <- validateNumParams(linetype, numGroups)
     } else {
-      warning("Ignoring unknown parameters: linetype", call. = FALSE)
+      warning(paste0("linetype is an invalid parameter for plot type: ", plot_type), call. = FALSE)
     }
     p <- p + scale_linetype_manual(
       name = legend_title, labels = legend_label,

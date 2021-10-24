@@ -117,7 +117,7 @@ test_that("invalid parameter values throw errors", {
 
 test_that("unknown parameter values for plots throw errors", {
   # shapes for plot types that don't require shapes
-  expect_warning(ggmatplot(y, plot_type = "density", shape = c(15, 12, 13)), "Ignoring unknown parameters: shape")
+  expect_warning(ggmatplot(y, plot_type = "density", shape = c(15, 12, 13)), "shape is an invalid parameter for plot type: density")
   # linetypes for plot types that don't require linetypes
-  expect_warning(ggmatplot(x, y, plot_type = "point", linetype = c(15, 12, 13)), "Ignoring unknown parameters: linetype")
+  expect_warning(ggmatplot(x, y, plot_type = "point", linetype = c(15, 12, 13)), "linetype is an invalid parameter for plot type: point")
 })

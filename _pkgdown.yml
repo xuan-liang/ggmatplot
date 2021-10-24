@@ -14,7 +14,7 @@ navbar:
     - text: "Vignettes"
       menu:
        - text: "ggmatplot"
-         href: articles/ggmatplot.html
+         href: docs/articles/ggmatplot.html
 
   right:
     - icon: fa-github

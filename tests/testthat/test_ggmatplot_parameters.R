@@ -112,12 +112,12 @@ test_that("invalid parameter values throw errors", {
   expect_error(ggmatplot(y, plot_type = "line", xlim = c(-4,a)), "ERROR")
   expect_error(ggmatplot(y, plot_type = "line", xlim = 5), "ERROR")
   # invalid log value
-  expect_error(ggmatplot(y, plot_type = "point", log = 1), "ERROR")
+  expect_error(ggmatplot(y, plot_type = "point", log = 1), "invalid log value provided")
 })
 
 test_that("unknown parameter values for plots throw errors", {
   # shapes for plot types that don't require shapes
-  expect_error(ggmatplot(y, plot_type = "density", shape = c(15, 12, 13)), "ERROR")
+  expect_warning(ggmatplot(y, plot_type = "density", shape = c(15, 12, 13)), "Ignoring unknown parameters: shape")
   # linetypes for plot types that don't require linetypes
-  expect_error(ggmatplot(x, y, plot_type = "point", linetype = c(15, 12, 13)), "ERROR")
+  expect_warning(ggmatplot(x, y, plot_type = "point", linetype = c(15, 12, 13)), "Ignoring unknown parameters: linetype")
 })

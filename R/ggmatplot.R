@@ -212,13 +212,11 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
   if (!is.null(legend_label)) {
     # values > number of unique groups
     if (length(legend_label) > numGroups) {
-      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but
-                  ", length(legend_label), " provided."), call. = FALSE)
+      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but " , length(legend_label), " provided."), call. = FALSE)
     }
     # values < number of unique groups
     else if (length(legend_label) < numGroups) {
-      stop(paste0("Insufficient legend_label values. ", numGroups, " needed but
-                  only ", length(legend_label), " provided."), call. = FALSE)
+      stop(paste0("Insufficient legend_label values. ", numGroups, " needed but only ", length(legend_label), " provided."), call. = FALSE)
     }
   } else {
     legend_label <- unique(data$Group)
@@ -293,7 +291,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
   if (!is.null(log)) {
     # validating list of values the log parameter can take
     if (!log %in% c("x", "y", "xy")) {
-      stop("log can not take this value", call. = FALSE)
+      stop("invalid log value provided", call. = FALSE)
     } else {
       logv <- function(var) var %in% strsplit(log, "")[[1]]
       if (logv("x")) {

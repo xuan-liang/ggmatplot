@@ -1,3 +1,5 @@
+library(tibble)
+
 test_that("converts a single matrix into long format", {
 
   x <- tibble(a = 1:3, b = 11:13, c = 31:33)

@@ -75,8 +75,8 @@ aesthetic to a fixed value, like \code{alpha = 0.4} or \code{size = 2}. They may
 be parameters passed on to the corresponding \href{https://ggplot2.tidyverse.org/reference/}{geoms}.}
 }
 \description{
-\code{ggmatplot} is a quick and easy way of plotting two matrices against each
-other.
+\code{ggmatplot} is a quick and easy way of plotting the columns of two matrices
+against each other.
 }
 \examples{
 

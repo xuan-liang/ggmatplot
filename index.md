@@ -1,6 +1,0 @@
-
-# ggmatplot
-
-## Installation
-
-## Examples

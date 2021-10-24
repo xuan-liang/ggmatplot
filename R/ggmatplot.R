@@ -1,8 +1,8 @@
 #' ggmatplot
 #'
 #'
-#' `ggmatplot` is a quick and easy way of plotting two matrices against each
-#' other.
+#' `ggmatplot` is a quick and easy way of plotting the columns of two matrices
+#' against each other.
 #'
 #' @param x,y Vectors or matrices of data for plotting.
 #'

@@ -7,18 +7,23 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "80%",
+  message = FALSE
 )
 ```
 # ggmatplot
 
-`ggmatplot` is a quick and easy way of plotting the columns of two matrices against each other. It is built upon [ggplot2](https://ggplot2.tidyverse.org/), and is aimed at providing a more direct and simple approach to creating plots using matrices.
+`ggmatplot` is a quick and easy way of plotting the columns of two matrices 
+against each other. It is built upon [ggplot2](https://ggplot2.tidyverse.org/), 
+and is aimed at providing a more direct and simple approach to creating plots 
+using matrices.
 
-`ggmatplot` can also be considered as an alternative to pivoting data into long format for visualizing using `ggplot2`.
+`ggmatplot` can also be considered as an alternative to pivoting data into long 
+format and visualizing using `ggplot2`.
 
 ## Installation
 
-You can install the released version of `ggmatplot` from [GitHub](https://github.com/xuan-liang/ggmatplot):
+The latest version can be installed from [GitHub](https://github.com/xuan-liang/ggmatplot):
 
 ```r
 # install.packages("remotes")
@@ -27,22 +32,110 @@ remotes::install_github("xuan-liang/ggmatplot")
 
 ## Examples
 
-```{r message=FALSE}
+```{r}
 library(ggmatplot)
+library(ggplot2)
 ```
 
-```{r}
+```{r point}
+# matrix x
+x <- rnorm(100,sd=2)
+
+# matrix y
+y = x*0.5+rnorm(100,sd=1)
+fit.y = fitted(lm(y~x))
+z <- cbind(y, fit.y)
+
+ggmatplot(x, z)
+```
+
+
+```{r line}
+# matrix x
+x <- 1:10
+
+# matrix y
+y <- cbind(
+  square = x^2,
+  cube = x^3
+)
+
+ggmatplot(x, y,
+          plot_type = "line",
+          size = 1,
+          color = c("blue", "purple"),
+          ylim = c(0,750)) +
+  theme_minimal()
+```
+
+```{r both}
 USPersonalExpenditure
 
-ggmatplot(
-  rownames(USPersonalExpenditure),
-  USPersonalExpenditure[, 1:5],
-  plot_type = "point",
-  xlab = "Category",
-  ylab = "Expenditure (in Billions of Dollars)",
-  legend_title = "Year",
-  legend_label = c(1940, 1945, 1950, 1955, 1960)
-) +
-  theme_bw() +
+# matrix x
+x <- rownames(USPersonalExpenditure)
+
+# matrix y
+y <- USPersonalExpenditure[, 1:5]
+
+ggmatplot(x, y,
+          plot_type = "both",
+          xlab = "Category",
+          ylab = "Expenditure (in Billions of Dollars)",
+          legend_title = "Year",
+          legend_label = c(1940, 1945, 1950, 1955, 1960)
+          ) +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+```{r density}
+iris_sub <- subset(iris, Species == "setosa")
+
+# matrix X
+x <- (iris_sub[,1:2])
+head(x,5)
+
+ggmatplot(x, plot_type = "density") + 
+  # scaling the density estimate to a maximum of 1
+  aes(y = ..scaled..) +
+  theme_bw()
+```
+
+```{r boxplot}
+iris_sub <- subset(iris, Species == "setosa")
+
+# matrix X
+x <- (iris_sub[,1:4])
+head(x,5)
+
+ggmatplot(x, plot_type = "boxplot",
+          alpha = 0, # removing fill values
+          xlab = "", ylab = "")
+```
+
+```{r violin}
+iris_sub <- subset(iris, Species == "setosa")
+
+# matrix X
+x <- (iris_sub[,1:2])
+head(x,5)
+
+ggmatplot(x, plot_type = "violin",
+          color = c("#00AFBB", "#E7B800"),
+          xlab = "", ylab = "")
+```
+
+```{r histogram}
+iris_sub <- subset(iris, Species == "setosa")
+
+# matrix X
+x <- (iris_sub[,1:4])
+head(x,5)
+
+ggmatplot(x, plot_type = "histogram",
+          xlab = "Group",
+          color = "black",
+          fill = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF"))
+```
+
+
+

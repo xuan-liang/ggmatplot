@@ -9,8 +9,12 @@ navbar:
   left:
     - icon: fa-home
       href: index.html
-    - text: "References"
+    - text: "Reference"
       href: reference/ggmatplot.html
+    - text: "Vignettes"
+      menu:
+       - text: "ggmatplot"
+         href: articles/ggmatplot.html
 
   right:
     - icon: fa-github

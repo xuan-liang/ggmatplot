@@ -14,9 +14,11 @@ Authors@R: c(
     person("Dilinie", "Seimon",
             email = "dilinieseimon@gmail.com",
             role = c("aut")))
-Description: A quick and easy way of plotting the columns of two matrices against
-    each other using ggplot2. It can also be considered as an alternative to 
-    pivoting data into long format and visualizing using `ggplot2`.
+Description: A quick and easy way of plotting the columns of two matrices or 
+    data frames against each other using ggplot2. Although ggmatplot doesn't 
+    provide the same flexibility as ggplot2, it can be used as a workaround for 
+    having to wrangle wide format data into long format for plotting with
+    ggplot2.
 Depends: R (>= 3.4.0)
 URL: https://github.com/xuan-liang/ggmatplot
 BugReports: https://github.com/xuan-liang/ggmatplot/issues

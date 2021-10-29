@@ -104,7 +104,7 @@
 <code class="sourceCode R"><span class="co"># matrix x</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2.33454976 -0.29446973 -0.85199458  3.76998547  0.39707632 -0.03705753</span></code></pre></div>
+<span class="co">#&gt; [1] -0.266395 -1.227869  2.991508  0.745650 -2.370044 -2.439043</span></code></pre></div>
 <p><code>y</code>: a matrix with two columns - <code>z</code> and <code>fit.z</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix y</span>
@@ -113,12 +113,12 @@
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">fit.z</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
 <span class="co">#&gt;            z      fit.z</span>
-<span class="co">#&gt; 1  1.6744857 -1.2347523</span>
-<span class="co">#&gt; 2 -0.8782043 -0.2351306</span>
-<span class="co">#&gt; 3  0.3906873 -0.5083130</span>
-<span class="co">#&gt; 4  3.4693770  1.7564176</span>
-<span class="co">#&gt; 5 -1.3436033  0.1037211</span>
-<span class="co">#&gt; 6 -0.8445992 -0.1090008</span></code></pre></div>
+<span class="co">#&gt; 1 -0.3828835 -0.1170110</span>
+<span class="co">#&gt; 2 -0.3122577 -0.6220202</span>
+<span class="co">#&gt; 3  1.1501554  1.5941854</span>
+<span class="co">#&gt; 4  2.0490989  0.4145603</span>
+<span class="co">#&gt; 5 -2.2924967 -1.2219415</span>
+<span class="co">#&gt; 6 -0.4985965 -1.2581831</span></code></pre></div>
 <p><code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> can be used to plot <code>x</code> against each column of <code>y</code> - <code>x</code> against <code>z</code>, and <code>x</code> against <code>fit.z</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>

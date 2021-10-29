@@ -12,9 +12,11 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="pkgdown.js"></script><meta property="og:title" content="Plot Columns Of Two Matrices Against Eachother Using ggplot2">
-<meta property="og:description" content="A quick and easy way of plotting the columns of two matrices against
-    each other using ggplot2. It can also be considered as an alternative to 
-    pivoting data into long format and visualizing using `ggplot2`.">
+<meta property="og:description" content="A quick and easy way of plotting the columns of two matrices or 
+    data frames against each other using ggplot2. Although ggmatplot doesn't 
+    provide the same flexibility as ggplot2, it can be used as a workaround for 
+    having to wrangle wide format data into long format for plotting with
+    ggplot2.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -83,8 +85,14 @@
 <div id="ggmatplot" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#ggmatplot" class="anchor"></a>ggmatplot</h1></div>
-<p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices against each other. It is built upon <a href="https://ggplot2.tidyverse.org/">ggplot2</a>, and is aimed at providing a more direct and simple approach to creating plots using matrices.</p>
-<p><code>ggmatplot</code> can also be considered as an alternative to pivoting data into long format and visualizing using <code>ggplot2</code>.</p>
+<p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices or data frames against each other using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<div id="overview" class="section level2">
+<h2 class="hasAnchor">
+<a href="#overview" class="anchor"></a>Overview</h2>
+<p><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> requires wide format data to be wrangled into long format for plotting, which can be quite cumbersome when creating simple plots. Therefore, the motivation for <code>ggmatplot</code> was to provide a solution that allows <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> to handle wide format data. Although <code>ggmatplot</code> doesn’t provide the same flexibility as <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, it can be used as a workaround for having to wrangle wide format data into long format for plotting with <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<p><code>ggmatplot</code> is built upon <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, and its functionality is inspired by <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>. Therefore, <code>ggmatplot</code> can be considered as a <code>ggplot</code> version of <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>.</p>
+<p>Similar to <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>, <code>ggmatplot</code> plots a vector against the columns of a matrix, or the columns of two matrices against each other, or a vector/matrix on its own. However, unlike <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>, <code>ggmatplot</code> returns a <code>ggplot</code> object. Therefore, <a href="https://ggplot2.tidyverse.org/reference/index.html">ggplot add ons</a> such as scales, faceting specifications, coordinate systems and themes can also be added on to the resultant <code>ggplot</code> object.</p>
+</div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>

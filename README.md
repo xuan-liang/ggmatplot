@@ -2,12 +2,37 @@
 # ggmatplot
 
 `ggmatplot` is a quick and easy way of plotting the columns of two
-matrices against each other. It is built upon
-[ggplot2](https://ggplot2.tidyverse.org/), and is aimed at providing a
-more direct and simple approach to creating plots using matrices.
+matrices or data frames against each other using
+[`ggplot2`](https://ggplot2.tidyverse.org/).
 
-`ggmatplot` can also be considered as an alternative to pivoting data
-into long format and visualizing using `ggplot2`.
+## Overview
+
+[`ggplot2`](https://ggplot2.tidyverse.org/) requires wide format data to
+be wrangled into long format for plotting, which can be quite cumbersome
+when creating simple plots. Therefore, the motivation for `ggmatplot`
+was to provide a solution that allows
+[`ggplot2`](https://ggplot2.tidyverse.org/) to handle wide format data.
+Although `ggmatplot` doesn’t provide the same flexibility as
+[`ggplot2`](https://ggplot2.tidyverse.org/), it can be used as a
+workaround for having to wrangle wide format data into long format for
+plotting with [`ggplot2`](https://ggplot2.tidyverse.org/).
+
+`ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/),
+and its functionality is inspired by
+[`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot).
+Therefore, `ggmatplot` can be considered as a `ggplot` version of
+[`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot).
+
+Similar to
+[`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot),
+`ggmatplot` plots a vector against the columns of a matrix, or the
+columns of two matrices against each other, or a vector/matrix on its
+own. However, unlike
+[`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot),
+`ggmatplot` returns a `ggplot` object. Therefore, [ggplot add
+ons](https://ggplot2.tidyverse.org/reference/index.html) such as scales,
+faceting specifications, coordinate systems and themes can also be added
+on to the resultant `ggplot` object.
 
 ## Installation
 

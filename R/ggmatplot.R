@@ -308,8 +308,18 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
   if (!is.null(xlab)) p <- p + xlab(xlab)
   if (!is.null(ylab)) p <- p + ylab(ylab)
 
-  if (!missing(xlim)) p <- p + xlim(xlim)
-  if (!missing(ylim)) p <- p + ylim(ylim)
+  if (!missing(xlim)) {
+    if(length(xlim) == 2) {
+      p <- p + xlim(xlim)
+    } else {
+      stop("xlim must be a two element vector", call. = FALSE)
+    }}
+  if (!missing(ylim)) {
+    if(length(ylim) == 2) {
+      p <- p + ylim(ylim)
+    } else {
+      stop("ylim must be a two element vector", call. = FALSE)
+    }}
 
   if (!is.na(asp)) p <- p + theme(aspect.ratio = asp)
 

@@ -7,6 +7,12 @@ Authors@R: c(
             role = c("aut", "cre")),
     person("Francis", "Hui",
             email = "fhui28@gmail.com",
+            role = c("aut")),
+    person("Emi", "Tanaka",
+            email = "emi.tanaka@monash.edu",
+            role = c("aut")),
+    person("Dilinie", "Seimon",
+            email = "dilinieseimon@gmail.com",
             role = c("aut")))
 Description: A quick and easy way of plotting the columns of two matrices against
     each other using ggplot2. It can also be considered as an alternative to 

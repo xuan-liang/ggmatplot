@@ -92,6 +92,7 @@
     
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot">ggmatplot</a></span><span class="op">)</span>
+<span class="co">#&gt; Loading required package: ggplot2</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
 <p>The <code>ggmatplot</code> package provides a quick and easy way of plotting the columns of two matrices against each other using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
 <p>This vignette is aimed at providing a brief understanding of how the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function works and possible extensions to the plots created using <code>ggmatplot</code>. This will be discussed through the following examples.</p>
@@ -104,7 +105,7 @@
 <code class="sourceCode R"><span class="co"># matrix x</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] -0.266395 -1.227869  2.991508  0.745650 -2.370044 -2.439043</span></code></pre></div>
+<span class="co">#&gt; [1] -0.1669369 -0.0454744 -0.6811184 -1.7211406 -2.7038805 -1.5677691</span></code></pre></div>
 <p><code>y</code>: a matrix with two columns - <code>z</code> and <code>fit.z</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix y</span>
@@ -112,13 +113,13 @@
 <span class="va">fit.z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">z</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">fit.z</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
-<span class="co">#&gt;            z      fit.z</span>
-<span class="co">#&gt; 1 -0.3828835 -0.1170110</span>
-<span class="co">#&gt; 2 -0.3122577 -0.6220202</span>
-<span class="co">#&gt; 3  1.1501554  1.5941854</span>
-<span class="co">#&gt; 4  2.0490989  0.4145603</span>
-<span class="co">#&gt; 5 -2.2924967 -1.2219415</span>
-<span class="co">#&gt; 6 -0.4985965 -1.2581831</span></code></pre></div>
+<span class="co">#&gt;            z        fit.z</span>
+<span class="co">#&gt; 1  0.1105593 -0.008663807</span>
+<span class="co">#&gt; 2 -0.3975294  0.056129980</span>
+<span class="co">#&gt; 3 -0.8386536 -0.282952276</span>
+<span class="co">#&gt; 4 -0.9001726 -0.837748806</span>
+<span class="co">#&gt; 5 -3.0670010 -1.361988302</span>
+<span class="co">#&gt; 6  0.4334538 -0.755933294</span></code></pre></div>
 <p><code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> can be used to plot <code>x</code> against each column of <code>y</code> - <code>x</code> against <code>z</code>, and <code>x</code> against <code>fit.z</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>

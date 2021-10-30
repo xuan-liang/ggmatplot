@@ -24,8 +24,8 @@ creating simple plots. Therefore, the motivation for `ggmatplot` was to provide
 a solution that allows [`ggplot2`](https://ggplot2.tidyverse.org/) to handle 
 wide format data. Although `ggmatplot` doesn't provide the same flexibility 
 as [`ggplot2`](https://ggplot2.tidyverse.org/), it can be used as a 
-workaround for having to wrangle wide format data into long format for plotting 
-with [`ggplot2`](https://ggplot2.tidyverse.org/).
+workaround for having to wrangle wide format data into long format and creating
+simple plots using [`ggplot2`](https://ggplot2.tidyverse.org/).
 
 `ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/), and its 
 functionality is inspired by 
@@ -55,7 +55,6 @@ remotes::install_github("xuan-liang/ggmatplot")
 
 ```{r}
 library(ggmatplot)
-library(ggplot2)
 ```
 
 ```{r point}

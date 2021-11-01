@@ -50,8 +50,8 @@ remotes::install_github("xuan-liang/ggmatplot")
 library(ggmatplot)
 ```
 
-This example plots a vector x against each column of matrix z using the
-default `plot_type` of `ggmatplot()` - ‘point’
+The first example plots a vector x against each column of matrix z using
+the default `plot_type` of `ggmatplot()` - ‘point’
 
 ``` r
 # vector x
@@ -73,9 +73,9 @@ columns of the matrices will be plotted against each other. i.e. column
 1 of matrix x will be plotted against column 1 of matrix y, column 2 of
 matrix x will be plotted against column 2 of matrix y, etc.
 
-This example uses the iris dataset, with matrices x and y as shown
-below. The Sepal.Length is plotted against Sepal.Width and the
-Petal.Length is plotted against Petal.Width. Therefore the groups
+The next example uses the iris dataset, with matrices x and y as shown
+below. The `Sepal.Length` is plotted against `Sepal.Width` and the
+`Petal.Length` is plotted against `Petal.Width`. Therefore the groups
 ‘Column 1’ and ‘Column 2’ can be interpreted as ‘Sepal’ and ‘Petal’
 respectively.
 
@@ -103,11 +103,12 @@ ggmatplot(x,y)
 
 <img src="man/figures/README-point-columns-1.png" width="80%" />
 
-This example creates a line plot of vector x against the columns of
-matrix y. The plot is therefore grouped by the columns of vector y.
-Custom colors are assigned to each group using the `color` parameter,
-and the limits of the y axis are updated using the `ylim` parameter.
-Further, a ggplot theme is added on to the resultant ggplot object.
+The next example creates a line plot of vector x against the columns of
+matrix y. Although the lines would be represented using different colors
+by default, the `color` parameter allows custom colors to be assigned to
+them. The following plot assigns custom colors to the lines, and the
+limits of the y axis are updated using the `ylim` parameter. Further, a
+ggplot theme is added on to the resultant ggplot object.
 
 ``` r
 # matrix x
@@ -129,7 +130,7 @@ ggmatplot(x, y,
 
 <img src="man/figures/README-line-1.png" width="80%" />
 
-This is a plot of the US personal expenditure over 5 categories and 5
+Next is plot of the US personal expenditure over 5 categories and 5
 years, and is a simple example of how wide format data can used with
 `ggmatplot()`. Note how the expenditure categories to be used on the x
 axis is used as vector x, and the expenditure values is used in wide

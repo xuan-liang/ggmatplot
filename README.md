@@ -9,8 +9,8 @@ matrices or data frames against each other using
 
 [`ggplot2`](https://ggplot2.tidyverse.org/) requires wide format data to
 be wrangled into long format for plotting, which can be quite cumbersome
-when creating simple plots. Therefore, the motivation for `ggmatplot`
-was to provide a solution that allows
+when creating simple plots. Therefore, the motivation for `ggmatplot` is
+to provide a solution that allows
 [`ggplot2`](https://ggplot2.tidyverse.org/) to handle wide format data.
 Although `ggmatplot` doesn’t provide the same flexibility as
 [`ggplot2`](https://ggplot2.tidyverse.org/), it can be used as a
@@ -50,8 +50,10 @@ remotes::install_github("xuan-liang/ggmatplot")
 library(ggmatplot)
 ```
 
-The first example plots a vector x against each column of matrix z using
-the default `plot_type` of `ggmatplot()` - ‘point’
+The first example plots a vector against each column of matrix using the
+default `plot_type = "point"` of `ggmatplot()`. We consider a simple
+case that we have a covariate vector `x` and a matrix `z` with the
+response `y` and the fitted value `fit.y` as the two columns.
 
 ``` r
 # vector x
@@ -70,14 +72,15 @@ ggmatplot(x, z)
 
 If two matrices with equal number of columns are used, the corresponding
 columns of the matrices will be plotted against each other. i.e. column
-1 of matrix x will be plotted against column 1 of matrix y, column 2 of
-matrix x will be plotted against column 2 of matrix y, etc.
+1 of matrix `x` will be plotted against column 1 of matrix `y`, column 2
+of matrix `x` will be plotted against column 2 of matrix `y`, etc.
 
-The next example uses the iris dataset, with matrices x and y as shown
-below. The `Sepal.Length` is plotted against `Sepal.Width` and the
+The next example uses the iris dataset, with matrices `x` and `y` as
+shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the
 `Petal.Length` is plotted against `Petal.Width`. Therefore the groups
 ‘Column 1’ and ‘Column 2’ can be interpreted as ‘Sepal’ and ‘Petal’
-respectively.
+respectively. Later we will provide examples on how to customize the
+legend name.
 
 ``` r
 x <- (iris[, c(1,3)])
@@ -88,7 +91,6 @@ head(x,5)
 #> 3          4.7          1.3
 #> 4          4.6          1.5
 #> 5          5.0          1.4
-
 y <- (iris[, c(2,4)])
 head(y,5)
 #>   Sepal.Width Petal.Width
@@ -97,7 +99,6 @@ head(y,5)
 #> 3         3.2         0.2
 #> 4         3.1         0.2
 #> 5         3.6         0.2
-
 ggmatplot(x,y)
 ```
 
@@ -149,7 +150,6 @@ USPersonalExpenditure
 #> Medical and Health   3.530  5.760  9.71 14.0 21.10
 #> Personal Care        1.040  1.980  2.45  3.4  5.40
 #> Private Education    0.341  0.974  1.80  2.6  3.64
-
 # vector x
 x <- rownames(USPersonalExpenditure)
 

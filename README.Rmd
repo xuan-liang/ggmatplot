@@ -181,7 +181,7 @@ Similar to density, violin and box plots, histograms too accept a single matrix 
 The `color` and `fill` parameters have been defined simultaneously on this plot. However, only a single `color` value is defined whereas the number of `fill` colors correspond to the number of groups. If a single value is defined it will be used over all groups, like the black line color is used across all groups in this example.
 
 ```{r histogram}
-# matrix X
+# matrix x
 x <- (iris[, 1:4])
 
 ggmatplot(x,

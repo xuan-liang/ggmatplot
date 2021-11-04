@@ -114,11 +114,12 @@ ggmatplot(x,y,
 <img src="man/figures/README-point-columns-2.png" width="80%" />
 
 The next example creates a line plot of vector `x` against the columns
-of matrix `y`. Although the lines would be represented using different
-colors by default, the `color` parameter allows custom colors to be
-assigned to them. The following plot assigns custom colors to the lines,
-and the limits of the y axis are updated using the `ylim` parameter.
-Further, a ggplot theme is added on to the resultant ggplot object.
+of matrix `y` by using `plot_type = "line"`. Although the lines would be
+represented using different colors by default, the `color` parameter
+allows custom colors to be assigned to them. The following plot assigns
+custom colors to the lines, and the limits of the y axis are updated
+using the `ylim` parameter. Further, a ggplot theme is added on to the
+resultant ggplot object.
 
 ``` r
 # matrix x
@@ -141,15 +142,15 @@ ggmatplot(x, y,
 <img src="man/figures/README-line-1.png" width="80%" />
 
 Next is plot of the US personal expenditure over 5 categories and 5
-years, and is a simple example of how wide format data can used with
+years, and is a simple example of how wide format data can be used with
 `ggmatplot()`. Note how the expenditure categories to be used on the x
 axis is used as vector x, and the expenditure values is used in wide
 format as matrix y - with its columns corresponding to the grouping
 structure.
 
-The plot uses the `plot_type` ‘both’, which is a combination of ‘point’
-and ‘line’ plots. Its customized using `ggmatplot()` parameters and a
-`ggplot` theme as well.
+The plot specifies the plot type as `plot_type = "both"`, which is a
+combination of ‘point’ and ‘line’ plots. It customized using
+`ggmatplot()` parameters and a `ggplot` theme as well.
 
 ``` r
 USPersonalExpenditure
@@ -182,17 +183,17 @@ aesthetic mapping is added on to the ggplot object to scale the density
 estimate to a maximum of 1.
 
 ``` r
-# matrix X
+# matrix x
 x <- (iris[, 1:2])
 
 ggmatplot(x, plot_type = "density") +
-  aes(y = ..scaled..) +
+  aes(y = stat(scaled)) +
   theme_bw()
 ```
 
 <img src="man/figures/README-density-1.png" width="80%" />
 
-Boxplots too accept only a single matrix or data frame, and uses its
+Boxplots accept only a single matrix or data frame as well, and uses its
 columns as individual groups. While `ggmatplot` plots are filled by
 default, the fill color can be made transparent by using `alpha = 0`.
 
@@ -205,7 +206,7 @@ Therefore, all valid parameters with the underlying
 can be used with `ggmatplot()`
 
 ``` r
-# matrix X
+# matrix x
 x <- (iris[, 1:4])
 
 ggmatplot(x,
@@ -227,7 +228,7 @@ parameter will automatically update the other, unless they are both
 defined simultaneously.
 
 ``` r
-# matrix X
+# matrix x
 x <- (iris[, 1:2])
 
 ggmatplot(x,
@@ -252,7 +253,7 @@ value is defined it will be used over all groups, like the black line
 color is used across all groups in this example.
 
 ``` r
-# matrix X
+# matrix x
 x <- (iris[, 1:4])
 
 ggmatplot(x,
@@ -261,7 +262,7 @@ ggmatplot(x,
   color = "black",
   fill = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF")
 ) +
-  facet_wrap(~Group, scales = "free")
+  facet_wrap( ~ Group, scales = "free")
 ```
 
 <img src="man/figures/README-histogram-1.png" width="80%" />

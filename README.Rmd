@@ -75,7 +75,7 @@ ggmatplot(x, z)
 
 If two matrices with equal number of columns are used, the corresponding columns of the matrices will be plotted against each other. i.e. column 1 of matrix `x` will be plotted against column 1 of matrix `y`, column 2 of matrix `x` will be plotted against column 2 of matrix `y`, etc.
 
-The next example uses the iris dataset, with matrices `x` and `y` as shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the `Petal.Length` is plotted against `Petal.Width`. Therefore the groups 'Column 1' and 'Column 2' can be interpreted as 'Sepal' and 'Petal' respectively. To make the plot more meaningful, we can add the legend label and axis names by `legend_label`, `xlab` and `ylab`.
+The next example uses the iris dataset, with matrices `x` and `y` as shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the `Petal.Length` is plotted against `Petal.Width`. Therefore the groups 'Column 1' and 'Column 2' can be interpreted as 'Sepal' and 'Petal' respectively. To make the plot more meaningful, we can further add the legend label and axis names by `legend_label`, `xlab` and `ylab`.
 
 ```{r point-columns}
 x <- (iris[, c(1,3)])

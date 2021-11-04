@@ -75,7 +75,7 @@ ggmatplot(x, z)
 
 If two matrices with equal number of columns are used, the corresponding columns of the matrices will be plotted against each other. i.e. column 1 of matrix `x` will be plotted against column 1 of matrix `y`, column 2 of matrix `x` will be plotted against column 2 of matrix `y`, etc.
 
-The next example uses the iris dataset, with matrices `x` and `y` as shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the `Petal.Length` is plotted against `Petal.Width`. Therefore the groups 'Column 1' and 'Column 2' can be interpreted as 'Sepal' and 'Petal' respectively. Later we will provide examples on how to customize the legend name.
+The next example uses the iris dataset, with matrices `x` and `y` as shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the `Petal.Length` is plotted against `Petal.Width`. Therefore the groups 'Column 1' and 'Column 2' can be interpreted as 'Sepal' and 'Petal' respectively. To make the plot more meaningful, we can add the legend label and axis names by `legend_label`, `xlab` and `ylab`.
 
 ```{r point-columns}
 x <- (iris[, c(1,3)])
@@ -85,10 +85,14 @@ y <- (iris[, c(2,4)])
 head(y,5)
 
 ggmatplot(x,y)
+ggmatplot(x,y, 
+          xlab = "Length",
+          ylab = "Width",
+          legend_label = c("Sepal","Petal"))
 ```
 
 
-The next example creates a line plot of vector x against the columns of matrix y. Although the lines would be represented using different colors by default, the `color` parameter allows custom colors to be assigned to them.
+The next example creates a line plot of vector `x` against the columns of matrix `y` by using `plot_type = "line"`. Although the lines would be represented using different colors by default, the `color` parameter allows custom colors to be assigned to them.
 The following plot assigns custom colors to the lines, and the limits of the y axis are updated using the `ylim` parameter. Further, a ggplot theme is added on to the resultant ggplot object.
 
 ```{r line}
@@ -109,9 +113,9 @@ ggmatplot(x, y,
   theme_minimal()
 ```
 
-Next is plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can used with `ggmatplot()`. Note how the expenditure categories to be used on the x axis is used as vector x, and the expenditure values is used in wide format as matrix y - with its columns corresponding to the grouping structure.
+Next is plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can be used with `ggmatplot()`. Note how the expenditure categories to be used on the x axis is used as vector x, and the expenditure values is used in wide format as matrix y - with its columns corresponding to the grouping structure.
 
-The plot uses the `plot_type` 'both', which is a combination of 'point' and 'line' plots. Its customized using `ggmatplot()` parameters and a `ggplot` theme as well.
+The plot specifies the plot type as `plot_type = "both"`, which is a combination of 'point' and 'line' plots. It customized using `ggmatplot()` parameters and a `ggplot` theme as well.
 
 
 ```{r both}
@@ -133,20 +137,20 @@ ggmatplot(x, USPersonalExpenditure,
 Density plots only accept a single matrix or data frame and will group the plot based on its columns. The following density plot uses a two column matrix, and groups the plot by the two columns. While the default density estimate is represented in the measurement units of the data, an aesthetic mapping is added on to the ggplot object to scale the density estimate to a maximum of 1.
 
 ```{r density}
-# matrix X
+# matrix x
 x <- (iris[, 1:2])
 
 ggmatplot(x, plot_type = "density") +
-  aes(y = ..scaled..) +
+  aes(y = stat(scaled)) +
   theme_bw()
 ```
 
-Boxplots too accept only a single matrix or data frame, and uses its columns as individual groups. While `ggmatplot` plots are filled by default, the fill color can be made transparent by using `alpha = 0`.
+Boxplots accept only a single matrix or data frame as well, and uses its columns as individual groups. While `ggmatplot` plots are filled by default, the fill color can be made transparent by using `alpha = 0`.
 
 It is also worth noticing that `alpha` isn't a parameter defined in `ggmatplot()`, but can be used. This is because `ggmatplot` is built upon `ggplot2`, and each `plot_type` corresponds to a [`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms). Therefore, all valid parameters with the underlying [`ggplot2 geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms) can be used with `ggmatplot()`
 
 ```{r boxplot}
-# matrix X
+# matrix x
 x <- (iris[, 1:4])
 
 ggmatplot(x,
@@ -162,7 +166,7 @@ This plot updates the colors of the two groups using the `color` parameter, and 
 
 
 ```{r violin}
-# matrix X
+# matrix x
 x <- (iris[, 1:2])
 
 ggmatplot(x,
@@ -186,5 +190,5 @@ ggmatplot(x,
   color = "black",
   fill = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF")
 ) +
-  facet_wrap(~Group, scales = "free")
+  facet_wrap( ~ Group, scales = "free")
 ```

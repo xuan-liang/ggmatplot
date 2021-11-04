@@ -79,8 +79,8 @@ The next example uses the iris dataset, with matrices `x` and `y` as
 shown below. The `Sepal.Length` is plotted against `Sepal.Width` and the
 `Petal.Length` is plotted against `Petal.Width`. Therefore the groups
 ‘Column 1’ and ‘Column 2’ can be interpreted as ‘Sepal’ and ‘Petal’
-respectively. Later we will provide examples on how to customize the
-legend name.
+respectively. To make the plot more meaningful, we can add the legend
+label and axis names by `legend_label`, `xlab` and `ylab`.
 
 ``` r
 x <- (iris[, c(1,3)])
@@ -104,12 +104,21 @@ ggmatplot(x,y)
 
 <img src="man/figures/README-point-columns-1.png" width="80%" />
 
-The next example creates a line plot of vector x against the columns of
-matrix y. Although the lines would be represented using different colors
-by default, the `color` parameter allows custom colors to be assigned to
-them. The following plot assigns custom colors to the lines, and the
-limits of the y axis are updated using the `ylim` parameter. Further, a
-ggplot theme is added on to the resultant ggplot object.
+``` r
+ggmatplot(x,y, 
+          xlab = "Length",
+          ylab = "Width",
+          legend_label = c("Sepal","Petal"))
+```
+
+<img src="man/figures/README-point-columns-2.png" width="80%" />
+
+The next example creates a line plot of vector `x` against the columns
+of matrix `y`. Although the lines would be represented using different
+colors by default, the `color` parameter allows custom colors to be
+assigned to them. The following plot assigns custom colors to the lines,
+and the limits of the y axis are updated using the `ylim` parameter.
+Further, a ggplot theme is added on to the resultant ggplot object.
 
 ``` r
 # matrix x

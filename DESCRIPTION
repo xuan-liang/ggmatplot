@@ -33,5 +33,7 @@ Suggests:
     knitr,
     testthat,
     vdiffr,
-    tibble
+    tibble,
+    tidyr,
+    dplyr
 VignetteBuilder: knitr

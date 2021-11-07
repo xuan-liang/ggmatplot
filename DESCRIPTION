@@ -1,6 +1,6 @@
 Package: ggmatplot
-Title: Plot Columns Of Two Matrices Against Eachother Using ggplot2
-Version: 0.0.0.1
+Title: Plot Columns of Two Matrices Against Each Other Using ggplot2
+Version: 0.1.0
 Authors@R: c(
     person("Xuan", "Liang", 
             email = "xuan.liang@anu.edu.au",
@@ -19,7 +19,7 @@ Description: A quick and easy way of plotting the columns of two matrices or
     provide the same flexibility as ggplot2, it can be used as a workaround for 
     having to wrangle wide format data into long format for plotting with
     ggplot2.
-URL: https://github.com/xuan-liang/ggmatplot
+URL: https://github.com/xuan-liang/ggmatplot, https://xuan-liang.github.io/ggmatplot/
 BugReports: https://github.com/xuan-liang/ggmatplot/issues
 License: GPL-3
 Encoding: UTF-8

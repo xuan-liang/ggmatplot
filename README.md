@@ -62,8 +62,10 @@ x <- c(rnorm(100, sd = 2))
 # matrix z
 y <- x * 0.5 + rnorm(100, sd = 1)
 fit.y <- fitted(lm(y ~ x))
-z <- cbind(actual = y,
-           fitted = fit.y)
+z <- cbind(
+  actual = y,
+  fitted = fit.y
+)
 
 ggmatplot(x, z)
 ```
@@ -83,8 +85,8 @@ respectively. To make the plot more meaningful, we can further add the
 legend label and axis names by `legend_label`, `xlab` and `ylab`.
 
 ``` r
-x <- (iris[, c(1,3)])
-head(x,5)
+x <- (iris[, c(1, 3)])
+head(x, 5)
 #>   Sepal.Length Petal.Length
 #> 1          5.1          1.4
 #> 2          4.9          1.4
@@ -92,8 +94,8 @@ head(x,5)
 #> 4          4.6          1.5
 #> 5          5.0          1.4
 
-y <- (iris[, c(2,4)])
-head(y,5)
+y <- (iris[, c(2, 4)])
+head(y, 5)
 #>   Sepal.Width Petal.Width
 #> 1         3.5         0.2
 #> 2         3.0         0.2
@@ -101,16 +103,17 @@ head(y,5)
 #> 4         3.1         0.2
 #> 5         3.6         0.2
 
-ggmatplot(x,y)
+ggmatplot(x, y)
 ```
 
 <img src="man/figures/README-point-columns-1.png" width="80%" />
 
 ``` r
-ggmatplot(x,y, 
-          xlab = "Length",
-          ylab = "Width",
-          legend_label = c("Sepal","Petal"))
+ggmatplot(x, y,
+  xlab = "Length",
+  ylab = "Width",
+  legend_label = c("Sepal", "Petal")
+)
 ```
 
 <img src="man/figures/README-point-columns-2.png" width="80%" />
@@ -286,7 +289,7 @@ ggmatplot(x,
   color = "black",
   fill = c("#F8766D", "#7CAE00", "#00BFC4", "#C77CFF")
 ) +
-  facet_wrap( ~ Group, scales = "free")
+  facet_wrap(~Group, scales = "free")
 ```
 
 <img src="man/figures/README-histogram-1.png" width="80%" />

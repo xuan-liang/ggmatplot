@@ -61,11 +61,11 @@
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
-ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
+ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, linetype = NULL,
                       fill = NULL, xlim = c(NA, NA), ylim = c(NA, NA),
                       log = NULL, main = NULL, xlab = NULL, ylab = NULL,
                       legend_label = NULL, legend_title = NULL,
-                      plot_type = "point", asp = NA, ...) {
+                       asp = NA, ...) {
 
   # valid plot types
   if (!plot_type %in% c(

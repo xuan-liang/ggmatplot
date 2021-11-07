@@ -243,11 +243,32 @@ ggmatplot(x,
 
 <img src="man/figures/README-violin-1.png" width="80%" />
 
-Similar to density, violin and box plots, histograms too accept a single
-matrix or data frame input and groups the plot using its columns. The
-histogram in the following example uses a matrix of 4 columns, and
-therefore groups the plots based on these 4 columns. The plot is also
-faceted by group.
+Dotplots too accept a single matrix input and plots the distribution of
+each of its columns.
+
+The next example uses the `plot_type = "dotplot"` to visualise the
+distribution of the data, and also customizes the position of the legend
+using a `ggplot` theme as well.
+
+``` r
+# matrix x
+x <- (iris[, 1:2])
+
+ggmatplot(x,
+  plot_type = "dotplot",
+  color = c("#00AFBB", "#E7B800"),
+  xlab = "", ylab = ""
+) +
+  theme(legend.position = "bottom")
+```
+
+<img src="man/figures/README-dotplot-1.png" width="80%" />
+
+Similar to density, violin, dotplots, and box plots, histograms too
+accept a single matrix or data frame input and groups the plot using its
+columns. The histogram in the following example uses a matrix of 4
+columns, and therefore groups the plots based on these 4 columns. The
+plot is also faceted by group.
 
 The `color` and `fill` parameters have been defined simultaneously on
 this plot. However, only a single `color` value is defined whereas the
@@ -269,3 +290,21 @@ ggmatplot(x,
 ```
 
 <img src="man/figures/README-histogram-1.png" width="80%" />
+
+The next example is of the `plot_type = ecdf`, and also uses a single
+matrix input to plot out the empirical cumulative distributions of the
+columns of the matrix individually.
+
+``` r
+# matrix x
+x <- (iris[, 1:4])
+
+ggmatplot(x,
+  plot_type = "ecdf",
+  xlab = "Group",
+  size = 1
+) +
+  theme_minimal()
+```
+
+<img src="man/figures/README-ecdf-1.png" width="80%" />

@@ -76,7 +76,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
   }
   if (!missing(x) & !missing(y)) {
     # only single matrix input allowed for the following plot types
-    if (plot_type %in% c("density", "histogram", "boxplot", "violin")) {
+    if (plot_type %in% c("density", "histogram", "boxplot", "violin", "dotplot", "ecdf")) {
       stop("This plot type only uses a single matrix input", call. = FALSE)
     }
     data.list <- matclean(x = x, y = y)
@@ -201,7 +201,34 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
           params
         )
       )
+  } else if (plot_type == "dotplot") {
+    params$alpha <- if (is.null(params$alpha)) 0.5 else params$alpha
+    p <- p +
+      do.call(
+        "geom_dotplot",
+        c(
+          list(mapping = aes(
+            x = Group,
+            y = .data[[yname]]
+          ),
+          binaxis = "y",
+          stackdir = "center"),
+          params
+        )
+      )
+  } else if (plot_type == "ecdf") {
+    p <- p +
+      do.call(
+        "stat_ecdf",
+        c(
+          list(mapping = aes(
+            x = .data[[yname]]
+          )),
+          params
+        )
+      )
   }
+
 
   # number of unique groups
   numGroups <- length(unique(data$Group))
@@ -273,7 +300,7 @@ ggmatplot <- function(x, y, color = NULL, shape = NULL, linetype = NULL,
 
   if (!is.null(linetype)) {
     # linetype parameter is invalid for the following plot types
-    if (!plot_type %in% c("point")) {
+    if (!plot_type %in% c("point", "dotplot")) {
       linetype <- validateNumParams(linetype, numGroups)
     } else {
       warning(paste0("linetype is an invalid parameter for plot type: ", plot_type), call. = FALSE)

@@ -5,13 +5,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Introduction to `ggmatplot` • ggmatplot</title>
+<title>ggmatplot • ggmatplot</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Introduction to `ggmatplot`">
+<script src="../pkgdown.js"></script><meta property="og:title" content="ggmatplot">
 <meta property="og:description" content="ggmatplot">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -79,8 +79,7 @@
       </header><script src="ggmatplot_files/header-attrs-2.11/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Introduction to <code>ggmatplot</code>
-</h1>
+      <h1 data-toc-skip>ggmatplot</h1>
             
       
       <small class="dont-index">Source: <a href="https://github.com/xuan-liang/ggmatplot/blob/master/vignettes/ggmatplot.Rmd"><code>vignettes/ggmatplot.Rmd</code></a></small>
@@ -90,65 +89,109 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot">ggmatplot</a></span><span class="op">)</span>
-<span class="co">#&gt; Loading required package: ggplot2</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
-<p>The <code>ggmatplot</code> package provides a quick and easy way of plotting the columns of two matrices against each other using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
-<p>This vignette is aimed at providing a brief understanding of how the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function works and possible extensions to the plots created using <code>ggmatplot</code>. This will be discussed through the following examples.</p>
-<div id="point-plot" class="section level2">
+<p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices or data frames against each other using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<p><code>ggmatplot</code> is built upon <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, and its functionality is inspired by <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>. Therefore, <code>ggmatplot</code> can be considered as a <code>ggplot</code> version of <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>.</p>
+<div id="what-does-ggmatplot-do" class="section level2">
 <h2 class="hasAnchor">
-<a href="#point-plot" class="anchor"></a><code>point</code> plot</h2>
-<p>First we create two matrices as follows:</p>
-<p><code>x</code>: a vector/a single columned matrix</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># matrix x</span>
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span>
+<a href="#what-does-ggmatplot-do" class="anchor"></a>What does <code>ggmatplot</code> do?</h2>
+<p>Similar to <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>, <code>ggmatplot</code> plots a vector against the columns of a matrix, or the columns of two matrices against each other, or a vector/matrix on its own. However, unlike <a href="https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot"><code>matplot</code></a>, <code>ggmatplot</code> returns a <code>ggplot</code> object.</p>
+<p>Suppose we have a covariate vector <code>x</code> and a matrix <code>z</code> with the response <code>y</code> and the fitted value <code>fit.y</code> as the two columns.</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="co"># vector x</span>
+<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
+
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1]  0.93375317  1.95824702 -0.69854884  2.01687249 -1.28879325  0.03294652</span></code></pre></div>
-<p><code>y</code>: a matrix with two columns - <code>z</code> and <code>fit.z</code></p>
+<span class="co">#&gt; [1]  0.1858273 -1.6705018  0.5392330 -4.6654243  3.8392424  1.1134153</span>
+
+<span class="co"># matrix z</span>
+<span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+<span class="va">fit.y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span>
+<span class="va">z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span>actual <span class="op">=</span> <span class="va">y</span>,
+           fitted <span class="op">=</span> <span class="va">fit.y</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
+<span class="co">#&gt;       actual     fitted</span>
+<span class="co">#&gt; 1 -0.5417425  0.1653882</span>
+<span class="co">#&gt; 2 -1.5153685 -0.6788753</span>
+<span class="co">#&gt; 3  0.2105044  0.3261181</span>
+<span class="co">#&gt; 4 -2.3333577 -2.0409742</span>
+<span class="co">#&gt; 5  2.5485359  1.8269713</span>
+<span class="co">#&gt; 6  0.8895649  0.5872577</span></code></pre></div>
+<p><code>ggmatplot</code> plots vector <code>x</code> against each column of matrix <code>z</code> using the default <code>plot_type = "point"</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot">ggmatplot</a></span><span class="op">)</span>
+
+<span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span></code></pre></div>
+<p><img src="ggmatplot_files/figure-html/unnamed-chunk-3-1.png" width="700"></p>
+<p>The default aesthetics used to differentiate the two groups can be updated using <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> arguments. Since the two groups in this example are differentiated using their shapes and colors, the <code>shape</code> and <code>color</code> parameters can be used to change them. If we want points in both groups to have the same shape, we can simply set the <code>shape</code> parameter to a single value. However, if we want the points in the groups to be differentiated by color, we can pass a list of colors as the <code>color</code> parameter - but we should make sure the number of colors in the list matches up with the number of groups.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># matrix y</span>
-<span class="va">z</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
-<span class="va">fit.z</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">z</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span>
-<span class="va">y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/cbind.html">cbind</a></span><span class="op">(</span><span class="va">z</span>, <span class="va">fit.z</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">y</span><span class="op">)</span>
-<span class="co">#&gt;            z      fit.z</span>
-<span class="co">#&gt; 1 -0.6855605  0.3354474</span>
-<span class="co">#&gt; 2  1.1241134  0.8807159</span>
-<span class="co">#&gt; 3 -0.2547373 -0.5333162</span>
-<span class="co">#&gt; 4  1.3808077  0.9119183</span>
-<span class="co">#&gt; 5 -1.3231235 -0.8474633</span>
-<span class="co">#&gt; 6 -2.3079572 -0.1439909</span></code></pre></div>
-<p><code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> can be used to plot <code>x</code> against each column of <code>y</code> - <code>x</code> against <code>z</code>, and <code>x</code> against <code>fit.z</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span><span class="op">)</span></code></pre></div>
-<p><img src="ggmatplot_files/figure-html/basic-point-plot-1.png" width="700"></p>
-<p>The default aesthetics used to differentiate the two groups can be updated using the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function parameters. Since the two groups in this example are differentiated using their shapes and colors, the <code>shape</code> and <code>color</code> parameters can be used to change them. If we want points in both groups to have the same shape, we can simply set the <code>shape</code> parameter to a single value. However, if we want the points in the groups to be differentiated by color, we can pass a list of colors as the <code>color</code> parameter - but we should make sure the number of colors in the list matches up with the number of groups.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>,
-          shape <span class="op">=</span> <span class="st">"circle"</span>, <span class="co"># using single shape over both groups</span>
-          color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"purple"</span><span class="op">)</span> <span class="co"># assigning two colors to thw two groups</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span>,
+          shape <span class="op">=</span> <span class="st">"circle"</span>, <span class="co"># using a single shape over both groups</span>
+          color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"purple"</span><span class="op">)</span> <span class="co"># assigning two colors to the two groups</span>
           <span class="op">)</span></code></pre></div>
 <p><img src="ggmatplot_files/figure-html/point-plot-w-parameters-1.png" width="700"></p>
-<p>Since <code>ggmatplot</code> is built upon <code>ggplot2</code> and creates a ggplot object, add on layers such as scales, themes and coordinate systems that can be layered over ggplot objects, can be used with plots created using <code>ggmatplot</code> too.</p>
-<p>Each <code>plot_type</code> allowed by the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function is also built upon a <code>ggplot2</code> geom(geometric object), and will therefore support additional parameters accepted by the underlying geom, although they are not listed as <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function parameters.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">y</span>,
-          shape <span class="op">=</span> <span class="st">"circle"</span>, <span class="co"># using single shape over both groups</span>
-          color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"purple"</span><span class="op">)</span>, <span class="co"># assigning new colors to groups</span>
+<p>Since <code>ggmatplot</code> is built upon <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> and creates a ggplot object, <a href="https://ggplot2.tidyverse.org/reference/index.html">ggplot add ons</a> such as scales, faceting specifications, coordinate systems, and themes can be added on to plots created using <code>ggmatplot</code> too.</p>
+<p>Each <code>plot_type</code> allowed by the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function is also built upon a <code>ggplot2 geom</code> (geometric object), and will therefore support additional parameters passed on to <a href="https://ggplot2.tidyverse.org/reference/layer.html"><code>ggplot2 layers</code></a>. These are often aesthetics, used to set an aesthetic to a fixed value, like <code>size = 2</code> or <code>alpha = 0.5</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span>,
+          shape <span class="op">=</span> <span class="st">"circle"</span>,
+          color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"blue"</span>,<span class="st">"purple"</span><span class="op">)</span>,
           size <span class="op">=</span> <span class="fl">2</span>,
           alpha <span class="op">=</span> <span class="fl">0.5</span>
           <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Group</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="ggmatplot_files/figure-html/point-plot-w-layers-1.png" width="700"></p>
+<p><img src="ggmatplot_files/figure-html/unnamed-chunk-4-1.png" width="700"></p>
+<p><a href="../index.html">This list of examples</a> includes other types of plots we can create using <code>ggmatplot</code>.</p>
 </div>
-<div id="line-plot" class="section level2">
+<div id="when-can-we-use-ggmatplot-over-ggplot2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#line-plot" class="anchor"></a><code>line</code> plot</h2>
-<p>We have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.</p>
+<a href="#when-can-we-use-ggmatplot-over-ggplot2" class="anchor"></a>When can we use <code>ggmatplot</code> over <code>ggplot2</code>?</h2>
+<p><a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> requires wide format data to be wrangled into long format for plotting, which can be quite cumbersome when creating simple plots. Therefore, the motivation for <code>ggmatplot</code> is to provide a solution that allows <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a> to handle wide format data. Although <code>ggmatplot</code> doesn’t provide the same flexibility as <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, it can be used as a workaround for having to wrangle wide format data into long format and creating simple plots using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>.</p>
+<p>Suppose we want to use the <code>iris</code> dataset to plot the distributions of its numeric variables individually.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://tidyr.tidyverse.org">tidyr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
+
+<span class="va">iris_numeric</span> <span class="op">&lt;-</span> <span class="va">iris</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">is.numeric</span><span class="op">)</span>
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris_numeric</span><span class="op">)</span>
+<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
+<span class="co">#&gt; 1          5.1         3.5          1.4         0.2</span>
+<span class="co">#&gt; 2          4.9         3.0          1.4         0.2</span>
+<span class="co">#&gt; 3          4.7         3.2          1.3         0.2</span>
+<span class="co">#&gt; 4          4.6         3.1          1.5         0.2</span>
+<span class="co">#&gt; 5          5.0         3.6          1.4         0.2</span>
+<span class="co">#&gt; 6          5.4         3.9          1.7         0.4</span></code></pre></div>
+<p>If we were to plot this data using <a href="https://ggplot2.tidyverse.org/"><code>ggplot2</code></a>, we’d have to wrangle the data into long format before plotting.</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">iris_numeric_long</span> <span class="op">&lt;-</span> <span class="va">iris_numeric</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html">pivot_longer</a></span><span class="op">(</span>cols <span class="op">=</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html">everything</a></span><span class="op">(</span><span class="op">)</span>,
+               names_to <span class="op">=</span> <span class="st">"Feature"</span>,
+               values_to <span class="op">=</span> <span class="st">"Measurement"</span><span class="op">)</span> 
+
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris_numeric_long</span><span class="op">)</span>
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt;   Feature      Measurement</span>
+<span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt;</span>
+<span class="co">#&gt; 1 Sepal.Length         5.1</span>
+<span class="co">#&gt; 2 Sepal.Width          3.5</span>
+<span class="co">#&gt; 3 Petal.Length         1.4</span>
+<span class="co">#&gt; 4 Petal.Width          0.2</span>
+<span class="co">#&gt; 5 Sepal.Length         4.9</span>
+<span class="co">#&gt; 6 Sepal.Width          3</span>
+
+<span class="va">iris_numeric_long</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Measurement</span>,
+             color <span class="op">=</span> <span class="va">Feature</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_density.html">geom_density</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<p><img src="ggmatplot_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+<p>But you can directly use the wide format data with <code>ggmatplot</code>, and achieve the same result.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">iris_numeric</span>, plot_type <span class="op">=</span> <span class="st">"density"</span><span class="op">)</span></code></pre></div>
+<p><img src="ggmatplot_files/figure-html/unnamed-chunk-7-1.png" width="700"></p>
+<p>Suppose we also have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">AirPassengers</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">AirPassengers</span>,
   ncol <span class="op">=</span> <span class="fl">12</span>, byrow <span class="op">=</span> <span class="cn">FALSE</span>,
   dimnames <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="va">month.abb</span>, <span class="fu"><a href="https://rdrr.io/r/base/character.html">as.character</a></span><span class="op">(</span><span class="fl">1949</span><span class="op">:</span><span class="fl">1960</span><span class="op">)</span><span class="op">)</span>
@@ -168,13 +211,14 @@
 <span class="co">#&gt; Oct  119  133  162  191  211  229  274  306  347  359  407  461</span>
 <span class="co">#&gt; Nov  104  114  146  172  180  203  237  271  305  310  362  390</span>
 <span class="co">#&gt; Dec  118  140  166  194  201  229  278  306  336  337  405  432</span></code></pre></div>
-<p>If we want to plot the trend in the number of passengers over the years, we could break the data down into two matrices as follows:</p>
-<p><code>months</code>: a vector/single columned matrix containing the list of months<br><code>nPassengers</code>: a matrix of passenger numbers with each column representing a year</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<p>If we want to plot the trend of the number of passengers over the years using <code>ggplot2</code>, we’d have to wrangle the data into long format. But we can use <code>ggmatplot</code> as a workaround.</p>
+<p>First, we can break the data down into two matrices as follows:</p>
+<p><code>months</code>: a vector containing the list of months<br><code>nPassengers</code>: a matrix of passenger numbers with each column representing a year</p>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">months</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span><span class="op">(</span><span class="va">AirPassengers</span><span class="op">)</span>
 <span class="va">nPassengers</span> <span class="op">&lt;-</span> <span class="va">AirPassengers</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">12</span><span class="op">]</span></code></pre></div>
 <p>Then we can use <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> to plot the <code>months</code> matrix against each column of the <code>nPassengers</code> matrix - which can be more simply understood as grouping the plot using each column(<code>year</code>) of the <code>nPassengers</code> matrix.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span>
   x <span class="op">=</span> <span class="va">months</span>,
   y <span class="op">=</span> <span class="va">nPassengers</span>,
@@ -187,45 +231,6 @@
 <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="ggmatplot_files/figure-html/line-plot-1.png" width="700"></p>
-</div>
-<div id="density-plot" class="section level2">
-<h2 class="hasAnchor">
-<a href="#density-plot" class="anchor"></a><code>density</code> plot</h2>
-<p>Next we use a subset of the <code>iris</code> dataset to plot out the kernel density estimates of each variable. The data corresponds to 4 different measurements of the iris flowers.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">iris_setosa</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/subset.html">subset</a></span><span class="op">(</span><span class="va">iris</span>, <span class="va">Species</span> <span class="op">==</span> <span class="st">"setosa"</span><span class="op">)</span>
-
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris_setosa</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;   Sepal.Length Sepal.Width Petal.Length Petal.Width</span>
-<span class="co">#&gt; 1          5.1         3.5          1.4         0.2</span>
-<span class="co">#&gt; 2          4.9         3.0          1.4         0.2</span>
-<span class="co">#&gt; 3          4.7         3.2          1.3         0.2</span>
-<span class="co">#&gt; 4          4.6         3.1          1.5         0.2</span>
-<span class="co">#&gt; 5          5.0         3.6          1.4         0.2</span>
-<span class="co">#&gt; 6          5.4         3.9          1.7         0.4</span></code></pre></div>
-<p>The plot types <code>density</code>, <code>histogram</code>, <code>violin</code> and <code>boxplot</code> only accept a single matrix input. The plot will be grouped based on the columns of the single matrix input. Since we used a matrix with 4 columns, we can find 4 groups in the following density plot.</p>
-<p>A transparent fill can be achieved by setting <code>alpha = 0</code>.</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">iris_setosa</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
-          plot_type <span class="op">=</span> <span class="st">"density"</span>,
-          xlab <span class="op">=</span> <span class="st">""</span>,
-          alpha <span class="op">=</span> <span class="fl">0</span>,
-          size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></code></pre></div>
-<p><img src="ggmatplot_files/figure-html/density-basic-1.png" width="700"></p>
-<p>If we want to scale the y axis to a maximum of 1, it can be achieved as follows:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">iris_setosa</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
-          plot_type <span class="op">=</span> <span class="st">"density"</span>,
-          xlab <span class="op">=</span> <span class="st">""</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">..scaled..</span><span class="op">)</span></code></pre></div>
-<p><img src="ggmatplot_files/figure-html/density-scaled-1.png" width="700"></p>
-<p>Parameters accepted by the underlying geom - <code>geom_density</code> can also be used within the <code><a href="../reference/ggmatplot.html">ggmatplot()</a></code> function when using <code>plot_type = "density"</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">iris_setosa</span><span class="op">[</span>,<span class="fl">1</span><span class="op">:</span><span class="fl">4</span><span class="op">]</span>,
-          plot_type <span class="op">=</span> <span class="st">"density"</span>,
-          xlab <span class="op">=</span> <span class="st">""</span>,
-          position <span class="op">=</span> <span class="st">"stack"</span><span class="op">)</span></code></pre></div>
-<p><img src="ggmatplot_files/figure-html/density-stacked-1.png" width="700"></p>
 </div>
   </div>
 

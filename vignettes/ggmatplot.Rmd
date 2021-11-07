@@ -1,5 +1,5 @@
 ---
-title: "Introduction to `ggmatplot`"
+title: "ggmatplot"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{ggmatplot}
@@ -10,76 +10,112 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  message = FALSE,
+  warning = FALSE
 )
 ```
 
-```{r setup}
-library(ggmatplot)
-library(ggplot2)
-```
+`ggmatplot` is a quick and easy way of plotting the columns of two matrices or data frames against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
 
-The `ggmatplot` package provides a quick and easy way of plotting the columns of two matrices against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
+`ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/), and its functionality is inspired by [`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot). Therefore, `ggmatplot` can be considered as a `ggplot` version of [`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot).
 
-This vignette is aimed at providing a brief understanding of how the `ggmatplot()` function works and possible extensions to the plots created using `ggmatplot`. This will be discussed through the following examples.
+## What does `ggmatplot` do?
 
+Similar to [`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot), `ggmatplot` plots a vector against the columns of a matrix, or the columns of two matrices against each other, or a vector/matrix on its own. However, unlike [`matplot`](https://www.rdocumentation.org/packages/graphics/versions/3.6.2/topics/matplot), `ggmatplot` returns a `ggplot` object.
 
-## `point` plot
+Suppose we have a covariate vector `x` and a matrix `z` with the response `y` and the fitted value `fit.y` as the two columns.
 
-First we create two matrices as follows:
+```{r}
+# vector x
+x <- c(rnorm(100, sd = 2))
 
-`x`: a vector/a single columned matrix
-
-```{r point-plot-x}
-# matrix x
-x <- rnorm(100, sd = 2)
 head(x)
+
+# matrix z
+y <- x * 0.5 + rnorm(100, sd = 1)
+fit.y <- fitted(lm(y ~ x))
+z <- cbind(actual = y,
+           fitted = fit.y)
+
+head(z)
 ```
 
-`y`: a matrix with two columns - `z` and `fit.z`
+`ggmatplot` plots vector `x` against each column of matrix `z` using the default `plot_type = "point"`. This will be represented on the resulting plot as two groups, identified using different shapes and colors.
 
-```{r point-plot-y}
-# matrix y
-z <- x * 0.5 + rnorm(100, sd = 1)
-fit.z <- fitted(lm(z ~ x))
-y <- cbind(z, fit.z)
-head(y)
+```{r}
+library(ggmatplot)
+
+ggmatplot(x, z)
 ```
 
-`ggmatplot()` can be used to plot `x` against each column of `y` - `x` against `z`, and `x` against `fit.z`. This will be represented on the resulting plot as two groups, identified using different shapes and colors. 
-
-```{r basic-point-plot}
-ggmatplot(x, y)
-```
-
-The default aesthetics used to differentiate the two groups can be updated using the `ggmatplot()` function parameters. Since the two groups in this example are differentiated using their shapes and colors, the `shape` and `color` parameters can be used to change them. If we want points in both groups to have the same shape, we can simply set the `shape` parameter to a single value. However, if we want the points in the groups to be differentiated by color, we can pass a list of colors as the `color` parameter - but we should make sure the number of colors in the list matches up with the number of groups.
+The default aesthetics used to differentiate the two groups can be updated using `ggmatplot()` arguments. Since the two groups in this example are differentiated using their shapes and colors, the `shape` and `color` parameters can be used to change them. If we want points in both groups to have the same shape, we can simply set the `shape` parameter to a single value. However, if we want the points in the groups to be differentiated by color, we can pass a list of colors as the `color` parameter - but we should make sure the number of colors in the list matches up with the number of groups.
 
 ```{r point-plot-w-parameters}
-ggmatplot(x, y,
-          shape = "circle", # using single shape over both groups
-          color = c("blue","purple") # assigning two colors to thw two groups
+ggmatplot(x, z,
+          shape = "circle", # using a single shape over both groups
+          color = c("blue","purple") # assigning two colors to the two groups
           )
 ```
 
-Since `ggmatplot` is built upon `ggplot2` and creates a ggplot object, add on layers such as scales, themes and coordinate systems that can be layered over ggplot objects, can be used with plots created using `ggmatplot` too.
+Since `ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/) and creates a ggplot object, [ggplot add ons](https://ggplot2.tidyverse.org/reference/index.html) such as scales, faceting specifications, coordinate systems, and themes can be added on to plots created using `ggmatplot` too.
 
-Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2` geom(geometric object), and will therefore support additional parameters accepted by the underlying geom, although they are not listed as `ggmatplot()` function parameters.
+Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2 geom` (geometric object), and will therefore support additional parameters passed on to [`ggplot2 layers`](https://ggplot2.tidyverse.org/reference/layer.html). These are often aesthetics, used to set an aesthetic to a fixed value, like `size = 2` or `alpha = 0.5`.
 
-```{r point-plot-w-layers}
-ggmatplot(x, y,
-          shape = "circle", # using single shape over both groups
-          color = c("blue","purple"), # assigning new colors to groups
+
+```{r}
+ggmatplot(x, z,
+          shape = "circle",
+          color = c("blue","purple"),
           size = 2,
           alpha = 0.5
           ) +
-  facet_wrap(~Group) +
   theme_bw()
+
 ```
 
+[This list of examples](../index.html) includes other types of plots we can create using `ggmatplot`.
 
-## `line` plot
+## When can we use `ggmatplot` over `ggplot2`?
 
-We have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.
+[`ggplot2`](https://ggplot2.tidyverse.org/) requires wide format data to be wrangled into long format for plotting, which can be quite cumbersome when creating simple plots. Therefore, the motivation for `ggmatplot` is to provide a solution that allows [`ggplot2`](https://ggplot2.tidyverse.org/) to handle wide format data. Although `ggmatplot` doesn't provide the same flexibility as [`ggplot2`](https://ggplot2.tidyverse.org/), it can be used as a workaround for having to wrangle wide format data into long format and creating simple plots using [`ggplot2`](https://ggplot2.tidyverse.org/).
+
+Suppose we want to use the `iris` dataset to plot the distributions of its numeric variables individually.
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+iris_numeric <- iris %>%
+  select(is.numeric)
+
+head(iris_numeric)
+```
+
+If we were to plot this data using [`ggplot2`](https://ggplot2.tidyverse.org/), we'd have to wrangle the data into long format before plotting.
+
+```{r}
+iris_numeric_long <- iris_numeric %>%
+  pivot_longer(cols = everything(),
+               names_to = "Feature",
+               values_to = "Measurement") 
+
+head(iris_numeric_long)
+
+iris_numeric_long %>%
+  ggplot(aes(x = Measurement,
+             color = Feature)) +
+  geom_density()
+
+```
+
+But you can directly use the wide format data with `ggmatplot`, and achieve the same result.
+
+```{r}
+ggmatplot(iris_numeric, plot_type = "density")
+```
+
+Suppose we also have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.
 
 ```{r line-data}
 AirPassengers <- matrix(AirPassengers,
@@ -89,9 +125,12 @@ AirPassengers <- matrix(AirPassengers,
 
 AirPassengers
 ```
-If we want to plot the trend in the number of passengers over the years, we could break the data down into two matrices as follows:
 
-`months`: a vector/single columned matrix containing the list of months  
+If we want to plot the trend of the number of passengers over the years using `ggplot2`, we'd have to wrangle the data into long format. But we can use `ggmatplot` as a workaround. 
+
+First, we can break the data down into two matrices as follows:
+
+`months`: a vector containing the list of months  
 `nPassengers`: a matrix of passenger numbers with each column representing a year
 
 ```{r line-data-split}
@@ -113,44 +152,4 @@ ggmatplot(
   legend_title = "Year"
 ) +
   theme_minimal()
-```
-
-## `density` plot
-
-Next we use a subset of the `iris` dataset to plot out the kernel density estimates of each variable. The data corresponds to 4 different measurements of the iris flowers.
-
-```{r density-data}
-iris_setosa <- subset(iris, Species == "setosa")
-
-head(iris_setosa[,1:4])
-```
-
-The plot types `density`, `histogram`, `violin` and `boxplot` only accept a single matrix input. The plot will be grouped based on the columns of the single matrix input. Since we used a matrix with 4 columns, we can find 4 groups in the following density plot.
-
-A transparent fill can be achieved by setting `alpha = 0`.
-
-```{r density-basic}
-ggmatplot(iris_setosa[,1:4],
-          plot_type = "density",
-          xlab = "",
-          alpha = 0,
-          size = 1)
-```
-
-If we want to scale the y axis to a maximum of 1, it can be achieved as follows:
-
-```{r density-scaled}
-ggmatplot(iris_setosa[,1:4],
-          plot_type = "density",
-          xlab = "") +
-  aes(y = ..scaled..)
-```
-
-Parameters accepted by the underlying geom - `geom_density` can also be used within the `ggmatplot()` function when using `plot_type = "density"`.
-
-```{r density-stacked}
-ggmatplot(iris_setosa[,1:4],
-          plot_type = "density",
-          xlab = "",
-          position = "stack")
 ```

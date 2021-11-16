@@ -61,11 +61,11 @@
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
-ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, linetype = NULL,
-                      fill = NULL, xlim = c(NA, NA), ylim = c(NA, NA),
-                      log = NULL, main = NULL, xlab = NULL, ylab = NULL,
-                      legend_label = NULL, legend_title = NULL,
-                       asp = NA, ...) {
+ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
+                      shape = NULL, linetype = NULL, xlim = c(NA, NA),
+                      ylim = c(NA, NA), log = NULL, main = NULL,
+                      xlab = NULL, ylab = NULL, legend_label = NULL,
+                      legend_title = NULL, desc_stat = "mean_se", asp = NA, ...) {
 
   # valid plot types
   if (!plot_type %in% c(
@@ -88,7 +88,21 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, lin
 
   params <- list(...)
 
-  data <- data.list$data
+  # valid plot types for desc_stat parameter
+  if (desc_stat != "mean_se" & plot_type != "errorplot") {
+    warning(paste0("desc_stat is an invalid parameter for plot type: ", plot_type), call. = FALSE)
+  }
+
+  if (plot_type == "errorplot") {
+    if (desc_stat %in% c("mean_se", "mean_sd", "mean_range", "median_iqr", "median_range")) {
+      data <- errorplotstats(data.list$data, desc_stat)
+    } else {
+      stop("desc_stat can not take this value", call. = FALSE)
+    }
+  } else {
+    data <- data.list$data
+  }
+
   xname <- data.list$xname
   yname <- data.list$yname
 
@@ -207,12 +221,14 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, lin
       do.call(
         "geom_dotplot",
         c(
-          list(mapping = aes(
-            x = Group,
-            y = .data[[yname]]
+          list(
+            mapping = aes(
+              x = Group,
+              y = .data[[yname]]
+            ),
+            binaxis = "y",
+            stackdir = "center"
           ),
-          binaxis = "y",
-          stackdir = "center"),
           params
         )
       )
@@ -223,6 +239,20 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, lin
         c(
           list(mapping = aes(
             x = .data[[yname]]
+          )),
+          params
+        )
+      )
+  } else if (plot_type == "errorplot") {
+    p <- p +
+      do.call(
+        "geom_pointrange",
+        c(
+          list(mapping = aes(
+            x = Group,
+            y = y,
+            ymin = ymin,
+            ymax = ymax
           )),
           params
         )
@@ -239,7 +269,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, lin
   if (!is.null(legend_label)) {
     # values > number of unique groups
     if (length(legend_label) > numGroups) {
-      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but " , length(legend_label), " provided."), call. = FALSE)
+      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but ", length(legend_label), " provided."), call. = FALSE)
     }
     # values < number of unique groups
     else if (length(legend_label) < numGroups) {
@@ -336,17 +366,19 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, shape = NULL, lin
   if (!is.null(ylab)) p <- p + ylab(ylab)
 
   if (!missing(xlim)) {
-    if(length(xlim) == 2) {
+    if (length(xlim) == 2) {
       p <- p + xlim(xlim)
     } else {
       stop("xlim must be a two element vector", call. = FALSE)
-    }}
+    }
+  }
   if (!missing(ylim)) {
-    if(length(ylim) == 2) {
+    if (length(ylim) == 2) {
       p <- p + ylim(ylim)
     } else {
       stop("ylim must be a two element vector", call. = FALSE)
-    }}
+    }
+  }
 
   if (!is.na(asp)) p <- p + theme(aspect.ratio = asp)
 

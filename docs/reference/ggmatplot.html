@@ -40,8 +40,8 @@
 
 
 <meta property="og:title" content="ggmatplot — ggmatplot" />
-<meta property="og:description" content="ggmatplot is a quick and easy way of plotting the columns of two matrices
-against each other." />
+<meta property="og:description" content="ggmatplot is a quick and easy way of plotting the columns of two matrices or
+data frames against each other using ggplot2." />
 
 
 
@@ -127,17 +127,18 @@ against each other." />
     </div>
 
     <div class="ref-description">
-    <p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices
-against each other.</p>
+    <p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices or
+data frames against each other using <a href='https://ggplot2.tidyverse.org/'><code>ggplot2</code></a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggmatplot</span><span class='op'>(</span>
   <span class='va'>x</span>,
   <span class='va'>y</span>,
+  plot_type <span class='op'>=</span> <span class='st'>"point"</span>,
   color <span class='op'>=</span> <span class='cn'>NULL</span>,
+  fill <span class='op'>=</span> <span class='cn'>NULL</span>,
   shape <span class='op'>=</span> <span class='cn'>NULL</span>,
   linetype <span class='op'>=</span> <span class='cn'>NULL</span>,
-  fill <span class='op'>=</span> <span class='cn'>NULL</span>,
   xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='cn'>NA</span>, <span class='cn'>NA</span><span class='op'>)</span>,
   log <span class='op'>=</span> <span class='cn'>NULL</span>,
@@ -146,7 +147,7 @@ against each other.</p>
   ylab <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend_label <span class='op'>=</span> <span class='cn'>NULL</span>,
   legend_title <span class='op'>=</span> <span class='cn'>NULL</span>,
-  plot_type <span class='op'>=</span> <span class='st'>"point"</span>,
+  desc_stat <span class='op'>=</span> <span class='st'>"mean_se"</span>,
   asp <span class='op'>=</span> <span class='cn'>NA</span>,
   <span class='va'>...</span>
 <span class='op'>)</span></pre>
@@ -156,12 +157,20 @@ against each other.</p>
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x, y</th>
-      <td><p>Vectors or matrices of data for plotting.</p><ul>
+      <td><p>Vectors or matrices of data.</p><ul>
 <li><p>The number of rows of <code>x</code> and <code>y</code> should be the same.</p></li>
+<li><p>Either <code>x</code> or <code>y</code> should be a vector, unless the number of columns of <code>x</code> and
+<code>y</code> are the same.</p></li>
 <li><p>Missing values (NAs) are allowed.</p></li>
 <li><p>If either <code>x</code> or <code>y</code> is missing, the other is used as <code>y</code> and a vector of
 <code>1:n</code> is used as <code>x</code>.</p></li>
 </ul></td>
+    </tr>
+    <tr>
+      <th>plot_type</th>
+      <td><p>A string specifying the type of plot. Possible plot types are
+<code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>, <code>boxplot</code>,
+<code>dotplot</code>, <code>errorplot</code>, <code>violin</code>, and <code>ecdf</code>. Default plot_type is <code>point</code>.</p></td>
     </tr>
     <tr>
       <th>color, fill</th>
@@ -184,10 +193,12 @@ used for all columns.</p></li>
     </tr>
     <tr>
       <th>xlim, ylim</th>
-      <td><p>Ranges of x and y axes. Each of them should be a two element
-vector specifying the lower and upper limits of the scale. If the larger
-value is given first, the scale will be reversed. If one of the limits is
-given as <code>NA</code>, the corresponding limit from the range of data will be used.</p></td>
+      <td><p>Ranges of x and y axes.</p><ul>
+<li><p>Each of them should be a two element vector specifying the lower and upper
+limits of the scale. If the larger value is given first, the scale will be
+reversed. If one of the limits is given as <code>NA</code>, the corresponding limit from
+the range of data will be used.</p></li>
+</ul></td>
     </tr>
     <tr>
       <th>log</th>
@@ -201,14 +212,13 @@ y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>legend_label</th>
-      <td><p>A list of strings, to rename the legend labels.</p></td>
+      <td><p>A vector of strings, to rename the legend labels.</p></td>
     </tr>
     <tr>
-      <th>plot_type</th>
-      <td><p>A string specifying the type of plot to draw. Possible plot
-types are <code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>,
-<code>boxplot</code>, <code>dotplot</code>, <code>errorplot</code>, <code>violin</code>, and <code>ecdf</code>. Default plot_type is
-<code>point</code>.</p></td>
+      <th>desc_stat</th>
+      <td><p>Descriptive statistics to be used for visualizing errors, in
+<code>errorplot</code>. Possible values are <code>mean_se</code>, <code>mean_sd</code>, <code>mean_range</code>,
+<code>median_iqr</code> and <code>median_range</code>. Default desc_stat is <code>mean_se</code>.</p></td>
     </tr>
     <tr>
       <th>asp</th>

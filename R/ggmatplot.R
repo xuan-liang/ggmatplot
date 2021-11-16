@@ -1,15 +1,21 @@
 #' ggmatplot
 #'
 #'
-#' `ggmatplot` is a quick and easy way of plotting the columns of two matrices
-#' against each other.
+#' `ggmatplot` is a quick and easy way of plotting the columns of two matrices or
+#'  data frames against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
 #'
-#' @param x,y Vectors or matrices of data for plotting.
+#' @param x,y Vectors or matrices of data.
 #'
 #' * The number of rows of `x` and `y` should be the same.
+#' * Either `x` or `y` should be a vector, unless the number of columns of `x` and
+#' `y` are the same.
 #' * Missing values (NAs) are allowed.
 #' * If either `x` or `y` is missing, the other is used as `y` and a vector of
 #' `1:n` is used as `x`.
+#'
+#' @param plot_type A string specifying the type of plot. Possible plot types are
+#' `point`, `line`, `both`(point + line), `density`, `histogram`, `boxplot`,
+#' `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is `point`.
 #'
 #' @param color,fill Vectors of colors. Defining only one of them will update
 #' both `color` and `fill` aesthetics of the plot by default, unless they are
@@ -19,6 +25,11 @@
 #' matrices `x` or `y`, and will correspond to each of those columns.
 #' * If only a single color is given, the same color will be used for all columns.
 #'
+#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label,
+#'  y axis label and legend title respectively.
+#'
+#' @param legend_label A vector of strings, to rename the legend labels.
+#'
 #' @param shape,linetype A vector of shapes or line types respectively.
 #'
 #' * The number of shapes/line types should match the higher number of columns of
@@ -26,25 +37,21 @@
 #' * If only a single shape/line type is given, the same shape/line type will be
 #' used for all columns.
 #'
-#' @param xlim,ylim Ranges of x and y axes. Each of them should be a two element
-#' vector specifying the lower and upper limits of the scale. If the larger
-#' value is given first, the scale will be reversed. If one of the limits is
-#' given as `NA`, the corresponding limit from the range of data will be used.
+#' @param xlim,ylim Ranges of x and y axes.
+#'
+#' * Each of them should be a two element vector specifying the lower and upper
+#' limits of the scale. If the larger value is given first, the scale will be
+#' reversed. If one of the limits is given as `NA`, the corresponding limit from
+#'  the range of data will be used.
 #'
 #' @param log A string defining which axes to transform into a log scale.
 #' (`x`, `y` or `xy`)
 #'
-#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label,
-#'  y axis label and legend title respectively.
-#'
-#' @param legend_label A list of strings, to rename the legend labels.
-#'
-#' @param plot_type A string specifying the type of plot to draw. Possible plot
-#' types are `point`, `line`, `both`(point + line), `density`, `histogram`,
-#' `boxplot`, `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is
-#'  `point`.
-#'
 #' @param asp The y/x aspect ratio.
+#'
+#' @param desc_stat Descriptive statistics to be used for visualizing errors, in
+#' `errorplot`. Possible values are `mean_se`, `mean_sd`, `mean_range`,
+#'  `median_iqr` and `median_range`. Default desc_stat is `mean_se`.
 #'
 #' @param ... Other arguments passed on to the plot. They can be used to set an
 #' aesthetic to a fixed value, like `alpha = 0.4` or `size = 2`. They may also

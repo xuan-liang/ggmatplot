@@ -7,10 +7,11 @@
 ggmatplot(
   x,
   y,
+  plot_type = "point",
   color = NULL,
+  fill = NULL,
   shape = NULL,
   linetype = NULL,
-  fill = NULL,
   xlim = c(NA, NA),
   ylim = c(NA, NA),
   log = NULL,
@@ -19,19 +20,25 @@ ggmatplot(
   ylab = NULL,
   legend_label = NULL,
   legend_title = NULL,
-  plot_type = "point",
+  desc_stat = "mean_se",
   asp = NA,
   ...
 )
 }
 \arguments{
-\item{x, y}{Vectors or matrices of data for plotting.
+\item{x, y}{Vectors or matrices of data.
 \itemize{
 \item The number of rows of \code{x} and \code{y} should be the same.
+\item Either \code{x} or \code{y} should be a vector, unless the number of columns of \code{x} and
+\code{y} are the same.
 \item Missing values (NAs) are allowed.
 \item If either \code{x} or \code{y} is missing, the other is used as \code{y} and a vector of
 \code{1:n} is used as \code{x}.
 }}
+
+\item{plot_type}{A string specifying the type of plot. Possible plot types are
+\code{point}, \code{line}, \code{both}(point + line), \code{density}, \code{histogram}, \code{boxplot},
+\code{dotplot}, \code{errorplot}, \code{violin}, and \code{ecdf}. Default plot_type is \code{point}.}
 
 \item{color, fill}{Vectors of colors. Defining only one of them will update
 both \code{color} and \code{fill} aesthetics of the plot by default, unless they are
@@ -50,10 +57,13 @@ matrices \code{x} or \code{y}, and will correspond to each of those columns.
 used for all columns.
 }}
 
-\item{xlim, ylim}{Ranges of x and y axes. Each of them should be a two element
-vector specifying the lower and upper limits of the scale. If the larger
-value is given first, the scale will be reversed. If one of the limits is
-given as \code{NA}, the corresponding limit from the range of data will be used.}
+\item{xlim, ylim}{Ranges of x and y axes.
+\itemize{
+\item Each of them should be a two element vector specifying the lower and upper
+limits of the scale. If the larger value is given first, the scale will be
+reversed. If one of the limits is given as \code{NA}, the corresponding limit from
+the range of data will be used.
+}}
 
 \item{log}{A string defining which axes to transform into a log scale.
 (\code{x}, \code{y} or \code{xy})}
@@ -61,12 +71,11 @@ given as \code{NA}, the corresponding limit from the range of data will be used.
 \item{main, xlab, ylab, legend_title}{Strings to update plot title, x axis label,
 y axis label and legend title respectively.}
 
-\item{legend_label}{A list of strings, to rename the legend labels.}
+\item{legend_label}{A vector of strings, to rename the legend labels.}
 
-\item{plot_type}{A string specifying the type of plot to draw. Possible plot
-types are \code{point}, \code{line}, \code{both}(point + line), \code{density}, \code{histogram},
-\code{boxplot}, \code{dotplot}, \code{errorplot}, \code{violin}, and \code{ecdf}. Default plot_type is
-\code{point}.}
+\item{desc_stat}{Descriptive statistics to be used for visualizing errors, in
+\code{errorplot}. Possible values are \code{mean_se}, \code{mean_sd}, \code{mean_range},
+\code{median_iqr} and \code{median_range}. Default desc_stat is \code{mean_se}.}
 
 \item{asp}{The y/x aspect ratio.}
 
@@ -75,8 +84,8 @@ aesthetic to a fixed value, like \code{alpha = 0.4} or \code{size = 2}. They may
 be parameters passed on to the corresponding \href{https://ggplot2.tidyverse.org/reference/}{geoms}.}
 }
 \description{
-\code{ggmatplot} is a quick and easy way of plotting the columns of two matrices
-against each other.
+\code{ggmatplot} is a quick and easy way of plotting the columns of two matrices or
+data frames against each other using \href{https://ggplot2.tidyverse.org/}{\code{ggplot2}}.
 }
 \examples{
 

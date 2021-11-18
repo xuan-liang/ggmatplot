@@ -26,7 +26,7 @@ Similar to [`matplot`](https://www.rdocumentation.org/packages/graphics/versions
 
 Suppose we have a covariate vector `x` and a matrix `z` with the response `y` and the fitted value `fit.y` as the two columns.
 
-```{r}
+```{r defining-data}
 # vector x
 x <- c(rnorm(100, sd = 2))
 
@@ -43,7 +43,7 @@ head(z)
 
 `ggmatplot` plots vector `x` against each column of matrix `z` using the default `plot_type = "point"`. This will be represented on the resulting plot as two groups, identified using different shapes and colors.
 
-```{r}
+```{r point-plot}
 library(ggmatplot)
 
 ggmatplot(x, z)
@@ -60,10 +60,10 @@ ggmatplot(x, z,
 
 Since `ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/) and creates a ggplot object, [ggplot add ons](https://ggplot2.tidyverse.org/reference/index.html) such as scales, faceting specifications, coordinate systems, and themes can be added on to plots created using `ggmatplot` too.
 
-Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2 geom` (geometric object), and will therefore support additional parameters passed on to [`ggplot2 layers`](https://ggplot2.tidyverse.org/reference/layer.html). These are often aesthetics, used to set an aesthetic to a fixed value, like `size = 2` or `alpha = 0.5`.
+Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2 geom` (geometric object), as listed [here](../reference/ggmatplot.html#plot-types). Therefore, `ggmatplot()` will support additional parameters specific to each plot type. These are often aesthetics, used to set an aesthetic to a fixed value, like `size = 2` or `alpha = 0.5`. However, they can also be other parameters specific to different types of plots.
 
 
-```{r}
+```{r point-plot-w-theme}
 ggmatplot(x, z,
           shape = "circle",
           color = c("blue","purple"),
@@ -74,7 +74,7 @@ ggmatplot(x, z,
 
 ```
 
-[This list of examples](../index.html) includes other types of plots we can create using `ggmatplot`.
+[This list of examples](../index.html#examples) includes other types of plots we can create using `ggmatplot`.
 
 ## When can we use `ggmatplot` over `ggplot2`?
 
@@ -82,7 +82,7 @@ ggmatplot(x, z,
 
 Suppose we want to use the `iris` dataset to plot the distributions of its numeric variables individually.
 
-```{r}
+```{r iris-data}
 library(tidyr)
 library(dplyr)
 
@@ -94,7 +94,7 @@ head(iris_numeric)
 
 If we were to plot this data using [`ggplot2`](https://ggplot2.tidyverse.org/), we'd have to wrangle the data into long format before plotting.
 
-```{r}
+```{r iris-ggplot2-density-plot}
 iris_numeric_long <- iris_numeric %>%
   pivot_longer(cols = everything(),
                names_to = "Feature",
@@ -106,18 +106,17 @@ iris_numeric_long %>%
   ggplot(aes(x = Measurement,
              color = Feature)) +
   geom_density()
-
 ```
 
-But you can directly use the wide format data with `ggmatplot`, and achieve the same result.
+But the wide format data can be directly used with `ggmatplot` to achieve the same result.
 
-```{r}
+```{r iris-ggmatplot-density-plot}
 ggmatplot(iris_numeric, plot_type = "density")
 ```
 
 Suppose we also have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.
 
-```{r line-data}
+```{r airline-data}
 AirPassengers <- matrix(AirPassengers,
   ncol = 12, byrow = FALSE,
   dimnames = list(month.abb, as.character(1949:1960))
@@ -128,12 +127,12 @@ AirPassengers
 
 If we want to plot the trend of the number of passengers over the years using `ggplot2`, we'd have to wrangle the data into long format. But we can use `ggmatplot` as a workaround. 
 
-First, we can break the data down into two matrices as follows:
+First, we can split the data into two matrices as follows:
 
 `months`: a vector containing the list of months  
 `nPassengers`: a matrix of passenger numbers with each column representing a year
 
-```{r line-data-split}
+```{r airline-data-split}
 months <- rownames(AirPassengers)
 nPassengers <- AirPassengers[, 1:12]
 ```

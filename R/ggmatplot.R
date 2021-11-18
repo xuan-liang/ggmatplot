@@ -55,7 +55,7 @@
 #'  `median_iqr` and `median_range`. Default desc_stat is `mean_se`.
 #'
 #' @param ... Other arguments passed on to the plot. Possible arguments are those
-#' that can be passed on to the [underlying ggplot layer](#plot-types).
+#' that can be passed on to the [underlying ggplot layers](#plot-types).
 #'
 #' @import ggplot2
 #' @export

@@ -81,7 +81,7 @@ y axis label and legend title respectively.}
 \item{asp}{The y/x aspect ratio.}
 
 \item{...}{Other arguments passed on to the plot. Possible arguments are those
-that can be passed on to the \href{#plot-types}{underlying ggplot layer}.}
+that can be passed on to the \href{#plot-types}{underlying ggplot layers}.}
 }
 \description{
 \code{ggmatplot} is a quick and easy way of plotting the columns of two matrices or

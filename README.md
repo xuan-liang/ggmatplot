@@ -121,10 +121,11 @@ ggmatplot(x, y,
 The next example creates a line plot of vector `x` against the columns
 of matrix `y` by using `plot_type = "line"`. Although the lines would be
 represented using different colors by default, the `color` parameter
-allows custom colors to be assigned to them. The following plot assigns
-custom colors to the lines, and the limits of the y axis are updated
-using the `ylim` parameter. Further, a ggplot theme is added on to the
-resultant ggplot object.
+allows custom colors to be assigned to them.
+
+The following plot assigns custom colors to the lines, and the limits of
+the y axis are updated using the `ylim` parameter. Further, a ggplot
+theme is added on to the resultant ggplot object.
 
 ``` r
 # matrix x
@@ -206,10 +207,11 @@ default, the fill color can be made transparent by using `alpha = 0`.
 It is also worth noticing that `alpha` isn’t a parameter defined in
 `ggmatplot()`, but can be used. This is because `ggmatplot` is built
 upon `ggplot2`, and each `plot_type` corresponds to a
-[`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms).
-Therefore, all valid parameters with the underlying
+[`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
+as listed [here](./reference/ggmatplot.html#plot-types). Therefore, all
+valid parameters with the underlying
 [`ggplot2 geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
-can be used with `ggmatplot()`
+can be used with `ggmatplot()`.
 
 ``` r
 # matrix x
@@ -311,3 +313,26 @@ ggmatplot(x,
 ```
 
 <img src="man/figures/README-ecdf-1.png" width="80%" />
+
+Error plots also accept only a single matrix input, and plots out error
+bars for each column of the matrix. The `desc_stat` parameter of
+`ggmatplot()` can be used to define what the mid point and error bars of
+the plot should represent.
+
+The next example, plots out an `errorplot` using the medians and
+interquartile ranges of each variable.
+
+``` r
+# matrix x
+x <- (iris[, 1:4])
+
+ggmatplot(x,
+  plot_type = "errorplot",
+  desc_stat = "median_iqr",
+  xlab = "Group",
+  size = 1
+) +
+  theme_minimal()
+```
+
+<img src="man/figures/README-errorplot-1.png" width="80%" />

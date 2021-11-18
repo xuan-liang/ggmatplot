@@ -39,11 +39,16 @@ test_that("ecdf draws correctly", {
   expect_doppelganger("basic ecdf", ggmatplot(y, plot_type = "ecdf"))
 })
 
-test_that("density, histogram, ecdf, dotplot, violin and boxplot do not accept multiple matrices", {
+test_that("errorplot draws correctly", {
+  expect_doppelganger("basic errorplot", ggmatplot(y, plot_type = "errorplot"))
+})
+
+test_that("density, histogram, ecdf, dotplot, violin, errorplot and boxplot do not accept multiple matrices", {
   expect_error(ggmatplot(x, y, plot_type = "density"), "This plot type only uses a single matrix input")
   expect_error(ggmatplot(x, y, plot_type = "histogram"), "This plot type only uses a single matrix input")
   expect_error(ggmatplot(x, y, plot_type = "ecdf"), "This plot type only uses a single matrix input")
   expect_error(ggmatplot(x, y, plot_type = "dotplot"), "This plot type only uses a single matrix input")
   expect_error(ggmatplot(x, y, plot_type = "violin"), "This plot type only uses a single matrix input")
+  expect_error(ggmatplot(x, y, plot_type = "errorplot"), "This plot type only uses a single matrix input")
   expect_error(ggmatplot(x, y, plot_type = "boxplot"), "This plot type only uses a single matrix input")
 })

@@ -68,7 +68,7 @@ test_that("plot axis labels are updated based on xlab and ylab paramters", {
   expect_equal(ggmatplot(y, plot_type = "point", ylab="ylab test")$labels$y, "ylab test")
 })
 
-test_that("invalid plot types are no allowed", {
+test_that("invalid plot types are not allowed", {
   expect_error(ggmatplot(x,y, plot_type = "scatterplot"), "plot_type can not take this value")
 })
 
@@ -84,6 +84,11 @@ test_that("legend title is updated", {
 test_that("plot is resized by aspect ratio(asp)", {
   expect_doppelganger("plot resized by aspect ratio", ggmatplot(x,y, asp = 0.5))
 })
+
+test_that("errorplot updates using the defined desc_stat", {
+  expect_doppelganger("errorplot with medians and range errorbars", ggmatplot(y, plot_type = "errorplot", desc_stat = "median_range"))
+})
+
 
 test_that("invalid parameter values throw errors", {
   # color values < number of groups
@@ -109,6 +114,8 @@ test_that("invalid parameter values throw errors", {
   expect_error(ggmatplot(y, plot_type = "line", xlim = c(1,2,5)), "xlim must be a two element vector")
   # invalid log value
   expect_error(ggmatplot(y, plot_type = "point", log = 1), "invalid log value provided")
+  # invalid des_stat value
+  expect_error(ggmatplot(y, plot_type = "errorplot", desc_stat = "mean_sed"), "desc_stat can not take this value")
 })
 
 test_that("unknown parameter values for plots throw errors", {
@@ -116,4 +123,6 @@ test_that("unknown parameter values for plots throw errors", {
   expect_warning(ggmatplot(y, plot_type = "density", shape = c(15, 12, 13)), "shape is an invalid parameter for plot type: density")
   # linetypes for plot types that don't require linetypes
   expect_warning(ggmatplot(x, y, plot_type = "point", linetype = c(15, 12, 13)), "linetype is an invalid parameter for plot type: point")
+  # desc_stat for plot types that don't require descriptive statistics
+  expect_warning(ggmatplot(x, plot_type = "density", desc_stat = "median_iqr"), "desc_stat is an invalid parameter for plot type: density")
 })

@@ -85,12 +85,16 @@
 #' iris_sub <- subset(iris, Species == "setosa")
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
-#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6),
+#' legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
 ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
                       shape = NULL, linetype = NULL, xlim = c(NA, NA),
                       ylim = c(NA, NA), log = NULL, main = NULL,
                       xlab = NULL, ylab = NULL, legend_label = NULL,
                       legend_title = NULL, desc_stat = "mean_se", asp = NA, ...) {
+
+  # binding global variables to objects
+  Group <- ymin <- ymax <- NULL
 
   # valid plot types
   if (!plot_type %in% c(

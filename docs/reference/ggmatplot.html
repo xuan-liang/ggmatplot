@@ -228,8 +228,7 @@ y axis label and legend title respectively.</p></td>
     <tr>
       <th>...</th>
       <td><p>Other arguments passed on to the plot. Possible arguments are those
-that can be passed on to the <a href='#plot-types'>underlying ggplot layer</a>, corresponding
-to the plot type.</p></td>
+that can be passed on to the <a href='#plot-types'>underlying ggplot layer</a>.</p></td>
     </tr>
     </table>
 
@@ -262,7 +261,8 @@ or <a href='https://ggplot2.tidyverse.org/reference/index.html#section-stats'><c
 <span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span>
 <span class='r-plt img'><img src='ggmatplot-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># Modify legend label and axis</span></span>
-<span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>, legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,</span>
+<span class='r-in'>legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span></span>
 <span class='r-plt img'><img src='ggmatplot-2.png' alt='' width='700' height='433' /></span>
 </pre>
   </div>

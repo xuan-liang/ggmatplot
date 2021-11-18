@@ -81,8 +81,7 @@ y axis label and legend title respectively.}
 \item{asp}{The y/x aspect ratio.}
 
 \item{...}{Other arguments passed on to the plot. Possible arguments are those
-that can be passed on to the \href{#plot-types}{underlying ggplot layer}, corresponding
-to the plot type.}
+that can be passed on to the \href{#plot-types}{underlying ggplot layer}.}
 }
 \description{
 \code{ggmatplot} is a quick and easy way of plotting the columns of two matrices or
@@ -115,5 +114,6 @@ or \href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code
 iris_sub <- subset(iris, Species == "setosa")
 ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 # Modify legend label and axis
-ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6), legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6),
+legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
 }

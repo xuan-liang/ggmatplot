@@ -60,9 +60,10 @@ used for all columns.
 \item{xlim, ylim}{Ranges of x and y axes.
 \itemize{
 \item Each of them should be a two element vector specifying the lower and upper
-limits of the scale. If the larger value is given first, the scale will be
-reversed. If one of the limits is given as \code{NA}, the corresponding limit from
-the range of data will be used.
+limits of the scale.
+\item If the larger value is given first, the scale will be reversed. If one of
+the limits is given as \code{NA}, the corresponding limit from the range of data
+will be used.
 }}
 
 \item{log}{A string defining which axes to transform into a log scale.
@@ -79,14 +80,35 @@ y axis label and legend title respectively.}
 
 \item{asp}{The y/x aspect ratio.}
 
-\item{...}{Other arguments passed on to the plot. They can be used to set an
-aesthetic to a fixed value, like \code{alpha = 0.4} or \code{size = 2}. They may also
-be parameters passed on to the corresponding \href{https://ggplot2.tidyverse.org/reference/}{geoms}.}
+\item{...}{Other arguments passed on to the plot. Possible arguments are those
+that can be passed on to the \href{#plot-types}{underlying ggplot layer}, corresponding
+to the plot type.}
 }
 \description{
 \code{ggmatplot} is a quick and easy way of plotting the columns of two matrices or
 data frames against each other using \href{https://ggplot2.tidyverse.org/}{\code{ggplot2}}.
 }
+\section{Plot Types}{
+
+
+\code{ggmatplot}plots are built upon \verb{ggplot2 layers}. The following is a list of
+\code{ggmatplot} plot types, along with their underlying
+\href{https://ggplot2.tidyverse.org/reference/index.html#section-geoms}{\verb{ggplot geoms}}
+or \href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code{stats}}.
+\itemize{
+\item \strong{point} \code{\link[ggplot2]{geom_point}}
+\item \strong{line} \code{\link[ggplot2]{geom_line}}
+\item \strong{both} \code{\link[ggplot2]{geom_point}} + \code{\link[ggplot2]{geom_line}}
+\item \strong{density} \code{\link[ggplot2]{geom_density}}
+\item \strong{histogram} \code{\link[ggplot2]{geom_histogram}}
+\item \strong{boxplot} \code{\link[ggplot2]{geom_boxplot}}
+\item \strong{dotplot} \code{\link[ggplot2]{geom_dotplot}}
+\item \strong{errorplot} \code{\link[ggplot2]{geom_pointrange}}
+\item \strong{violin} \code{\link[ggplot2]{geom_violin}}
+\item \strong{ecdf} \code{\link[ggplot2]{stat_ecdf}}
+}
+}
+
 \examples{
 
 # Define a data set

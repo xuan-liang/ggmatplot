@@ -195,9 +195,10 @@ used for all columns.</p></li>
       <th>xlim, ylim</th>
       <td><p>Ranges of x and y axes.</p><ul>
 <li><p>Each of them should be a two element vector specifying the lower and upper
-limits of the scale. If the larger value is given first, the scale will be
-reversed. If one of the limits is given as <code>NA</code>, the corresponding limit from
-the range of data will be used.</p></li>
+limits of the scale.</p></li>
+<li><p>If the larger value is given first, the scale will be reversed. If one of
+the limits is given as <code>NA</code>, the corresponding limit from the range of data
+will be used.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -226,11 +227,32 @@ y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments passed on to the plot. They can be used to set an
-aesthetic to a fixed value, like <code>alpha = 0.4</code> or <code>size = 2</code>. They may also
-be parameters passed on to the corresponding <a href='https://ggplot2.tidyverse.org/reference/'>geoms</a>.</p></td>
+      <td><p>Other arguments passed on to the plot. Possible arguments are those
+that can be passed on to the <a href='#plot-types'>underlying ggplot layer</a>, corresponding
+to the plot type.</p></td>
     </tr>
     </table>
+
+    <h2 class="hasAnchor" id="plot-types"><a class="anchor" href="#plot-types"></a>Plot Types</h2>
+
+    
+
+
+<p><code>ggmatplot</code>plots are built upon <code>ggplot2 layers</code>. The following is a list of
+<code>ggmatplot</code> plot types, along with their underlying
+<a href='https://ggplot2.tidyverse.org/reference/index.html#section-geoms'><code>ggplot geoms</code></a>
+or <a href='https://ggplot2.tidyverse.org/reference/index.html#section-stats'><code>stats</code></a>.</p><ul>
+<li><p><strong>point</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code></p></li>
+<li><p><strong>line</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></code></p></li>
+<li><p><strong>both</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> + <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></code></p></li>
+<li><p><strong>density</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></code></p></li>
+<li><p><strong>histogram</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></code></p></li>
+<li><p><strong>boxplot</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code></p></li>
+<li><p><strong>dotplot</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_dotplot.html'>geom_dotplot</a></code></p></li>
+<li><p><strong>errorplot</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_linerange.html'>geom_pointrange</a></code></p></li>
+<li><p><strong>violin</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_violin.html'>geom_violin</a></code></p></li>
+<li><p><strong>ecdf</strong> <code><a href='https://ggplot2.tidyverse.org/reference/stat_ecdf.html'>stat_ecdf</a></code></p></li>
+</ul>
 
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

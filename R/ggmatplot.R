@@ -40,9 +40,10 @@
 #' @param xlim,ylim Ranges of x and y axes.
 #'
 #' * Each of them should be a two element vector specifying the lower and upper
-#' limits of the scale. If the larger value is given first, the scale will be
-#' reversed. If one of the limits is given as `NA`, the corresponding limit from
-#'  the range of data will be used.
+#' limits of the scale.
+#' * If the larger value is given first, the scale will be reversed. If one of
+#' the limits is given as `NA`, the corresponding limit from the range of data
+#' will be used.
 #'
 #' @param log A string defining which axes to transform into a log scale.
 #' (`x`, `y` or `xy`)
@@ -53,13 +54,30 @@
 #' `errorplot`. Possible values are `mean_se`, `mean_sd`, `mean_range`,
 #'  `median_iqr` and `median_range`. Default desc_stat is `mean_se`.
 #'
-#' @param ... Other arguments passed on to the plot. They can be used to set an
-#' aesthetic to a fixed value, like `alpha = 0.4` or `size = 2`. They may also
-#' be parameters passed on to the corresponding [geoms](https://ggplot2.tidyverse.org/reference/).
+#' @param ... Other arguments passed on to the plot. Possible arguments are those
+#' that can be passed on to the [underlying ggplot layer](#plot-types).
 #'
 #' @import ggplot2
 #' @export
 #' @md
+#'
+#' @section Plot Types:
+#'
+#' `ggmatplot`plots are built upon `ggplot2 layers`. The following is a list of
+#' `ggmatplot` plot types, along with their underlying
+#' [`ggplot geoms`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
+#' or [`stats`](https://ggplot2.tidyverse.org/reference/index.html#section-stats).
+#'
+#' * \strong{point} \code{\link[ggplot2]{geom_point}}
+#' * \strong{line} \code{\link[ggplot2]{geom_line}}
+#' * \strong{both} \code{\link[ggplot2]{geom_point}} + \code{\link[ggplot2]{geom_line}}
+#' * \strong{density} \code{\link[ggplot2]{geom_density}}
+#' * \strong{histogram} \code{\link[ggplot2]{geom_histogram}}
+#' * \strong{boxplot} \code{\link[ggplot2]{geom_boxplot}}
+#' * \strong{dotplot} \code{\link[ggplot2]{geom_dotplot}}
+#' * \strong{errorplot} \code{\link[ggplot2]{geom_pointrange}}
+#' * \strong{violin} \code{\link[ggplot2]{geom_violin}}
+#' * \strong{ecdf} \code{\link[ggplot2]{stat_ecdf}}
 #'
 #' @examples
 #'
@@ -83,7 +101,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
   }
   if (!missing(x) & !missing(y)) {
     # only single matrix input allowed for the following plot types
-    if (plot_type %in% c("density", "histogram", "boxplot", "violin", "dotplot", "ecdf")) {
+    if (plot_type %in% c("density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
       stop("This plot type only uses a single matrix input", call. = FALSE)
     }
     data.list <- matclean(x = x, y = y)
@@ -100,6 +118,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
     warning(paste0("desc_stat is an invalid parameter for plot type: ", plot_type), call. = FALSE)
   }
 
+  # valid desc_stat values for errrorplots
   if (plot_type == "errorplot") {
     if (desc_stat %in% c("mean_se", "mean_sd", "mean_range", "median_iqr", "median_range")) {
       data <- errorplotstats(data.list$data, desc_stat)
@@ -292,6 +311,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
       name = legend_title, labels = legend_label,
       values = color
     )
+    # if color is defined and fill isn't, update both using color values
     if (is.null(fill)) {
       p <- p + scale_fill_manual(
         name = legend_title, labels = legend_label,
@@ -306,6 +326,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
       name = legend_title, labels = legend_label,
       values = fill
     )
+    # if fill is defined and color isn't, update both using fill values
     if (is.null(color)) {
       p <- p + scale_color_manual(
         name = legend_title, labels = legend_label,
@@ -314,6 +335,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
     }
   }
 
+  # if both color and fill values are not defined, use default values
   if (is.null(color) & is.null(fill)) {
     p <- p +
       scale_fill_discrete(name = legend_title, labels = legend_label) +

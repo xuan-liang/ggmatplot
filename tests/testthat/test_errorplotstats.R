@@ -1,5 +1,7 @@
+library(stats)
+
 iris_sub <- subset(iris, Species == "setosa")[1:4]
-data <- ggmatplot::matclean(iris_sub)$data
+data <- matclean(iris_sub)$data
 
 
 errorstats_mean_se <- errorplotstats(data, desc_stat = "mean_se")
@@ -8,8 +10,8 @@ errorstats_median_iqr <- errorplotstats(data, desc_stat = "median_iqr")
 errorstats_median_range <- errorplotstats(data, desc_stat = "median_range")
 
 test_that("format of resultant data frame is as expected", {
-  expect_named(errorstats, c("Group", "y", "ymin", "ymax"))
-  expect_setequal(errorstats$Group, colnames(iris_sub))
+  expect_named(errorstats_mean_se, c("Group", "y", "ymin", "ymax"))
+  expect_setequal(errorstats_mean_se$Group, colnames(iris_sub))
 })
 
 test_that("column means are calculated as expected", {

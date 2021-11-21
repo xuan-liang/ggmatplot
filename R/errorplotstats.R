@@ -4,7 +4,11 @@
 #' @param desc_stat Statistics to calculate. Either of `mean_se`, `mean_sd`, `mean_range`, `median_iqr`, `median_range`
 #'
 #' @return A data frame with descriptive statistics for each group.
-
+#'
+#' @importFrom stats sd
+#' @importFrom stats median
+#' @importFrom stats quantile
+#'
 #' @noRd
 #'
 #' @examples

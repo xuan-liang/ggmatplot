@@ -2,3 +2,6 @@
 
 export(ggmatplot)
 import(ggplot2)
+importFrom(stats,median)
+importFrom(stats,quantile)
+importFrom(stats,sd)

@@ -1,0 +1,14 @@
+citHeader("To cite ggmatplot in publications use:")
+
+bibentry(
+  bibtype = "Manual",
+  title    = "{ggmatplot}: A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2.",
+  author   = c(person("Xuan", "Liang"),
+              person("Francis", "Hui"),
+              person("Emi", "Tanaka"),
+              person("Dilinie", "Seimon")),
+  year     = {2021},
+  url      = "https://github.com/xuan-liang/ggmatplot",
+  textVersion = "Xuan Liang, Francis Hui, Emi Tanaka and Dilinie Seimon (2021).
+  ggmatplot: A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2."
+)

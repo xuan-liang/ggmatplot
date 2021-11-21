@@ -1,6 +1,8 @@
 #' Function to convert two matrices into a wide format data frame
 #'
-#' @param x,y Vectors or matrices of data. The number of rows of x and y should match. If one of them are missing, the other is taken as y and an x vector of 1:n is used.
+#' @param x,y Vectors or matrices of data. The number of rows of x and y should
+#' match. If one of them are missing, the other is taken as y and an x vector
+#' of 1:n is used.
 #'
 #' @return A list of containing:
 #'  * data - the long format data frame.
@@ -15,7 +17,6 @@
 #' y <- iris_sub[, 3:4]
 #' # Use the defined x and y matrices as parameters
 #' matclean(x, y)
-#'
 matclean <- function(x, y) {
   x <- data.frame(x)
   ncolx <- ncol(x)
@@ -39,14 +40,20 @@ matclean <- function(x, y) {
     ncol <- ncol(data)
     yname <- colnames(data)[ncol]
     data$Observation_number <- 1:nrow(data)
-    data <- pivotlonger(data, names_to = "Group", values_to = xname, c(ncol, (ncol + 1)))
+    data <- pivotlonger(data,
+      names_to = "Group", values_to = xname,
+      c(ncol, (ncol + 1))
+    )
   } else if (ncoly > ncolx & ncolx == 1) {
     xname <- colnames(x)
     yname <- "y"
     data <- data.frame(x, y)
     ncol <- ncol(data)
     data$Observation_number <- 1:nrow(data)
-    data <- pivotlonger(data, names_to = "Group", values_to = yname, c(1, (ncol + 1)))
+    data <- pivotlonger(data,
+      names_to = "Group", values_to = yname,
+      c(1, (ncol + 1))
+    )
   } else if (ncolx == ncoly) {
     xname <- "x"
     yname <- "y"
@@ -61,7 +68,8 @@ matclean <- function(x, y) {
     names(data)[names(data) == paste0("Group", ".x")] <- "Group"
     data <- subset(data, select = -c(get(paste0("Group", ".y"))))
   } else {
-    stop("Either x or y must have only 1 column, or both x and y must have the same number of columns", call. = FALSE)
+    stop("Either x or y must have only 1 column, or both x and y must have the
+         same number of columns", call. = FALSE)
   }
 
   return(list(data = data, xname = xname, yname = yname))

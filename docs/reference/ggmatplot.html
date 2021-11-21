@@ -40,8 +40,9 @@
 
 
 <meta property="og:title" content="ggmatplot — ggmatplot" />
-<meta property="og:description" content="ggmatplot is a quick and easy way of plotting the columns of two matrices or
-data frames against each other using ggplot2." />
+<meta property="og:description" content="ggmatplot is a quick and easy way of plotting the columns of two matrices
+or data frames against each other using
+ggplot2." />
 
 
 
@@ -127,8 +128,9 @@ data frames against each other using ggplot2." />
     </div>
 
     <div class="ref-description">
-    <p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices or
-data frames against each other using <a href='https://ggplot2.tidyverse.org/'><code>ggplot2</code></a>.</p>
+    <p><code>ggmatplot</code> is a quick and easy way of plotting the columns of two matrices
+or data frames against each other using
+<a href='https://ggplot2.tidyverse.org/'><code>ggplot2</code></a>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>ggmatplot</span><span class='op'>(</span>
@@ -159,8 +161,8 @@ data frames against each other using <a href='https://ggplot2.tidyverse.org/'><c
       <th>x, y</th>
       <td><p>Vectors or matrices of data.</p><ul>
 <li><p>The number of rows of <code>x</code> and <code>y</code> should be the same.</p></li>
-<li><p>Either <code>x</code> or <code>y</code> should be a vector, unless the number of columns of <code>x</code> and
-<code>y</code> are the same.</p></li>
+<li><p>Either <code>x</code> or <code>y</code> should be a vector, unless the number of columns of <code>x</code>
+and <code>y</code> are the same.</p></li>
 <li><p>Missing values (NAs) are allowed.</p></li>
 <li><p>If either <code>x</code> or <code>y</code> is missing, the other is used as <code>y</code> and a vector of
 <code>1:n</code> is used as <code>x</code>.</p></li>
@@ -168,8 +170,8 @@ data frames against each other using <a href='https://ggplot2.tidyverse.org/'><c
     </tr>
     <tr>
       <th>plot_type</th>
-      <td><p>A string specifying the type of plot. Possible plot types are
-<code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>, <code>boxplot</code>,
+      <td><p>A string specifying the type of plot. Possible plot types
+are <code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>, <code>boxplot</code>,
 <code>dotplot</code>, <code>errorplot</code>, <code>violin</code>, and <code>ecdf</code>. Default plot_type is <code>point</code>.</p></td>
     </tr>
     <tr>
@@ -179,16 +181,17 @@ both <code>color</code> and <code>fill</code> aesthetics of the plot by default,
 both defined simultaneously.</p><ul>
 <li><p>The number of colors should match the higher number of columns of
 matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
-<li><p>If only a single color is given, the same color will be used for all columns.</p></li>
+<li><p>If only a single color is given, the same color will be used for all
+columns.</p></li>
 </ul></td>
     </tr>
     <tr>
       <th>shape, linetype</th>
       <td><p>A vector of shapes or line types respectively.</p><ul>
-<li><p>The number of shapes/line types should match the higher number of columns of
-matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
-<li><p>If only a single shape/line type is given, the same shape/line type will be
-used for all columns.</p></li>
+<li><p>The number of shapes/line types should match the higher number of columns
+of matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
+<li><p>If only a single shape/line type is given, the same shape/line type will
+be used for all columns.</p></li>
 </ul></td>
     </tr>
     <tr>
@@ -208,8 +211,8 @@ will be used.</p></li>
     </tr>
     <tr>
       <th>main, xlab, ylab, legend_title</th>
-      <td><p>Strings to update plot title, x axis label,
-y axis label and legend title respectively.</p></td>
+      <td><p>Strings to update plot title, x axis
+label, y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>legend_label</th>
@@ -217,8 +220,8 @@ y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>desc_stat</th>
-      <td><p>Descriptive statistics to be used for visualizing errors, in
-<code>errorplot</code>. Possible values are <code>mean_se</code>, <code>mean_sd</code>, <code>mean_range</code>,
+      <td><p>Descriptive statistics to be used for visualizing errors,
+in <code>errorplot</code>. Possible values are <code>mean_se</code>, <code>mean_sd</code>, <code>mean_range</code>,
 <code>median_iqr</code> and <code>median_range</code>. Default desc_stat is <code>mean_se</code>.</p></td>
     </tr>
     <tr>
@@ -227,8 +230,8 @@ y axis label and legend title respectively.</p></td>
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Other arguments passed on to the plot. Possible arguments are those
-that can be passed on to the <a href='#plot-types'>underlying ggplot layers</a>.</p></td>
+      <td><p>Other arguments passed on to the plot. Possible arguments are
+those that can be passed on to the <a href='#plot-types'>underlying ggplot layers</a>.</p></td>
     </tr>
     </table>
 
@@ -238,12 +241,13 @@ that can be passed on to the <a href='#plot-types'>underlying ggplot layers</a>.
 
 
 <p><code>ggmatplot</code>plots are built upon <code>ggplot2 layers</code>. The following is a list of
-<code>ggmatplot</code> plot types, along with their underlying
-<a href='https://ggplot2.tidyverse.org/reference/index.html#section-geoms'><code>ggplot geoms</code></a>
-or <a href='https://ggplot2.tidyverse.org/reference/index.html#section-stats'><code>stats</code></a>.</p><ul>
+<code>ggmatplot</code> plot types, along with their underlying <code>ggplot geoms</code>
+(https://ggplot2.tidyverse.org/reference/index.html#section-geoms) or
+<a href='https://ggplot2.tidyverse.org/reference/index.html#section-stats'><code>stats</code></a>.</p><ul>
 <li><p><strong>point</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code></p></li>
 <li><p><strong>line</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></code></p></li>
-<li><p><strong>both</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> + <code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></code></p></li>
+<li><p><strong>both</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_point.html'>geom_point</a></code> +
+<code><a href='https://ggplot2.tidyverse.org/reference/geom_path.html'>geom_line</a></code></p></li>
 <li><p><strong>density</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_density.html'>geom_density</a></code></p></li>
 <li><p><strong>histogram</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_histogram.html'>geom_histogram</a></code></p></li>
 <li><p><strong>boxplot</strong> <code><a href='https://ggplot2.tidyverse.org/reference/geom_boxplot.html'>geom_boxplot</a></code></p></li>
@@ -261,8 +265,11 @@ or <a href='https://ggplot2.tidyverse.org/reference/index.html#section-stats'><c
 <span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span><span class='op'>)</span></span>
 <span class='r-plt img'><img src='ggmatplot-1.png' alt='' width='700' height='433' /></span>
 <span class='r-in'><span class='co'># Modify legend label and axis</span></span>
-<span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>, shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,</span>
-<span class='r-in'>legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>, xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>ggmatplot</span><span class='op'>(</span><span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1</span>, <span class='fl'>3</span><span class='op'>)</span><span class='op'>]</span>, <span class='va'>iris_sub</span><span class='op'>[</span>, <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>2</span>, <span class='fl'>4</span><span class='op'>)</span><span class='op'>]</span>,</span>
+<span class='r-in'>  shape <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>4</span>, <span class='fl'>6</span><span class='op'>)</span>,</span>
+<span class='r-in'>  legend_label <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"Sepal"</span>, <span class='st'>"Petal"</span><span class='op'>)</span>, legend_title <span class='op'>=</span> <span class='st'>""</span>,</span>
+<span class='r-in'>  xlab <span class='op'>=</span> <span class='st'>"Length"</span>, ylab <span class='op'>=</span> <span class='st'>"Width"</span></span>
+<span class='r-in'><span class='op'>)</span></span>
 <span class='r-plt img'><img src='ggmatplot-2.png' alt='' width='700' height='433' /></span>
 </pre>
   </div>

@@ -1,7 +1,8 @@
 #' Function to compute descriptive statistics to be used for errorplots
 #'
 #' @param data Resultant data frame from matclean()
-#' @param desc_stat Statistics to calculate. Either of `mean_se`, `mean_sd`, `mean_range`, `median_iqr`, `median_range`
+#' @param desc_stat Statistics to calculate. Either of `mean_se`, `mean_sd`,
+#' `mean_range`, `median_iqr`, `median_range`
 #'
 #' @return A data frame with descriptive statistics for each group.
 #'
@@ -22,8 +23,10 @@ errorplotstats <- function(data, desc_stat = "") {
     errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
       c(
         y = mean(x$x, na.rm = TRUE),
-        ymin = mean(x$x, na.rm = TRUE) - (sd(x$x, na.rm = TRUE) / sqrt(nrow(x))),
-        ymax = mean(x$x, na.rm = TRUE) + (sd(x$x, na.rm = TRUE) / sqrt(nrow(x)))
+        ymin = mean(x$x, na.rm = TRUE) -
+          (sd(x$x, na.rm = TRUE) / sqrt(nrow(x))),
+        ymax = mean(x$x, na.rm = TRUE) +
+          (sd(x$x, na.rm = TRUE) / sqrt(nrow(x)))
       )
     }))
   } else if (desc_stat == "mean_sd") {

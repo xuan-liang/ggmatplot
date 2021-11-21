@@ -29,15 +29,15 @@ ggmatplot(
 \item{x, y}{Vectors or matrices of data.
 \itemize{
 \item The number of rows of \code{x} and \code{y} should be the same.
-\item Either \code{x} or \code{y} should be a vector, unless the number of columns of \code{x} and
-\code{y} are the same.
+\item Either \code{x} or \code{y} should be a vector, unless the number of columns of \code{x}
+and \code{y} are the same.
 \item Missing values (NAs) are allowed.
 \item If either \code{x} or \code{y} is missing, the other is used as \code{y} and a vector of
 \code{1:n} is used as \code{x}.
 }}
 
-\item{plot_type}{A string specifying the type of plot. Possible plot types are
-\code{point}, \code{line}, \code{both}(point + line), \code{density}, \code{histogram}, \code{boxplot},
+\item{plot_type}{A string specifying the type of plot. Possible plot types
+are \code{point}, \code{line}, \code{both}(point + line), \code{density}, \code{histogram}, \code{boxplot},
 \code{dotplot}, \code{errorplot}, \code{violin}, and \code{ecdf}. Default plot_type is \code{point}.}
 
 \item{color, fill}{Vectors of colors. Defining only one of them will update
@@ -46,15 +46,16 @@ both defined simultaneously.
 \itemize{
 \item The number of colors should match the higher number of columns of
 matrices \code{x} or \code{y}, and will correspond to each of those columns.
-\item If only a single color is given, the same color will be used for all columns.
+\item If only a single color is given, the same color will be used for all
+columns.
 }}
 
 \item{shape, linetype}{A vector of shapes or line types respectively.
 \itemize{
-\item The number of shapes/line types should match the higher number of columns of
-matrices \code{x} or \code{y}, and will correspond to each of those columns.
-\item If only a single shape/line type is given, the same shape/line type will be
-used for all columns.
+\item The number of shapes/line types should match the higher number of columns
+of matrices \code{x} or \code{y}, and will correspond to each of those columns.
+\item If only a single shape/line type is given, the same shape/line type will
+be used for all columns.
 }}
 
 \item{xlim, ylim}{Ranges of x and y axes.
@@ -69,35 +70,37 @@ will be used.
 \item{log}{A string defining which axes to transform into a log scale.
 (\code{x}, \code{y} or \code{xy})}
 
-\item{main, xlab, ylab, legend_title}{Strings to update plot title, x axis label,
-y axis label and legend title respectively.}
+\item{main, xlab, ylab, legend_title}{Strings to update plot title, x axis
+label, y axis label and legend title respectively.}
 
 \item{legend_label}{A vector of strings, to rename the legend labels.}
 
-\item{desc_stat}{Descriptive statistics to be used for visualizing errors, in
-\code{errorplot}. Possible values are \code{mean_se}, \code{mean_sd}, \code{mean_range},
+\item{desc_stat}{Descriptive statistics to be used for visualizing errors,
+in \code{errorplot}. Possible values are \code{mean_se}, \code{mean_sd}, \code{mean_range},
 \code{median_iqr} and \code{median_range}. Default desc_stat is \code{mean_se}.}
 
 \item{asp}{The y/x aspect ratio.}
 
-\item{...}{Other arguments passed on to the plot. Possible arguments are those
-that can be passed on to the \href{#plot-types}{underlying ggplot layers}.}
+\item{...}{Other arguments passed on to the plot. Possible arguments are
+those that can be passed on to the \href{#plot-types}{underlying ggplot layers}.}
 }
 \description{
-\code{ggmatplot} is a quick and easy way of plotting the columns of two matrices or
-data frames against each other using \href{https://ggplot2.tidyverse.org/}{\code{ggplot2}}.
+\code{ggmatplot} is a quick and easy way of plotting the columns of two matrices
+or data frames against each other using
+\href{https://ggplot2.tidyverse.org/}{\code{ggplot2}}.
 }
 \section{Plot Types}{
 
 
 \code{ggmatplot}plots are built upon \verb{ggplot2 layers}. The following is a list of
-\code{ggmatplot} plot types, along with their underlying
-\href{https://ggplot2.tidyverse.org/reference/index.html#section-geoms}{\verb{ggplot geoms}}
-or \href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code{stats}}.
+\code{ggmatplot} plot types, along with their underlying \code{\link{ggplot geoms}}
+(https://ggplot2.tidyverse.org/reference/index.html#section-geoms) or
+\href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code{stats}}.
 \itemize{
 \item \strong{point} \code{\link[ggplot2]{geom_point}}
 \item \strong{line} \code{\link[ggplot2]{geom_line}}
-\item \strong{both} \code{\link[ggplot2]{geom_point}} + \code{\link[ggplot2]{geom_line}}
+\item \strong{both} \code{\link[ggplot2]{geom_point}} +
+\code{\link[ggplot2]{geom_line}}
 \item \strong{density} \code{\link[ggplot2]{geom_density}}
 \item \strong{histogram} \code{\link[ggplot2]{geom_histogram}}
 \item \strong{boxplot} \code{\link[ggplot2]{geom_boxplot}}
@@ -114,6 +117,9 @@ or \href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code
 iris_sub <- subset(iris, Species == "setosa")
 ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 # Modify legend label and axis
-ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6),
-legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)],
+  shape = c(4, 6),
+  legend_label = c("Sepal", "Petal"), legend_title = "",
+  xlab = "Length", ylab = "Width"
+)
 }

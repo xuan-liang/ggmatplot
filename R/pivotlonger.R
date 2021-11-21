@@ -11,8 +11,10 @@
 #' @examples
 #' # Define a data set
 #' iris_sub <- subset(iris, Species == "setosa")[1:4]
-#' # Use first two columns as ID columns and pivot the second two columns to long format
-#' pivotlonger(data = iris_sub, names_to = "Measurement", values_to = "Value", id_cols = c(1, 2))
+#' # Use first two columns as ID columns and pivot the second two columns to
+#' # long format
+#' pivotlonger(data = iris_sub, names_to = "Measurement", values_to = "Value",
+#' id_cols = c(1, 2))
 #'
 pivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
   long_df <- data.frame(matrix(ncol = 2 + length(id_cols), nrow = 0))

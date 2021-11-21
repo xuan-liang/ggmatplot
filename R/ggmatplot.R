@@ -1,20 +1,21 @@
 #' ggmatplot
 #'
 #'
-#' `ggmatplot` is a quick and easy way of plotting the columns of two matrices or
-#'  data frames against each other using [`ggplot2`](https://ggplot2.tidyverse.org/).
+#' `ggmatplot` is a quick and easy way of plotting the columns of two matrices
+#' or data frames against each other using
+#' [`ggplot2`](https://ggplot2.tidyverse.org/).
 #'
 #' @param x,y Vectors or matrices of data.
 #'
 #' * The number of rows of `x` and `y` should be the same.
-#' * Either `x` or `y` should be a vector, unless the number of columns of `x` and
-#' `y` are the same.
+#' * Either `x` or `y` should be a vector, unless the number of columns of `x`
+#' and `y` are the same.
 #' * Missing values (NAs) are allowed.
 #' * If either `x` or `y` is missing, the other is used as `y` and a vector of
 #' `1:n` is used as `x`.
 #'
-#' @param plot_type A string specifying the type of plot. Possible plot types are
-#' `point`, `line`, `both`(point + line), `density`, `histogram`, `boxplot`,
+#' @param plot_type A string specifying the type of plot. Possible plot types
+#' are `point`, `line`, `both`(point + line), `density`, `histogram`, `boxplot`,
 #' `dotplot`, `errorplot`, `violin`, and `ecdf`. Default plot_type is `point`.
 #'
 #' @param color,fill Vectors of colors. Defining only one of them will update
@@ -23,19 +24,20 @@
 #'
 #' * The number of colors should match the higher number of columns of
 #' matrices `x` or `y`, and will correspond to each of those columns.
-#' * If only a single color is given, the same color will be used for all columns.
+#' * If only a single color is given, the same color will be used for all
+#' columns.
 #'
-#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis label,
-#'  y axis label and legend title respectively.
+#' @param main,xlab,ylab,legend_title Strings to update plot title, x axis
+#' label, y axis label and legend title respectively.
 #'
 #' @param legend_label A vector of strings, to rename the legend labels.
 #'
 #' @param shape,linetype A vector of shapes or line types respectively.
 #'
-#' * The number of shapes/line types should match the higher number of columns of
-#' matrices `x` or `y`, and will correspond to each of those columns.
-#' * If only a single shape/line type is given, the same shape/line type will be
-#' used for all columns.
+#' * The number of shapes/line types should match the higher number of columns
+#' of matrices `x` or `y`, and will correspond to each of those columns.
+#' * If only a single shape/line type is given, the same shape/line type will
+#' be used for all columns.
 #'
 #' @param xlim,ylim Ranges of x and y axes.
 #'
@@ -50,12 +52,12 @@
 #'
 #' @param asp The y/x aspect ratio.
 #'
-#' @param desc_stat Descriptive statistics to be used for visualizing errors, in
-#' `errorplot`. Possible values are `mean_se`, `mean_sd`, `mean_range`,
+#' @param desc_stat Descriptive statistics to be used for visualizing errors,
+#' in `errorplot`. Possible values are `mean_se`, `mean_sd`, `mean_range`,
 #'  `median_iqr` and `median_range`. Default desc_stat is `mean_se`.
 #'
-#' @param ... Other arguments passed on to the plot. Possible arguments are those
-#' that can be passed on to the [underlying ggplot layers](#plot-types).
+#' @param ... Other arguments passed on to the plot. Possible arguments are
+#' those that can be passed on to the [underlying ggplot layers](#plot-types).
 #'
 #' @import ggplot2
 #' @export
@@ -64,13 +66,14 @@
 #' @section Plot Types:
 #'
 #' `ggmatplot`plots are built upon `ggplot2 layers`. The following is a list of
-#' `ggmatplot` plot types, along with their underlying
-#' [`ggplot geoms`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
-#' or [`stats`](https://ggplot2.tidyverse.org/reference/index.html#section-stats).
+#' `ggmatplot` plot types, along with their underlying [`ggplot geoms`]
+#' (https://ggplot2.tidyverse.org/reference/index.html#section-geoms) or
+#'  [`stats`](https://ggplot2.tidyverse.org/reference/index.html#section-stats).
 #'
 #' * \strong{point} \code{\link[ggplot2]{geom_point}}
 #' * \strong{line} \code{\link[ggplot2]{geom_line}}
-#' * \strong{both} \code{\link[ggplot2]{geom_point}} + \code{\link[ggplot2]{geom_line}}
+#' * \strong{both} \code{\link[ggplot2]{geom_point}} +
+#' \code{\link[ggplot2]{geom_line}}
 #' * \strong{density} \code{\link[ggplot2]{geom_density}}
 #' * \strong{histogram} \code{\link[ggplot2]{geom_histogram}}
 #' * \strong{boxplot} \code{\link[ggplot2]{geom_boxplot}}
@@ -85,13 +88,16 @@
 #' iris_sub <- subset(iris, Species == "setosa")
 #' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)])
 #' # Modify legend label and axis
-#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)], shape = c(4, 6),
-#' legend_label = c("Sepal", "Petal"), legend_title = "", xlab = "Length", ylab = "Width")
+#' ggmatplot(iris_sub[, c(1, 3)], iris_sub[, c(2, 4)],
+#'   shape = c(4, 6),
+#'   legend_label = c("Sepal", "Petal"), legend_title = "",
+#'   xlab = "Length", ylab = "Width"
+#' )
 ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
                       shape = NULL, linetype = NULL, xlim = c(NA, NA),
-                      ylim = c(NA, NA), log = NULL, main = NULL,
-                      xlab = NULL, ylab = NULL, legend_label = NULL,
-                      legend_title = NULL, desc_stat = "mean_se", asp = NA, ...) {
+                      ylim = c(NA, NA), log = NULL, main = NULL, xlab = NULL,
+                      ylab = NULL, legend_label = NULL, legend_title = NULL,
+                      desc_stat = "mean_se", asp = NA, ...) {
 
   # binding global variables to objects
   Group <- ymin <- ymax <- NULL
@@ -105,7 +111,10 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
   }
   if (!missing(x) & !missing(y)) {
     # only single matrix input allowed for the following plot types
-    if (plot_type %in% c("density", "histogram", "boxplot", "dotplot", "errorplot", "violin", "ecdf")) {
+    if (plot_type %in% c(
+      "density", "histogram", "boxplot", "dotplot",
+      "errorplot", "violin", "ecdf"
+    )) {
       stop("This plot type only uses a single matrix input", call. = FALSE)
     }
     data.list <- matclean(x = x, y = y)
@@ -119,12 +128,18 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
 
   # valid plot types for desc_stat parameter
   if (desc_stat != "mean_se" & plot_type != "errorplot") {
-    warning(paste0("desc_stat is an invalid parameter for plot type: ", plot_type), call. = FALSE)
+    warning(paste0(
+      "desc_stat is an invalid parameter for plot type: ",
+      plot_type
+    ), call. = FALSE)
   }
 
   # valid desc_stat values for errrorplots
   if (plot_type == "errorplot") {
-    if (desc_stat %in% c("mean_se", "mean_sd", "mean_range", "median_iqr", "median_range")) {
+    if (desc_stat %in% c(
+      "mean_se", "mean_sd", "mean_range",
+      "median_iqr", "median_range"
+    )) {
       data <- errorplotstats(data.list$data, desc_stat)
     } else {
       stop("desc_stat can not take this value", call. = FALSE)
@@ -299,11 +314,20 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
   if (!is.null(legend_label)) {
     # values > number of unique groups
     if (length(legend_label) > numGroups) {
-      stop(paste0("Too many legend_label values. Only ", numGroups, " needed but ", length(legend_label), " provided."), call. = FALSE)
+      stop(paste0(
+        "Too many legend_label values. Only ", numGroups,
+        " needed but ", length(legend_label), " provided."
+      ),
+      call. = FALSE
+      )
     }
     # values < number of unique groups
     else if (length(legend_label) < numGroups) {
-      stop(paste0("Insufficient legend_label values. ", numGroups, " needed but only ", length(legend_label), " provided."), call. = FALSE)
+      stop(paste0(
+        "Insufficient legend_label values. ", numGroups,
+        " needed but only ", length(legend_label),
+        " provided."
+      ), call. = FALSE)
     }
   } else {
     legend_label <- unique(data$Group)
@@ -351,7 +375,10 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
     if (plot_type %in% c("point", "both")) {
       shape <- validateNumParams(shape, numGroups)
     } else {
-      warning(paste0("shape is an invalid parameter for plot type: ", plot_type), call. = FALSE)
+      warning(paste0(
+        "shape is an invalid parameter for plot type: ",
+        plot_type
+      ), call. = FALSE)
     }
     p <- p + scale_shape_manual(
       name = legend_title, labels = legend_label,
@@ -366,7 +393,10 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
     if (!plot_type %in% c("point", "dotplot")) {
       linetype <- validateNumParams(linetype, numGroups)
     } else {
-      warning(paste0("linetype is an invalid parameter for plot type: ", plot_type), call. = FALSE)
+      warning(paste0(
+        "linetype is an invalid parameter for plot type: ",
+        plot_type
+      ), call. = FALSE)
     }
     p <- p + scale_linetype_manual(
       name = legend_title, labels = legend_label,

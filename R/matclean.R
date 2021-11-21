@@ -68,8 +68,9 @@ matclean <- function(x, y) {
     names(data)[names(data) == paste0("Group", ".x")] <- "Group"
     data <- subset(data, select = -c(get(paste0("Group", ".y"))))
   } else {
-    stop("Either x or y must have only 1 column, or both x and y must have the
-         same number of columns", call. = FALSE)
+    stop(
+    "Either x or y must have only 1 column, or both x and y must have the same number of columns",
+    call. = FALSE)
   }
 
   return(list(data = data, xname = xname, yname = yname))

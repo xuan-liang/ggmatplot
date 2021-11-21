@@ -36,5 +36,6 @@ Suggests:
     vdiffr,
     tibble,
     tidyr,
-    dplyr
+    dplyr,
+    covr
 VignetteBuilder: knitr

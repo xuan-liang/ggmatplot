@@ -93,9 +93,9 @@ or data frames against each other using
 
 
 \code{ggmatplot}plots are built upon \verb{ggplot2 layers}. The following is a list of
-\code{ggmatplot} plot types, along with their underlying \code{\link{ggplot geoms}}
-(https://ggplot2.tidyverse.org/reference/index.html#section-geoms) or
-\href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code{stats}}.
+\code{ggmatplot} plot types, along with their underlying
+\href{https://ggplot2.tidyverse.org/reference/index.html#section-geoms}{\verb{ggplot geoms}}
+or \href{https://ggplot2.tidyverse.org/reference/index.html#section-stats}{\code{stats}}.
 \itemize{
 \item \strong{point} \code{\link[ggplot2]{geom_point}}
 \item \strong{line} \code{\link[ggplot2]{geom_line}}

@@ -66,9 +66,9 @@
 #' @section Plot Types:
 #'
 #' `ggmatplot`plots are built upon `ggplot2 layers`. The following is a list of
-#' `ggmatplot` plot types, along with their underlying [`ggplot geoms`]
-#' (https://ggplot2.tidyverse.org/reference/index.html#section-geoms) or
-#'  [`stats`](https://ggplot2.tidyverse.org/reference/index.html#section-stats).
+#' `ggmatplot` plot types, along with their underlying
+#' [`ggplot geoms`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
+#' or [`stats`](https://ggplot2.tidyverse.org/reference/index.html#section-stats).
 #'
 #' * \strong{point} \code{\link[ggplot2]{geom_point}}
 #' * \strong{line} \code{\link[ggplot2]{geom_line}}

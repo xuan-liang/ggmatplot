@@ -6,9 +6,7 @@
 #'
 #' @return A data frame with descriptive statistics for each group.
 #'
-#' @importFrom stats sd
-#' @importFrom stats median
-#' @importFrom stats quantile
+#' @importFrom stats sd median quantile
 #'
 #' @noRd
 #'

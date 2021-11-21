@@ -1,0 +1,198 @@
+{
+  "@context": ["https://doi.org/10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@type": "SoftwareSourceCode",
+  "identifier": "ggmatplot",
+  "description": "A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2. Although ggmatplot doesn't provide the same flexibility as ggplot2, it can be used as a workaround for having to wrangle wide format data into long format for plotting with ggplot2.",
+  "name": "ggmatplot: Plot Columns of Two Matrices Against Each Other Using ggplot2",
+  "codeRepository": "https://github.com/xuan-liang/ggmatplot",
+  "relatedLink": "https://xuan-liang.github.io/ggmatplot/",
+  "issueTracker": "https://github.com/xuan-liang/ggmatplot/issues",
+  "license": "https://spdx.org/licenses/GPL-3.0",
+  "version": "0.1.0",
+  "programmingLanguage": {
+    "@type": "ComputerLanguage",
+    "name": "R",
+    "url": "https://r-project.org"
+  },
+  "runtimePlatform": "R version 4.1.1 (2021-08-10)",
+  "author": [
+    {
+      "@type": "Person",
+      "givenName": "Xuan",
+      "familyName": "Liang",
+      "email": "xuan.liang@anu.edu.au"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Francis",
+      "familyName": "Hui",
+      "email": "fhui28@gmail.com"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Emi",
+      "familyName": "Tanaka",
+      "email": "emi.tanaka@monash.edu"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Dilinie",
+      "familyName": "Seimon",
+      "email": "dilinieseimon@gmail.com"
+    }
+  ],
+  "contributor": {},
+  "copyrightHolder": {},
+  "funder": {},
+  "maintainer": [
+    {
+      "@type": "Person",
+      "givenName": "Xuan",
+      "familyName": "Liang",
+      "email": "xuan.liang@anu.edu.au"
+    }
+  ],
+  "softwareSuggestions": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "rmarkdown",
+      "name": "rmarkdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=rmarkdown"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "knitr",
+      "name": "knitr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=knitr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "testthat",
+      "name": "testthat",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=testthat"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "vdiffr",
+      "name": "vdiffr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=vdiffr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tibble",
+      "name": "tibble",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tibble"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "tidyr",
+      "name": "tidyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=tidyr"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "dplyr",
+      "name": "dplyr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=dplyr"
+    }
+  ],
+  "softwareRequirements": [
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "R",
+      "name": "R",
+      "version": ">= 3.4.0"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "ggplot2",
+      "name": "ggplot2",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=ggplot2"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stats",
+      "name": "stats"
+    }
+  ],
+  "readme": "https://github.com/xuan-liang/ggmatplot/blob/master/README.md",
+  "fileSize": "1325.071KB",
+  "citation": [
+    {
+      "@type": "SoftwareSourceCode",
+      "datePublished": "2021",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": "Xuan",
+          "familyName": "Liang"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Francis",
+          "familyName": "Hui"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Emi",
+          "familyName": "Tanaka"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Dilinie",
+          "familyName": "Seimon"
+        }
+      ],
+      "name": "{ggmatplot}: A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2.",
+      "url": "https://github.com/xuan-liang/ggmatplot"
+    }
+  ]
+}

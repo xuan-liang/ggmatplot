@@ -27,6 +27,8 @@ RoxygenNote: 7.1.2
 Depends: 
     R (>= 3.4.0),
     ggplot2
+Imports:
+    stats
 Suggests:
     rmarkdown,
     knitr,

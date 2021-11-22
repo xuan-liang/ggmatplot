@@ -1,25 +1,26 @@
 ---
 title: 'ggmatplot'
 tags:
+  - R
   - data visualisation
 authors:
   - name: Xuan Liang
     orcid: 
-    affiliation: 
+    affiliation: 1
   - name: Francis Hui
     orcid: 
-    affiliation: 
+    affiliation: 1
   - name: Emi Tanaka
     orcid:
-    affiliation:
+    affiliation: 2
   - name: Dilinie Seimon
     orcid:
-    affiliation:
+    affiliation: 2
 affiliations:
  - name: Australian National University
-   index: 
+   index: 1
  - name: Monash University
-   index: 
+   index: 2
 date: 22 Novemeber 2021
 bibliography: paper.bib
 ---
@@ -29,6 +30,15 @@ bibliography: paper.bib
 
 
 # Statement of need
+
+
+
+# Examples
+
+
+
+# Acknowledgements
+
 
 
 # References

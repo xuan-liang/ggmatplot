@@ -4,6 +4,7 @@ Version: 0.1.0
 Authors@R: c(
     person("Xuan", "Liang", 
             email = "xuan.liang@anu.edu.au",
+            comment = c(ORCID = "0000-0002-0792-3751")
             role = c("aut", "cre")),
     person("Francis K. C.", "Hui",
             email = "fhui28@gmail.com",

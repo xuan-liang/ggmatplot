@@ -147,7 +147,7 @@ ggmatplot(
   size = 1,
   legend_label = c(1949:1960),
   xlab = "Month",
-  ylab = "Total airline passengers(in thousands)",
+  ylab = "Total airline passengers (in thousands)",
   legend_title = "Year"
 ) +
   theme_minimal()

@@ -117,7 +117,7 @@ ggmatplot(x, y,
   theme_minimal()
 ```
 
-Next is plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can be used with `ggmatplot()`. Note how the expenditure categories to be used on the x axis is used as vector x, and the expenditure values is used in wide format as matrix y - with its columns corresponding to the grouping structure.
+Next is plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can be used with `ggmatplot()`. Note how the expenditure categories to be used on the x axis is used as vector `x`, and the expenditure values is used in wide format as matrix `y` - with its columns corresponding to the grouping structure.
 
 The plot specifies the plot type as `plot_type = "both"`, which is a combination of 'point' and 'line' plots. It customized using `ggmatplot()` parameters and a `ggplot` theme as well.
 

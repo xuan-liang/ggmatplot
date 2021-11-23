@@ -93,7 +93,6 @@ head(x, 5)
 #> 3          4.7          1.3
 #> 4          4.6          1.5
 #> 5          5.0          1.4
-
 y <- (iris[, c(2, 4)])
 head(y, 5)
 #>   Sepal.Width Petal.Width
@@ -102,7 +101,6 @@ head(y, 5)
 #> 3         3.2         0.2
 #> 4         3.1         0.2
 #> 5         3.6         0.2
-
 ggmatplot(x, y)
 ```
 
@@ -150,8 +148,8 @@ ggmatplot(x, y,
 Next is plot of the US personal expenditure over 5 categories and 5
 years, and is a simple example of how wide format data can be used with
 `ggmatplot()`. Note how the expenditure categories to be used on the x
-axis is used as vector x, and the expenditure values is used in wide
-format as matrix y - with its columns corresponding to the grouping
+axis is used as vector `x`, and the expenditure values is used in wide
+format as matrix `y` - with its columns corresponding to the grouping
 structure.
 
 The plot specifies the plot type as `plot_type = "both"`, which is a
@@ -166,7 +164,6 @@ USPersonalExpenditure
 #> Medical and Health   3.530  5.760  9.71 14.0 21.10
 #> Personal Care        1.040  1.980  2.45  3.4  5.40
 #> Private Education    0.341  0.974  1.80  2.6  3.64
-
 # vector x
 x <- rownames(USPersonalExpenditure)
 

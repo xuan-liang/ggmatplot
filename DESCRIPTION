@@ -4,15 +4,15 @@ Version: 0.1.0
 Authors@R: c(
     person("Xuan", "Liang", 
             email = "xuan.liang@anu.edu.au",
-            comment = c(ORCID = "0000-0002-0792-3751")
+            comment = c(ORCID = "0000-0002-0792-3751"),
             role = c("aut", "cre")),
     person("Francis K. C.", "Hui",
             email = "fhui28@gmail.com",
-            comment = c(ORCID = "0000-0003-0765-3533")
+            comment = c(ORCID = "0000-0003-0765-3533"),
             role = c("aut")),
     person("Emi", "Tanaka",
             email = "dr.emi.tanaka@gmail.com",
-            comment = c(ORCID = "0000-0002-1455-259X")
+            comment = c(ORCID = "0000-0002-1455-259X"),
             role = c("aut")),
     person("Dilinie", "Seimon",
             email = "dilinieseimon@gmail.com",

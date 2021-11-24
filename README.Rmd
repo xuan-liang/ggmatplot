@@ -182,7 +182,7 @@ ggmatplot(x,
 
 Dotplots too accept a single matrix input and plots the distribution of each of its columns.
 
-The next example uses the `plot_type = "dotplot"` to visualise the distribution of the data, and also customizes the position of the legend using a `ggplot` theme as well.
+The next example uses the `plot_type = "dotplot"` to visualize the distribution of the data, and also customizes the position of the legend using a `ggplot` theme as well.
 
 ```{r dotplot}
 # matrix x

@@ -2,4 +2,7 @@
 
 0 errors | 0 warnings | 0 notes
 
-* This is a new release.
+## Resubmission
+This is a resubmission. In this version I have:
+
+* fixed the invalid URI in README.md.

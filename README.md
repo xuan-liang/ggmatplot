@@ -93,6 +93,7 @@ head(x, 5)
 #> 3          4.7          1.3
 #> 4          4.6          1.5
 #> 5          5.0          1.4
+
 y <- (iris[, c(2, 4)])
 head(y, 5)
 #>   Sepal.Width Petal.Width
@@ -101,6 +102,7 @@ head(y, 5)
 #> 3         3.2         0.2
 #> 4         3.1         0.2
 #> 5         3.6         0.2
+
 ggmatplot(x, y)
 ```
 
@@ -164,6 +166,7 @@ USPersonalExpenditure
 #> Medical and Health   3.530  5.760  9.71 14.0 21.10
 #> Personal Care        1.040  1.980  2.45  3.4  5.40
 #> Private Education    0.341  0.974  1.80  2.6  3.64
+
 # vector x
 x <- rownames(USPersonalExpenditure)
 
@@ -205,8 +208,9 @@ It is also worth noticing that `alpha` isn’t a parameter defined in
 `ggmatplot()`, but can be used. This is because `ggmatplot` is built
 upon `ggplot2`, and each `plot_type` corresponds to a
 [`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
-as listed [here](./reference/ggmatplot.html#plot-types). Therefore, all
-valid parameters with the underlying
+as listed
+[here](https://xuan-liang.github.io/ggmatplot/reference/ggmatplot.html#plot-types).
+Therefore, all valid parameters with the underlying
 [`ggplot2 geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms)
 can be used with `ggmatplot()`.
 

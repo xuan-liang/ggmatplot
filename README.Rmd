@@ -151,7 +151,7 @@ ggmatplot(x, plot_type = "density") +
 
 Boxplots accept only a single matrix or data frame as well, and uses its columns as individual groups. While `ggmatplot` plots are filled by default, the fill color can be made transparent by using `alpha = 0`.
 
-It is also worth noticing that `alpha` isn't a parameter defined in `ggmatplot()`, but can be used. This is because `ggmatplot` is built upon `ggplot2`, and each `plot_type` corresponds to a [`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms) as listed [here](./reference/ggmatplot.html#plot-types). Therefore, all valid parameters with the underlying [`ggplot2 geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms) can be used with `ggmatplot()`.
+It is also worth noticing that `alpha` isn't a parameter defined in `ggmatplot()`, but can be used. This is because `ggmatplot` is built upon `ggplot2`, and each `plot_type` corresponds to a [`geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms) as listed [here](https://xuan-liang.github.io/ggmatplot/reference/ggmatplot.html#plot-types). Therefore, all valid parameters with the underlying [`ggplot2 geom`](https://ggplot2.tidyverse.org/reference/index.html#section-geoms) can be used with `ggmatplot()`.
 
 ```{r boxplot}
 # matrix x

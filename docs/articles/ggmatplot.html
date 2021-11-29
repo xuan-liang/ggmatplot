@@ -101,7 +101,8 @@
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1]  1.8284426  3.0318188  1.4284908 -0.1851148  1.7539171 -3.0669723</span>
+<span class="co">#&gt; [1]  1.6850288  2.2297494 -0.5446094 -0.1736304 -2.1506966 -3.2245466</span>
+
 <span class="co"># matrix z</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
 <span class="va">fit.y</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/stats/fitted.values.html">fitted</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/lm.html">lm</a></span><span class="op">(</span><span class="va">y</span> <span class="op">~</span> <span class="va">x</span><span class="op">)</span><span class="op">)</span>
@@ -109,13 +110,13 @@
            fitted <span class="op">=</span> <span class="va">fit.y</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
-<span class="co">#&gt;       actual     fitted</span>
-<span class="co">#&gt; 1  2.8907735  0.8900091</span>
-<span class="co">#&gt; 2  0.6281446  1.5211791</span>
-<span class="co">#&gt; 3 -0.2210093  0.6802347</span>
-<span class="co">#&gt; 4 -0.1585107 -0.1661003</span>
-<span class="co">#&gt; 5  1.1306760  0.8509205</span>
-<span class="co">#&gt; 6 -1.3062122 -1.6776326</span></code></pre></div>
+<span class="co">#&gt;       actual      fitted</span>
+<span class="co">#&gt; 1  1.4908444  0.70520103</span>
+<span class="co">#&gt; 2 -0.3499032  0.92517032</span>
+<span class="co">#&gt; 3 -1.0960407 -0.19517240</span>
+<span class="co">#&gt; 4 -0.7892177 -0.04536348</span>
+<span class="co">#&gt; 5 -0.2806253 -0.84374317</span>
+<span class="co">#&gt; 6 -1.9671201 -1.27738571</span></code></pre></div>
 <p><code>ggmatplot</code> plots vector <code>x</code> against each column of matrix <code>z</code> using the default <code>plot_type = "point"</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot">ggmatplot</a></span><span class="op">)</span>
@@ -170,7 +171,7 @@
                values_to <span class="op">=</span> <span class="st">"Measurement"</span><span class="op">)</span> 
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">iris_numeric_long</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 6 × 2</span>
+<span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;   Feature      Measurement</span>
 <span class="co">#&gt;   &lt;chr&gt;              &lt;dbl&gt;</span>
 <span class="co">#&gt; 1 Sepal.Length         5.1</span>
@@ -179,6 +180,7 @@
 <span class="co">#&gt; 4 Petal.Width          0.2</span>
 <span class="co">#&gt; 5 Sepal.Length         4.9</span>
 <span class="co">#&gt; 6 Sepal.Width          3</span>
+
 <span class="va">iris_numeric_long</span> <span class="op"><a href="https://tidyr.tidyverse.org/reference/pipe.html">%&gt;%</a></span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">Measurement</span>,
              color <span class="op">=</span> <span class="va">Feature</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -243,7 +245,7 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Xuan Liang, Francis Hui, Emi Tanaka, Dilinie Seimon.</p>
+  <p>Developed by Xuan Liang, Francis K. C. Hui, Emi Tanaka, Dilinie Seimon.</p>
 </div>
 
 <div class="pkgdown">

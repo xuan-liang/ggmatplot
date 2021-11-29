@@ -84,6 +84,10 @@ in \code{errorplot}. Possible values are \code{mean_se}, \code{mean_sd}, \code{m
 \item{...}{Other arguments passed on to the plot. Possible arguments are
 those that can be passed on to the \href{#plot-types}{underlying ggplot layers}.}
 }
+\value{
+A ggplot object. The columns of the input matrices will be plotted
+against each other using the defined plot type.
+}
 \description{
 \code{ggmatplot} is a quick and easy way of plotting the columns of two matrices
 or data frames against each other using

@@ -59,6 +59,9 @@
 #' @param ... Other arguments passed on to the plot. Possible arguments are
 #' those that can be passed on to the [underlying ggplot layers](#plot-types).
 #'
+#' @return A ggplot object. The columns of the input matrices will be plotted
+#' against each other using the defined plot type.
+#'
 #' @import ggplot2
 #' @export
 #' @md

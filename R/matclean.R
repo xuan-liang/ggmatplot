@@ -4,7 +4,7 @@
 #' match. If one of them are missing, the other is taken as y and an x vector
 #' of 1:n is used.
 #'
-#' @return A list of containing:
+#' @return A list containing:
 #'  * data - the long format data frame.
 #'  * xname - name(s) of the ID column(s)
 #'  * yname - names of the pivoted columns(columns with group names and values)

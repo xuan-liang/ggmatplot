@@ -5,4 +5,5 @@
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* fixed the invalid URI in README.md.
+* added quotes around the package names in the package description.
+* documented the return value for functions.

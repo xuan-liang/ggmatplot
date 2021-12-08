@@ -1,28 +1,29 @@
 ---
 title: 'ggmatplot: An R package for data visualization on wide-format data'
 tags:
-  - R
-  - data visualisation
+- R
+- data visualisation
+date: "22 November 2021"
+output: pdf_document
 authors:
-  - name: Xuan Liang
-    orcid: 0000-0002-0792-3751
-    affiliation: 1
-  - name: Francis Hui
-    orcid: 0000-0003-0765-3533
-    affiliation: 1
-  - name: Emi Tanaka
-    orcid: 0000-0002-1455-259X
-    affiliation: 2
-  - name: Dilinie Seimon
-    orcid: 0000-0003-4431-6077
-    affiliation: 2
-affiliations:
- - name: Australian National University
-   index: 1
- - name: Monash University
-   index: 2
-date: 22 November 2021
+- name: Xuan Liang
+  orcid: 0000-0002-0792-3751
+  affiliation: 1
+- name: Francis Hui
+  orcid: 0000-0003-0765-3533
+  affiliation: 1
+- name: Emi Tanaka
+  orcid: 0000-0002-1455-259X
+  affiliation: 2
+- name: Dilinie Seimon
+  orcid: 0000-0003-4431-6077
+  affiliation: 2
 bibliography: paper.bib
+affiliations:
+- name: Australian National University
+  index: 1
+- name: Monash University
+  index: 2
 ---
 
 # Summary

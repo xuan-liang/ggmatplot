@@ -3,7 +3,7 @@ pkgdown: 2.0.1
 pkgdown_sha: ~
 articles:
   ggmatplot: ggmatplot.html
-last_built: 2021-12-08T09:01Z
+last_built: 2021-12-10T02:59Z
 urls:
   reference: url/reference
   article: url/articles

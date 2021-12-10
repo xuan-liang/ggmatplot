@@ -47,13 +47,13 @@ on to the resultant `ggplot` object.
 
 The latest version can be installed from [CRAN](https://CRAN.R-project.org/package=ggmatplot):
 
-```r
+```{r eval=FALSE}
 install.packages("ggmatplot")
 ```
 
 Or you can install the development version from [GitHub](https://github.com/xuan-liang/ggmatplot):
 
-```r
+```{r eval=FALSE}
 # install.packages("remotes")
 remotes::install_github("xuan-liang/ggmatplot")
 ```

@@ -37,6 +37,13 @@ on to the resultant `ggplot` object.
 ## Installation
 
 The latest version can be installed from
+[CRAN](https://CRAN.R-project.org/package=ggmatplot):
+
+``` r
+install.packages("ggmatplot")
+```
+
+Or you can install the development version from
 [GitHub](https://github.com/xuan-liang/ggmatplot):
 
 ``` r

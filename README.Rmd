@@ -235,7 +235,7 @@ ggmatplot(x,
 
 Error plots also accept only a single matrix input, and plots out error bars for each column of the matrix. The `desc_stat` parameter of `ggmatplot()` can be used to define what the mid point and error bars of the plot should represent.
 
-The next example, plots out an `errorplot` using the medians and interquartile ranges of each variable.
+The next example construct out an `errorplot` using the medians and interquartile ranges of each variable.
 
 ```{r errorplot}
 # matrix x

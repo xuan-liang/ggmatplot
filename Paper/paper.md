@@ -1,5 +1,5 @@
 ---
-title: 'ggmatplot: An R package for data visualization on wide-format data'
+title: '`ggmatplot`: An R package for data visualization on wide-format data'
 tags:
 - R
 - data visualisation

@@ -1,6 +1,6 @@
 Package: ggmatplot
 Title: Plot Columns of Two Matrices Against Each Other Using 'ggplot2'
-Version: 0.1.0.9000
+Version: 0.1.1
 Authors@R: c(
     person("Xuan", "Liang", 
             email = "xuan.liang@anu.edu.au",

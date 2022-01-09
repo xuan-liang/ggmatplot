@@ -2,8 +2,7 @@
 
 0 errors | 0 warnings | 0 notes
 
-## Resubmission
-This is a resubmission. In this version I have:
+## Submission
+This is a submission for a new version. In this version I have:
 
-* added quotes around the package names in the package description.
-* documented the return value for functions.
+* solved the issues reported on system macOS arm64 (M1 chip).

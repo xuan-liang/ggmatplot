@@ -9,7 +9,7 @@ authors:
   - name: Xuan Liang
     orcid: 0000-0002-0792-3751
     affiliation: 1
-  - name: Francis Hui
+  - name: Francis K. C. Hui
     orcid: 0000-0003-0765-3533
     affiliation: 1
   - name: Dilinie Seimon
@@ -19,7 +19,7 @@ authors:
     orcid: 0000-0002-1455-259X
     affiliation: 2
 affiliations:
-  - name: Australian National University
+  - name: The Australian National University
     index: 1
   - name: Monash University
     index: 2
@@ -44,6 +44,8 @@ The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plottin
 # Statement of need
 
 Data can be tidied in a rectangular form where each row represents an observational unit, each column represents a variable, and each cell represents a value [@Wickham2014-gy]. What constitutes a variable, hence a column, in a tidy data are dependent upon interpretation.
+
+---
 
 The increased use of a tidy approach in structuring datasets results in wrangling datasets into wide format: with variables as columns and observations as rows(https://vita.had.co.nz/papers/tidy-data.html). While this introduces a more meaningful mapping of the data into its structure, the grammar of graphics requires wide format data to be wrangled back into long format for visualizing. This can be quite cumbersome when creating simple plots, and converting a tidy data frame back to a long format with multiple variables stacked upon each other can also be considered counter-intuitive.
 

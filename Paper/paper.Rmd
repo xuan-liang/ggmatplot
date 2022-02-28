@@ -9,7 +9,7 @@ authors:
   - name: Xuan Liang
     orcid: 0000-0002-0792-3751
     affiliation: 1
-  - name: Francis Hui
+  - name: Francis K. C. Hui
     orcid: 0000-0003-0765-3533
     affiliation: 1
   - name: Dilinie Seimon
@@ -19,7 +19,7 @@ authors:
     orcid: 0000-0002-1455-259X
     affiliation: 2
 affiliations:
-  - name: Australian National University
+  - name: The Australian National University
     index: 1
   - name: Monash University
     index: 2

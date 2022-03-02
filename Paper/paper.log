@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.15)  28 FEB 2022 15:30
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.15)  2 MAR 2022 12:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -939,39 +939,172 @@ Package: parskip 2020-01-22 v2.0d non-zero parskip adjustments
 )
 \csllabelwidth=\skip91
 \cslhangindent=\skip92
-\@quotelevel=\count447
-\@quotereset=\count448
+(/usr/local/texlive/2019/texmf-dist/tex/latex/booktabs/booktabs.sty
+Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
+\heavyrulewidth=\dimen282
+\lightrulewidth=\dimen283
+\cmidrulewidth=\dimen284
+\belowrulesep=\dimen285
+\belowbottomsep=\dimen286
+\aboverulesep=\dimen287
+\abovetopsep=\dimen288
+\cmidrulesep=\dimen289
+\cmidrulekern=\dimen290
+\defaultaddspace=\dimen291
+\@cmidla=\count447
+\@cmidlb=\count448
+\@aboverulesep=\dimen292
+\@belowrulesep=\dimen293
+\@thisruleclass=\count449
+\@lastruleclass=\count450
+\@thisrulewidth=\dimen294
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/longtable.sty
+Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
+\LTleft=\skip93
+\LTright=\skip94
+\LTpre=\skip95
+\LTpost=\skip96
+\LTchunksize=\count451
+\LTcapwidth=\dimen295
+\LT@head=\box69
+\LT@firsthead=\box70
+\LT@foot=\box71
+\LT@lastfoot=\box72
+\LT@cols=\count452
+\LT@rows=\count453
+\c@LT@tables=\count454
+\c@LT@chunks=\count455
+\LT@p@ftn=\toks42
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/tools/array.sty
+Package: array 2019/08/31 v2.4l Tabular extension package (FMi)
+\col@sep=\dimen296
+\ar@mcellbox=\box73
+\extrarowheight=\dimen297
+\NC@list=\toks43
+\extratabsurround=\skip97
+\backup@length=\skip98
+\ar@cellbox=\box74
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+\multirow@colwidth=\skip99
+\multirow@cntb=\count456
+\multirow@dima=\skip100
+\bigstrutjot=\dimen298
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/wrapfig/wrapfig.sty
+\wrapoverhang=\dimen299
+\WF@size=\dimen300
+\c@WF@wrappedlines=\count457
+\WF@box=\box75
+\WF@everypar=\toks44
+Package: wrapfig 2003/01/31  v 3.6
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count458
+\float@exts=\toks45
+\float@box=\box76
+\@float@everytoks=\toks46
+\@floatcapt=\box77
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2020/01/04 v1.0e Color table columns (DPC)
+\everycr=\toks47
+\minrowclearance=\skip101
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/pdflscape/pdflscape.sty
+Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/lscape.sty
+Package: lscape 2000/10/22 v3.01 Landscape Pages (DPC)
+)
+Package pdflscape Info: Auto-detected driver: dvipdfm (xetex) on input line 98.
+
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/tabu/tabu.sty
+Package: tabu 2019/01/11 v2.9 - flexible LaTeX tabulars (FC+tabu-fixed)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/varwidth/varwidth.sty
+Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
+\@vwid@box=\box78
+\sift@deathcycles=\count459
+\@vwid@loff=\dimen301
+\@vwid@roff=\dimen302
+)
+\c@taburow=\count460
+\tabu@nbcols=\count461
+\tabu@cnt=\count462
+\tabu@Xcol=\count463
+\tabu@alloc=\count464
+\tabu@nested=\count465
+\tabu@target=\dimen303
+\tabu@spreadtarget=\dimen304
+\tabu@naturalX=\dimen305
+\tabucolX=\dimen306
+\tabu@Xsum=\dimen307
+\extrarowdepth=\dimen308
+\abovetabulinesep=\dimen309
+\belowtabulinesep=\dimen310
+\tabustrutrule=\dimen311
+\tabu@thebody=\toks48
+\tabu@footnotes=\toks49
+\tabu@box=\box79
+\tabu@arstrutbox=\box80
+\tabu@hleads=\box81
+\tabu@vleads=\box82
+\tabu@cellskip=\skip102
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/threeparttable/threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box83
+)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/threeparttablex/threeparttablex.s
+ty
+Package: threeparttablex 2013/07/23 v0.3 by daleif
+\TPTL@width=\skip103
+) (/usr/local/texlive/2019/texmf-dist/tex/generic/ulem/ulem.sty
+\UL@box=\box84
+\UL@hyphenbox=\box85
+\UL@skip=\skip104
+\UL@hook=\toks50
+\UL@height=\dimen312
+\UL@pe=\count466
+\UL@pixel=\dimen313
+\ULC@box=\box86
+Package: ulem 2019/11/18
+\ULdepth=\dimen314
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/makecell/makecell.sty
+Package: makecell 2009/08/03 V0.1e Managing of Tab Column Heads and Cells
+\rotheadsize=\dimen315
+\c@nlinenum=\count467
+\TeXr@lab=\toks51
+)
+\@quotelevel=\count468
+\@quotereset=\count469
 (./paper.aux)
 \openout1 = `paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 223.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 237.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
-23.
+37.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 223.
-LaTeX Font Info:    ... okay on input line 223.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 237.
+LaTeX Font Info:    ... okay on input line 237.
 ABD: EveryShipout initializing macros
-\AtBeginShipoutBox=\box69
-Package hyperref Info: Link coloring ON on input line 223.
+\AtBeginShipoutBox=\box87
+Package hyperref Info: Link coloring ON on input line 237.
 (/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/usr/local/texlive/2019/texmf-dist/tex/latex/refcount/refcount.sty
@@ -981,16 +1114,23 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count449
+\c@section@level=\count470
 )
-LaTeX Info: Redefining \ref on input line 223.
-LaTeX Info: Redefining \pageref on input line 223.
-LaTeX Info: Redefining \nameref on input line 223.
+LaTeX Info: Redefining \ref on input line 237.
+LaTeX Info: Redefining \pageref on input line 237.
+LaTeX Info: Redefining \nameref on input line 237.
 (./paper.out) (./paper.out)
 \@outlinefile=\write7
 \openout7 = `paper.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: float package is loaded.
+Package caption Info: longtable package is loaded.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/caption/ltcaption.sty
+Package: ltcaption 2018/08/26 v1.4a longtable captions (AR)
+)
+Package caption Info: threeparttable package is loaded.
+Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
 Package biblatex Info: Trying to load language 'english'...
 Package biblatex Info: ... file 'english.lbx' found.
@@ -1006,8 +1146,8 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'paper.bbl' not found.
 No file paper.bbl.
-Package biblatex Info: Reference section=0 on input line 223.
-Package biblatex Info: Reference segment=0 on input line 223.
+Package biblatex Info: Reference section=0 on input line 237.
+Package biblatex Info: Reference segment=0 on input line 237.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1042,7 +1182,7 @@ Package biblatex Info: Reference segment=0 on input line 223.
 * \@reversemargintrue
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-LaTeX Info: Redefining \microtypecontext on input line 223.
+LaTeX Info: Redefining \microtypecontext on input line 237.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1061,14 +1201,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 224
+LaTeX Font Info:    Trying to load font information for U+msa on input line 238
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 224
+LaTeX Font Info:    Trying to load font information for U+msb on input line 238
 .
 (/usr/local/texlive/2019/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1076,16 +1216,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 
-Package hyperref Warning: Suppressing link with empty target on input line 250.
+Package hyperref Warning: Suppressing link with empty target on input line 264.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 250.
+Package hyperref Warning: Suppressing link with empty target on input line 264.
 
 
 
-Package hyperref Warning: Suppressing link with empty target on input line 250.
+Package hyperref Warning: Suppressing link with empty target on input line 264.
 
+
+
+Overfull \hbox (5.3814pt too wide) in paragraph at lines 368--379
+ [][] 
+ []
 
 File: /Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rm
 arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
@@ -1098,7 +1243,7 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 317.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 394.
 [1
 
 ]
@@ -1107,24 +1252,29 @@ arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdo
 wn/templates/joss/resources/JOSS-logo.png>
 [2]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 336.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 336.
+File: /Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rm
+arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
+</Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdo
+wn/templates/joss/resources/JOSS-logo.png>
+[3]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 413.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 413.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 336.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 336.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 413.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 413.
 Package rerunfilecheck Info: File `paper.out' has not changed.
-(rerunfilecheck)             Checksum: E856E088DF9AB86998A52E723730C56D;244.
+(rerunfilecheck)             Checksum: 402A8D8549662819A05425B47633C759;244.
 Package logreq Info: Writing requests to 'paper.run.xml'.
 \openout1 = `paper.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 34802 strings out of 479294
- 694319 string characters out of 5880891
- 1403105 words of memory out of 5000000
- 51888 multiletter control sequences out of 15000+600000
- 539210 words of font info for 72 fonts, out of 8000000 for 9000
+ 36265 strings out of 479294
+ 714757 string characters out of 5880891
+ 1442429 words of memory out of 5000000
+ 53293 multiletter control sequences out of 15000+600000
+ 539316 words of font info for 73 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,12n,75p,1194b,788s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,12n,77p,1194b,790s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on paper.pdf (2 pages).
+Output written on paper.pdf (3 pages).

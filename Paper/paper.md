@@ -59,17 +59,17 @@ Data can be tidied in a rectangular form where each row represents an observatio
 
 \caption{\label{tab:tab1}Restaurant rating data in "tidy" form}
 \centering
-\begin{tabular}[t]{llrrrr}
+\begin{tabular}[t]{lrrrr}
 \toprule
-\multicolumn{1}{c}{ } & \multicolumn{1}{c}{ } & \multicolumn{4}{c}{Rating} \\
-\cmidrule(l{3pt}r{3pt}){3-6}
-Restaurant & Person & Food & Service & Ambience & Overall\\
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Rating} \\
+\cmidrule(l{3pt}r{3pt}){2-5}
+Restaurant & Food & Service & Ambience & Overall\\
 \midrule
-R1 & P1 & 4 & 3 & 4 & 4\\
-R1 & P2 & 4 & 5 & 4 & 4\\
-R1 & P3 & 3 & 4 & 5 & 3\\
-R2 & P1 & 2 & 4 & 4 & 3\\
-R2 & P2 & 3 & 4 & 4 & 3\\
+R1 & 4 & 3 & 4 & 4\\
+R2 & 4 & 5 & 4 & 4\\
+R3 & 3 & 4 & 5 & 3\\
+R4 & 2 & 4 & 4 & 3\\
+R5 & 3 & 4 & 4 & 3\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -78,30 +78,30 @@ R2 & P2 & 3 & 4 & 4 & 3\\
 
 \caption{\label{tab:tab2}Restaurant rating data in "molten" form}
 \centering
-\begin{tabular}[t]{lllr}
+\begin{tabular}[t]{llr}
 \toprule
-Restauant & Person & Rating type & Rating\\
+Restauant & Rating type & Rating\\
 \midrule
-R1 & P1 & food & 4\\
-R1 & P1 & service & 3\\
-R1 & P1 & ambience & 4\\
-R1 & P1 & overall & 4\\
-R1 & P2 & food & 4\\
-R1 & P2 & service & 5\\
-R1 & P2 & ambience & 4\\
-R1 & P2 & overall & 4\\
-R1 & P3 & food & 3\\
-R1 & P3 & service & 4\\
-R1 & P3 & ambience & 5\\
-R1 & P3 & overall & 3\\
-R2 & P1 & food & 2\\
-R2 & P1 & service & 4\\
-R2 & P1 & ambience & 4\\
-R2 & P1 & overall & 3\\
-R2 & P2 & food & 3\\
-R2 & P2 & service & 4\\
-R2 & P2 & ambience & 4\\
-R2 & P2 & overall & 3\\
+R1 & food & 4\\
+R1 & service & 3\\
+R1 & ambience & 4\\
+R1 & overall & 4\\
+R2 & food & 4\\
+R2 & service & 5\\
+R2 & ambience & 4\\
+R2 & overall & 4\\
+R3 & food & 3\\
+R3 & service & 4\\
+R3 & ambience & 5\\
+R3 & overall & 3\\
+R4 & food & 2\\
+R4 & service & 4\\
+R4 & ambience & 4\\
+R4 & overall & 3\\
+R5 & food & 3\\
+R5 & service & 4\\
+R5 & ambience & 4\\
+R5 & overall & 3\\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -122,6 +122,16 @@ Site & Soil dry mass & Moss & Alopcune & Arctlute & Pardpull & Trocterr & Zorasp
 \bottomrule
 \end{tabular}
 \end{table}
+
+
+```r
+library(ggmatplot)
+ggmatplot(x = select(wide_df, contains("rating")),
+          plot_type = "both",
+          xlab = "Restaurant")
+```
+
+![](paper_files/figure-latex/plot1-1.pdf)<!-- --> 
 
 
 # Acknowledgements

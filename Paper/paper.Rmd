@@ -42,12 +42,12 @@ knitr::opts_chunk$set(message = FALSE,
 
 # data 
 
-wide_df <- tribble(~restaurant, ~person, ~food_rating, ~service_rating, ~ambience_rating, ~overall_rating,
-        "R1", "P1", 4, 3, 4, 4,
-        "R1", "P2", 4, 5, 4, 4,
-        "R1", "P3", 3, 4, 5, 3, 
-        "R2", "P1", 2, 4, 4, 3, 
-        "R2", "P2", 3, 4, 4, 3)
+wide_df <- tribble(~restaurant, ~food_rating, ~service_rating, ~ambience_rating, ~overall_rating,
+        "R1", 4, 3, 4, 4,
+        "R2", 4, 5, 4, 4,
+        "R3", 3, 4, 5, 3, 
+        "R4", 2, 4, 4, 3, 
+        "R5", 3, 4, 4, 3)
 
 long_df <- pivot_longer(wide_df, contains("rating"), 
                         names_to = "rating_type",
@@ -88,14 +88,14 @@ Data can be tidied in a rectangular form where each row represents an observatio
 
 
 ```{r tab1, echo = FALSE}
-table_styling(wide_df, col.names = c("Restaurant", "Person", "Food",
+table_styling(wide_df, col.names = c("Restaurant", "Food",
                                      "Service", "Ambience", "Overall"),
               caption = 'Restaurant rating data in "tidy" form') %>% 
-  add_header_above(c(" ", " ", "Rating" = 4))
+  add_header_above(c(" ", "Rating" = 4))
 ```
 
 ```{r tab2, echo = FALSE}
-table_styling(long_df, col.names = c("Restauant", "Person", "Rating type", "Rating"),
+table_styling(long_df, col.names = c("Restauant", "Rating type", "Rating"),
               caption = 'Restaurant rating data in "molten" form')
 ```
 
@@ -103,6 +103,13 @@ table_styling(long_df, col.names = c("Restauant", "Person", "Rating type", "Rati
 table_styling(abund_df,
               caption = 'Spider abundance data with environmental covariates.') %>% 
   add_header_above(c(" ", "Environment covariates" = 2, "Species abundance" = 5))
+```
+
+```{r plot1}
+library(ggmatplot)
+ggmatplot(x = select(wide_df, contains("rating")),
+          plot_type = "both",
+          xlab = "Restaurant")
 ```
 
 

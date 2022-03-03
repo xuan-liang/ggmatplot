@@ -24,7 +24,7 @@ affiliations:
   - name: Monash University
     index: 2
 citation_author: Liang et. al.
-date: "2022-03-02"
+date: "2022-03-03"
 year: 2022
 bibliography: paper.bib
 output: rticles::joss_article
@@ -46,7 +46,7 @@ The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plottin
 
 # Statement of need
 
-Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This required form is, however, not consistent with some common data formats, specifically data where the column names contain information to be mapped into the plot or the variables to be mapped into the same aesthetic elements. Consequently, plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly explore these types of data. The `ggmatplot` R-package provides a solution to this common friction to produce plots with `ggplot2`. 
+Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This required form is, however, not consistent with some prevelant data formats, specifically multivariate data where the rows correspond to observational units and continguous columns correspond to the responses of the same measurement units. Examples of common utilization of this form include gene expression data in bioinformatics, where rows correspond to samples, column names correspond to genes, and cell values correspond to the expression level; and multi-abundance data in ecology, where rows correspond to site, column names correspond to species name, and cell values correspond to count. Consequently, plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly explore these types of data. The `ggmatplot` R-package provides a solution to this common friction in producing plots with `ggplot2`. 
 
 
 # Examples

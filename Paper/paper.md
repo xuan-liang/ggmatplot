@@ -19,15 +19,17 @@ authors:
     orcid: 0000-0002-1455-259X
     affiliation: 2
 affiliations:
-  - name: The Australian National University
+  - name: Research School of Finance, Actuarial Studies and Statistics, The Australian National University
     index: 1
-  - name: Monash University
+  - name: Department of Econometrics and Business Statistics, Monash University
     index: 2
 citation_author: Liang et. al.
-date: "2022-03-03"
+date: "2022-03-04"
 year: 2022
 bibliography: paper.bib
-output: rticles::joss_article
+output: 
+  rticles::joss_article:
+    keep_tex: true
 csl: apa.csl
 journal: JOSS
 ---
@@ -46,18 +48,11 @@ The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plottin
 
 # Statement of need
 
-Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This required form is, however, not consistent with some prevelant data formats, specifically multivariate data where the rows correspond to observational units and continguous columns correspond to the responses of the same measurement units. Examples of common utilization of this form include gene expression data in bioinformatics, where rows correspond to samples, column names correspond to genes, and cell values correspond to the expression level; and multi-abundance data in ecology, where rows correspond to site, column names correspond to species name, and cell values correspond to count. Consequently, plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly explore these types of data. The `ggmatplot` R-package provides a solution to this common friction in producing plots with `ggplot2`. 
-
-
-# Examples
-
-
-Data can be tidied in a rectangular form where each row represents an observational unit, each column represents a variable, and each cell represents a value [@Wickham2014-gy]. In some cases, what constitutes a variable (or observational unit), hence a column (or row), in a tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. Table \ref{tab:tab3} contain the name of the species across a number of column names.
-
+Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This generally works well where data is tidied in a rectangular form, referred to as "tidy data" [@Wickham2014-gy], where each row represents an observational unit, each column represents a variable, and each cell represents a value. In some cases, what constitutes a variable (or observational unit), hence a column (or row), in a tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. Table \ref{tab:tab3} contain the name of the species across a number of column names.
 
 \begin{table}
 
-\caption{\label{tab:tab1}Restaurant rating data in "tidy" form}
+\caption{\label{tab:tab1}Restaurant rating data in "tidy" form. The first column shows the restaurant ID, and the next four columns show the average ratings (out of 5) for food, service, ambience and overall, respectively.}
 \centering
 \begin{tabular}[t]{lrrrr}
 \toprule
@@ -74,9 +69,11 @@ R5 & 3 & 4 & 4 & 3\\
 \end{tabular}
 \end{table}
 
+
+
 \begin{table}
 
-\caption{\label{tab:tab2}Restaurant rating data in "molten" form}
+\caption{\label{tab:tab2}Another form for the restaurant rating data in Table \ref{tab:tab1}. In @Wickham2014-gy, this format is called the "molten" data.}
 \centering
 \begin{tabular}[t]{llr}
 \toprule
@@ -106,9 +103,10 @@ R5 & overall & 3\\
 \end{tabular}
 \end{table}
 
+
 \begin{table}
 
-\caption{\label{tab:tab3}Spider abundance data with environmental covariates.}
+\caption{\label{tab:tab3}Spider abundance data with environmental covariates. The rows correspond to the site, the first two columns are environmental covariates that measure the soil dry mass and cover moss, and the following five columns shows the abundance of the species.}
 \centering
 \begin{tabular}[t]{rrrrrrrr}
 \toprule
@@ -123,19 +121,56 @@ Site & Soil dry mass & Moss & Alopcune & Arctlute & Pardpull & Trocterr & Zorasp
 \end{tabular}
 \end{table}
 
+The organisation of the data is largely dependent on the downstream analysis and there is no one correct way to do this. Some forms of multivariate data, e.g. Table \ref{tab:tab3}, are prevalent in the field because it aligns as an input data for a modelling software and/or the format is more convenient for input or view of the data in spreadsheet format. However, this format is not consistent with the required format for `ggplot2`, and consequently, plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly visualise these types of data. The `ggmatplot` R-package provides a solution to this common friction in producing plots with `ggplot2`. 
+
+
+
+# Examples
+
+
+In this section we demonstrate the use of the `ggmatplot` package and contrast the specification with `ggplot2` with data wrangling using `dplyr` and `tidyr` [@Wickham2019] using the example data in Tables \ref{tab:tab1} and \ref{tab:tab3}, which are stored in the objects `wide_df` and `abun_df`, respectively.
+
+## Example 1
+
 
 ```r
 library(ggmatplot)
-ggmatplot(x = select(wide_df, contains("rating")),
-          plot_type = "both",
-          xlab = "Restaurant")
+ggmatplot(x = wide_df[, -1], plot_type = "both",
+          xlab = "Restaurant",  ylab = "Rating", legend_title = "Type")
 ```
 
-![](paper_files/figure-latex/plot1-1.pdf)<!-- --> 
+![](paper_files/figure-latex/matplot1-1.pdf)<!-- --> 
 
 
-# Acknowledgements
+```r
+library(ggplot2)
+library(tidyr) # or library(tidyverse)
+wide_df %>% 
+  pivot_longer(contains("rating"), 
+               names_to = "rating_type",
+               values_to = "rating") %>% 
+  ggplot(aes(restaurant, rating, color = rating_type)) + 
+  geom_point() +
+  geom_line(aes(group = rating_type,
+                linetype = rating_type))
+```
+
+## Example 2
 
 
+```r
+ggmatplot(x = wide_df[, 2:4], y = wide_df[, 5], plot_type = "both")
+```
+
+![](paper_files/figure-latex/matplot2-1.pdf)<!-- --> 
+
+# Discussion
+
+The `ggmatplot` R-package provides a solution to a common friction to quickly plotting multivariate data where the primary interest is mapping the column names as an aesthetic element. The solution provided however is a recipe-driven approach where the user can only produce plot types as many there are included in the `plot_type` option. Future development of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
+
+# Acknowledgements 
+
+
+FKCH was supported by ARC DECRA XXX. 
 
 # References

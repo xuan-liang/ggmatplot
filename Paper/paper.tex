@@ -1,0 +1,529 @@
+\documentclass[10pt,a4paper,onecolumn]{article}
+\usepackage{marginnote}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{authblk,etoolbox}
+\usepackage{titlesec}
+\usepackage{calc}
+\usepackage{tikz}
+\usepackage{hyperref}
+\hypersetup{colorlinks,breaklinks,
+            urlcolor=[rgb]{0.0, 0.5, 1.0},
+            linkcolor=[rgb]{0.0, 0.5, 1.0}}
+\usepackage{caption}
+\usepackage{tcolorbox}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{seqsplit}
+\usepackage{fixltx2e} % provides \textsubscript
+\usepackage[
+  backend=biber,
+%  style=alphabetic,
+%  citestyle=numeric
+]{biblatex}
+\bibliography{paper.bib}
+
+
+% --- Page layout -------------------------------------------------------------
+\usepackage[top=3.5cm, bottom=3cm, right=1.5cm, left=1.0cm,
+            headheight=2.2cm, reversemp, includemp, marginparwidth=4.5cm]{geometry}
+
+% --- Default font ------------------------------------------------------------
+% \renewcommand\familydefault{\sfdefault}
+
+% --- Style -------------------------------------------------------------------
+\renewcommand{\bibfont}{\small \sffamily}
+\renewcommand{\captionfont}{\small\sffamily}
+\renewcommand{\captionlabelfont}{\bfseries}
+
+% --- Section/SubSection/SubSubSection ----------------------------------------
+\titleformat{\section}
+  {\normalfont\sffamily\Large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsection}
+  {\normalfont\sffamily\large\bfseries}
+  {}{0pt}{}
+\titleformat{\subsubsection}
+  {\normalfont\sffamily\bfseries}
+  {}{0pt}{}
+\titleformat*{\paragraph}
+  {\sffamily\normalsize}
+
+
+% --- Header / Footer ---------------------------------------------------------
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+%\renewcommand{\headrulewidth}{0.50pt}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[C]{}
+\fancyhead[R]{}
+\renewcommand{\footrulewidth}{0.25pt}
+
+\fancyfoot[L]{\footnotesize{\sffamily Liang et.
+al., (2022). \texttt{ggmatplot}: An R package for data visualization on
+wide-format
+data. \textit{Journal of Open Source Software}, (), . \href{https://doi.org/}{https://doi.org/}}}
+
+
+\fancyfoot[R]{\sffamily \thepage}
+\makeatletter
+\let\ps@plain\ps@fancy
+\fancyheadoffset[L]{4.5cm}
+\fancyfootoffset[L]{4.5cm}
+
+% --- Macros ---------
+
+\definecolor{linky}{rgb}{0.0, 0.5, 1.0}
+
+\newtcolorbox{repobox}
+   {colback=red, colframe=red!75!black,
+     boxrule=0.5pt, arc=2pt, left=6pt, right=6pt, top=3pt, bottom=3pt}
+
+\newcommand{\ExternalLink}{%
+   \tikz[x=1.2ex, y=1.2ex, baseline=-0.05ex]{%
+       \begin{scope}[x=1ex, y=1ex]
+           \clip (-0.1,-0.1)
+               --++ (-0, 1.2)
+               --++ (0.6, 0)
+               --++ (0, -0.6)
+               --++ (0.6, 0)
+               --++ (0, -1);
+           \path[draw,
+               line width = 0.5,
+               rounded corners=0.5]
+               (0,0) rectangle (1,1);
+       \end{scope}
+       \path[draw, line width = 0.5] (0.5, 0.5)
+           -- (1, 1);
+       \path[draw, line width = 0.5] (0.6, 1)
+           -- (1, 1) -- (1, 0.6);
+       }
+   }
+
+% --- Title / Authors ---------------------------------------------------------
+% patch \maketitle so that it doesn't center
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+\patchcmd{\@maketitle}{center}{flushleft}{}{}
+% patch \maketitle so that the font size for the title is normal
+\patchcmd{\@maketitle}{\LARGE}{\LARGE\sffamily}{}{}
+% patch the patch by authblk so that the author block is flush left
+\def\maketitle{{%
+  \renewenvironment{tabular}[2][]
+    {\begin{flushleft}}
+    {\end{flushleft}}
+  \AB@maketitle}}
+\makeatletter
+\renewcommand\AB@affilsepx{ \protect\Affilfont}
+%\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{2pt}}
+\renewcommand\AB@affilnote[1]{{\bfseries #1}\hspace{3pt}}
+\makeatother
+\renewcommand\Authfont{\sffamily\bfseries}
+\renewcommand\Affilfont{\sffamily\small\mdseries}
+\setlength{\affilsep}{1em}
+
+
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={ggmatplot: An R package for data visualization on wide-format data},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% Pandoc citation processing
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+% for Pandoc 2.8 to 2.10.1
+\newenvironment{cslreferences}%
+  {}%
+  {\par}
+% For Pandoc 2.11+
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
+  % set entry spacing
+  \ifnum #2 > 0
+  \setlength{\parskip}{#2\baselineskip}
+  \fi
+ }%
+ {}
+\usepackage{calc} % for calculating minipage widths
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{colortbl}
+\usepackage{pdflscape}
+\usepackage{tabu}
+\usepackage{threeparttable}
+\usepackage{threeparttablex}
+\usepackage[normalem]{ulem}
+\usepackage{makecell}
+\usepackage{xcolor}
+
+\title{\texttt{ggmatplot}: An R package for data visualization on
+wide-format data}
+
+        \author[1]{Xuan Liang}
+          \author[1]{Francis K. C. Hui}
+          \author[2]{Dilinie Seimon}
+          \author[2]{Emi Tanaka}
+    
+      \affil[1]{Research School of Finance, Actuarial Studies and
+Statistics, The Australian National University}
+      \affil[2]{Department of Econometrics and Business Statistics,
+Monash University}
+  \date{\vspace{-5ex}}
+
+\begin{document}
+\maketitle
+
+\marginpar{
+  %\hrule
+  \sffamily\small
+
+  {\bfseries DOI:} \href{https://doi.org/}{\color{linky}{}}
+
+  \vspace{2mm}
+
+  {\bfseries Software}
+  \begin{itemize}
+    \setlength\itemsep{0em}
+    \item \href{}{\color{linky}{Review}} \ExternalLink
+    \item \href{}{\color{linky}{Repository}} \ExternalLink
+    \item \href{}{\color{linky}{Archive}} \ExternalLink
+  \end{itemize}
+
+  \vspace{2mm}
+
+  {\bfseries Submitted:} \\
+  {\bfseries Published:} 
+
+  \vspace{2mm}
+  {\bfseries License}\\
+  Authors of papers retain copyright and release the work under a Creative Commons Attribution 4.0 International License (\href{http://creativecommons.org/licenses/by/4.0/}{\color{linky}{CC-BY}}).
+}
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+The layered grammar of graphics (H. Wickham, 2010), implemented as the
+\texttt{ggplot2} package (Hadley Wickham, 2016) in the statistical
+language R (R Core Team, 2021), is a powerful and popular tool to create
+versatile statistical graphics. This graphical system, however, requires
+input data to be organised in a manner that a data column is mapped to
+an aesthetic element (e.g.~x-coordinate, y-coordinate, color, size),
+which create friction in constructing plots with an aesthetic element
+that span multiple columns in the original data by requiring users to
+re-organise the data.
+
+The \texttt{ggmatplot}, built upon \texttt{ggplot2}, is an R-package
+that allows quick plotting across the columns of matrices or data with
+the result returned as a \texttt{ggplot} object. The package is inspired
+by the function \texttt{matplot()} in the core R \texttt{graphics}
+system, thus \texttt{ggmatplot} can be considered as a \texttt{ggplot}
+version of \texttt{matplot} with the benefits of customising the plots
+as any other \texttt{ggplot} objects via \texttt{ggplot2} functions.
+
+\hypertarget{statement-of-need}{%
+\section{Statement of need}\label{statement-of-need}}
+
+Input data to construct plots with \texttt{ggplot2} require data to be
+organised in a manner that maps data columns to aesthetic elements. This
+generally works well where data is tidied in a rectangular form,
+referred to as ``tidy data'' (Hadley Wickham, 2014), where each row
+represents an observational unit, each column represents a variable, and
+each cell represents a value. In some cases, what constitutes a variable
+(or observational unit), hence a column (or row), in a tidy data can be
+dependent upon interpretation or downstream interest (e.g.~Tables
+\ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data),
+but a clear violation of tidy data principles is when the column names
+contain data values, e.g.~Table \ref{tab:tab3} contain the name of the
+species across a number of column names.
+
+\begin{table}
+
+\caption{\label{tab:tab1}Restaurant rating data in "tidy" form. The first column shows the restaurant ID, and the next four columns show the average ratings (out of 5) for food, service, ambience and overall, respectively.}
+\centering
+\begin{tabular}[t]{lrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{4}{c}{Rating} \\
+\cmidrule(l{3pt}r{3pt}){2-5}
+Restaurant & Food & Service & Ambience & Overall\\
+\midrule
+R1 & 4 & 3 & 4 & 4\\
+R2 & 4 & 5 & 4 & 4\\
+R3 & 3 & 4 & 5 & 3\\
+R4 & 2 & 4 & 4 & 3\\
+R5 & 3 & 4 & 4 & 3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:tab2}Another form for the restaurant rating data in Table \ref{tab:tab1}. In @Wickham2014-gy, this format is called the "molten" data.}
+\centering
+\begin{tabular}[t]{llr}
+\toprule
+Restauant & Rating type & Rating\\
+\midrule
+R1 & food & 4\\
+R1 & service & 3\\
+R1 & ambience & 4\\
+R1 & overall & 4\\
+R2 & food & 4\\
+R2 & service & 5\\
+R2 & ambience & 4\\
+R2 & overall & 4\\
+R3 & food & 3\\
+R3 & service & 4\\
+R3 & ambience & 5\\
+R3 & overall & 3\\
+R4 & food & 2\\
+R4 & service & 4\\
+R4 & ambience & 4\\
+R4 & overall & 3\\
+R5 & food & 3\\
+R5 & service & 4\\
+R5 & ambience & 4\\
+R5 & overall & 3\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}
+
+\caption{\label{tab:tab3}Spider abundance data with environmental covariates. The rows correspond to the site, the first two columns are environmental covariates that measure the soil dry mass and cover moss, and the following five columns shows the abundance of the species.}
+\centering
+\begin{tabular}[t]{rrrrrrrr}
+\toprule
+\multicolumn{1}{c}{ } & \multicolumn{2}{c}{Environment covariates} & \multicolumn{5}{c}{Species abundance} \\
+\cmidrule(l{3pt}r{3pt}){2-3} \cmidrule(l{3pt}r{3pt}){4-8}
+Site & Soil dry mass & Moss & Alopcune & Arctlute & Pardpull & Trocterr & Zoraspin\\
+\midrule
+1 & 2.3321 & 3.0445 & 10 & 0 & 45 & 57 & 4\\
+2 & 3.0493 & 1.0986 & 2 & 0 & 37 & 65 & 9\\
+3 & 2.5572 & 2.3979 & 20 & 0 & 45 & 66 & 1\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The organisation of the data is largely dependent on the downstream
+analysis and there is no one correct way to do this. Some forms of
+multivariate data, e.g.~Table \ref{tab:tab3}, are prevalent in the field
+because it aligns as an input data for a modelling software and/or the
+format is more convenient for input or view of the data in spreadsheet
+format. However, this format is not consistent with the required format
+for \texttt{ggplot2}, and consequently, plotting with \texttt{ggplot2}
+interrupts the workflow of a user that is trying to quickly visualise
+these types of data. The \texttt{ggmatplot} R-package provides a
+solution to this common friction in producing plots with
+\texttt{ggplot2}.
+
+\hypertarget{examples}{%
+\section{Examples}\label{examples}}
+
+In this section we demonstrate the use of the \texttt{ggmatplot} package
+and contrast the specification with \texttt{ggplot2} with data wrangling
+using \texttt{dplyr} and \texttt{tidyr} (Hadley Wickham et al., 2019)
+using the example data in Tables \ref{tab:tab1} and \ref{tab:tab3},
+which are stored in the objects \texttt{wide\_df} and \texttt{abun\_df},
+respectively.
+
+\hypertarget{example-1}{%
+\subsection{Example 1}\label{example-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggmatplot)}
+\FunctionTok{ggmatplot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wide\_df[, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{], }\AttributeTok{plot\_type =} \StringTok{"both"}\NormalTok{,}
+          \AttributeTok{xlab =} \StringTok{"Restaurant"}\NormalTok{,  }\AttributeTok{ylab =} \StringTok{"Rating"}\NormalTok{, }\AttributeTok{legend\_title =} \StringTok{"Type"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{paper_files/figure-latex/matplot1-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(ggplot2)}
+\FunctionTok{library}\NormalTok{(tidyr) }\CommentTok{\# or library(tidyverse)}
+\NormalTok{wide\_df }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{pivot\_longer}\NormalTok{(}\FunctionTok{contains}\NormalTok{(}\StringTok{"rating"}\NormalTok{), }
+               \AttributeTok{names\_to =} \StringTok{"rating\_type"}\NormalTok{,}
+               \AttributeTok{values\_to =} \StringTok{"rating"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(restaurant, rating, }\AttributeTok{color =}\NormalTok{ rating\_type)) }\SpecialCharTok{+} 
+  \FunctionTok{geom\_point}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ rating\_type,}
+                \AttributeTok{linetype =}\NormalTok{ rating\_type))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example-2}{%
+\subsection{Example 2}\label{example-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggmatplot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wide\_df[, }\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], }\AttributeTok{y =}\NormalTok{ wide\_df[, }\DecValTok{5}\NormalTok{], }\AttributeTok{plot\_type =} \StringTok{"both"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{paper_files/figure-latex/matplot2-1.pdf}
+
+\hypertarget{discussion}{%
+\section{Discussion}\label{discussion}}
+
+The \texttt{ggmatplot} R-package provides a solution to a common
+friction to quickly plotting multivariate data where the primary
+interest is mapping the column names as an aesthetic element. The
+solution provided however is a recipe-driven approach where the user can
+only produce plot types as many there are included in the
+\texttt{plot\_type} option. Future development of the package could
+benefit from using a grammar approach, like in Wilkinson (2005) and H.
+Wickham (2010), where plot types can be extensible.
+
+\hypertarget{acknowledgements}{%
+\section{Acknowledgements}\label{acknowledgements}}
+
+FKCH was supported by ARC DECRA XXX.
+
+\hypertarget{references}{%
+\section*{References}\label{references}}
+\addcontentsline{toc}{section}{References}
+
+\hypertarget{refs}{}
+\begin{CSLReferences}{1}{0}
+\leavevmode\vadjust pre{\hypertarget{ref-rstats}{}}%
+R Core Team. (2021). \emph{R: A language and environment for statistical
+computing}. Vienna, Austria: R Foundation for Statistical Computing.
+Retrieved from \url{https://www.R-project.org/}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2010-kt}{}}%
+Wickham, H. (2010). A layered grammar of graphics. \emph{Journal of
+computational and graphical statistics: a joint publication of American
+Statistical Association, Institute of Mathematical Statistics, Interface
+Foundation of North America}.
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2014-gy}{}}%
+Wickham, Hadley. (2014). Tidy data. \emph{Journal of Statistical
+Software}, \emph{59}(10), 1--23.
+doi:\href{https://doi.org/10.18637/jss.v059.i10}{10.18637/jss.v059.i10}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2016}{}}%
+Wickham, Hadley. (2016). \emph{ggplot2: Elegant graphics for data
+analysis}. Springer-Verlag New York. Retrieved from
+\url{https://ggplot2.tidyverse.org}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2019}{}}%
+Wickham, Hadley, Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
+François, R., Grolemund, G., et al. (2019). Welcome to the {tidyverse}.
+\emph{Journal of Open Source Software}, \emph{4}(43), 1686.
+doi:\href{https://doi.org/10.21105/joss.01686}{10.21105/joss.01686}
+
+\leavevmode\vadjust pre{\hypertarget{ref-Wilkinson2005-oz}{}}%
+Wilkinson, L. (2005). \emph{The grammar of graphics}. Springer.
+
+\end{CSLReferences}
+
+\end{document}

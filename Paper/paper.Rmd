@@ -80,7 +80,9 @@ data(SnowGR, package = "mosaicData")
 The layered grammar of graphics [@Wickham2010-kt], implemented as the `ggplot2` package [@Wickham2016] in the statistical language R [@rstats], is a powerful and popular tool to create versatile statistical graphics. However, this graphical system requires input data to be organised in a manner that a data column is mapped to an aesthetic element (e.g. x-coordinate, y-coordinate, color, size), which creates friction in constructing plots with an aesthetic element that span multiple columns in the original data by requiring users to re-organise the data.  
 <!-- Should we use the words long and wide format data frames here, or is that wrong? I only ask because I (maybe others?) think about ggplot requiring long format data, but we want to wide formatting? -->
 
-The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot` may be considered as a `ggplot` version of `matplot` with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly, such as comparative violin plots. 
+*Regarding the question from Francis, I don't know if long format or wide format data is well defined in the literature. If it is, we definitely can mention it. If not, do we need to define it? --commented by XL*
+
+The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot`  may be considered as a `ggplot` version of `matplot` with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly, such as comparative violin plots. 
 
 
 # Statement of need
@@ -104,7 +106,7 @@ table_styling(long_df, col.names = c("Restauant", "Rating type", "Average rating
 head(SnowGR[, 1:11]) %>% 
   mutate(Jan = as.character(Jan)) %>% 
   replace_na(list(Jan = ".")) %>% 
-  table_styling(caption = 'The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the `mosaicData` R pacakge (Prium, Kaplan \\& Horton, 2021).',
+  table_styling(caption = 'The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the R pacakge  \texttt{mosaicData} (Prium, Kaplan \\& Horton, 2021).',
                 align = "r")
 ```
 
@@ -121,6 +123,8 @@ In this section, we demonstrate the use of the `ggmatplot` package and contrast 
 ## Example 1
 
 The code below constructs a line plot (superimposed with a point) of the various types (food, service and ambience) of ratings, contained in columns 2 to 4 of `wide_df`, against the overall restaurant rating in column 5 of `wide_df` as shown in Figure 1.
+
+*In example 1, should X lab be restaurant or one type rating? The one made by ggmatplot is different from the one made by ggplot. Currently, the plot does not show a clear relationship between various types and the overall rating. Is it better to compare the ratings among restaurants?  -- commented by XL*
 
 
 ```{r matplot2, fig.height = 2, fig.cap = "Line plot of the food, service and ambience rating against the overall restaurant rating."}
@@ -150,6 +154,9 @@ wide_df %>%
 
 The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. removal of the legend). CAN WE `fct_inorder` SO THAT THE MONTHS APPEAR IN ORDER OF THEIR COLUMN NAMES? EMI HAS ALREADY PICKED THIS UP AS AN ISSUE...
 
+*Now the color and fill has been removed by default for boxplot by default, there is no legend. We may need to change the demonstration of Example 2. -- commented by XL*
+*Another question is that only the github version has such setting. Do I need to submit the new version to CRAN? -- commented by XL*
+
 ```{r matplot3, fig.height = 2, fig.cap="The distribution of the amount of snowfall at Grand Rapids, Michigan, across months from 1893-2011."}
 library(ggmatplot)
 ggmatplot(x = SnowGR[, 3:14], plot_type = "boxplot",
@@ -173,6 +180,8 @@ SnowGR %>%
 
 
 WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE ABOVE CAN BE DONE BY APPLY `boxplot`, AND HENCE WHY I WROTE VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R?
+
+*The other option is the density plot which can not be done by matplot--commented by XL. But since there are too many months, it might not be a good idea. -- commented by XL*
 
 # Discussion
 

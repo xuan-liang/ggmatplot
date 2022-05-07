@@ -56,7 +56,7 @@
 \fancyhf{}
 %\renewcommand{\headrulewidth}{0.50pt}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/home/fkch/R/x86_64-pc-linux-gnu-library/3.6/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
 \fancyhead[C]{}
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -326,6 +326,11 @@ friction in constructing plots with an aesthetic element that span
 multiple columns in the original data by requiring users to re-organise
 the data.\\
 
+\emph{Regarding the question from Francis, I don't know if long format
+or wide format data is well defined in the literature. If it is, we
+definitely can mention it. If not, do we need to define it? --commented
+by XL}
+
 The \texttt{ggmatplot}, built upon \texttt{ggplot2}, is an R-package
 that allows quick plotting across the columns of matrices or data with
 the result returned as a \texttt{ggplot} object. The package is inspired
@@ -407,7 +412,7 @@ R5 & overall & 3.3\\
 
 \begin{table}
 
-\caption{\label{tab:tab3}The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the `mosaicData` R pacakge (Prium, Kaplan \& Horton, 2021).}
+\caption{\label{tab:tab3}The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the R pacakge   exttt{mosaicData} (Prium, Kaplan \& Horton, 2021).}
 \centering
 \begin{tabular}[t]{rrrrrrrrrrr}
 \toprule
@@ -453,6 +458,12 @@ The code below constructs a line plot (superimposed with a point) of the
 various types (food, service and ambience) of ratings, contained in
 columns 2 to 4 of \texttt{wide\_df}, against the overall restaurant
 rating in column 5 of \texttt{wide\_df} as shown in Figure 1.
+
+\emph{In example 1, should X lab be restaurant or one type rating? The
+one made by ggmatplot is different from the one made by ggplot.
+Currently, the plot does not show a clear relationship between various
+types and the overall rating. Is it better to compare the ratings among
+restaurants? -- commented by XL}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -503,6 +514,12 @@ legend). CAN WE \texttt{fct\_inorder} SO THAT THE MONTHS APPEAR IN ORDER
 OF THEIR COLUMN NAMES? EMI HAS ALREADY PICKED THIS UP AS AN
 ISSUE\ldots{}
 
+\emph{Now the color and fill has been removed by default for boxplot by
+default, there is no legend. We may need to change the demonstration of
+Example 2. -- commented by XL} \emph{Another question is that only the
+github version has such setting. Do I need to submit the new version to
+CRAN? -- commented by XL}
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggmatplot)}
@@ -545,6 +562,10 @@ WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE
 ABOVE CAN BE DONE BY APPLY \texttt{boxplot}, AND HENCE WHY I WROTE
 VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R?
 
+\emph{The other option is the density plot which can not be done by
+matplot--commented by XL. But since there are too many months, it might
+not be a good idea. -- commented by XL}
+
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
 
@@ -570,39 +591,39 @@ Fellowship DE200100435.
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-mosaicData}{}}%
+\leavevmode\hypertarget{ref-mosaicData}{}%
 Pruim, R., Kaplan, D., \& Horton, N. (2021). \emph{mosaicData: Project
 MOSAIC data sets}. Retrieved from
 \url{https://CRAN.R-project.org/package=mosaicData}
 
-\leavevmode\vadjust pre{\hypertarget{ref-rstats}{}}%
+\leavevmode\hypertarget{ref-rstats}{}%
 R Core Team. (2021). \emph{R: A language and environment for statistical
 computing}. Vienna, Austria: R Foundation for Statistical Computing.
 Retrieved from \url{https://www.R-project.org/}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2010-kt}{}}%
+\leavevmode\hypertarget{ref-Wickham2010-kt}{}%
 Wickham, H. (2010). A layered grammar of graphics. \emph{Journal of
 computational and graphical statistics: a joint publication of American
 Statistical Association, Institute of Mathematical Statistics, Interface
 Foundation of North America}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2014-gy}{}}%
+\leavevmode\hypertarget{ref-Wickham2014-gy}{}%
 Wickham, H. (2014). Tidy data. \emph{Journal of Statistical Software},
 \emph{59}(10), 1--23.
 doi:\href{https://doi.org/10.18637/jss.v059.i10}{10.18637/jss.v059.i10}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2016}{}}%
+\leavevmode\hypertarget{ref-Wickham2016}{}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}.
 Springer-Verlag New York. Retrieved from
 \url{https://ggplot2.tidyverse.org}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2019}{}}%
+\leavevmode\hypertarget{ref-Wickham2019}{}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
 François, R., Grolemund, G., et al. (2019). Welcome to the {tidyverse}.
 \emph{Journal of Open Source Software}, \emph{4}(43), 1686.
 doi:\href{https://doi.org/10.21105/joss.01686}{10.21105/joss.01686}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wilkinson2005-oz}{}}%
+\leavevmode\hypertarget{ref-Wilkinson2005-oz}{}%
 Wilkinson, L. (2005). \emph{The grammar of graphics}. Springer.
 
 \end{CSLReferences}

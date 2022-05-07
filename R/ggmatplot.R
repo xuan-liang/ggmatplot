@@ -244,7 +244,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
         "geom_violin",
         c(
           list(mapping = aes(
-            x = Group,
+            x = factor(Group, levels = unique(Group)),
             y = .data[[yname]]
           )),
           params
@@ -257,7 +257,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
         "geom_boxplot",
         c(
           list(mapping = aes(
-            x = Group,
+            x = factor(Group, levels = unique(Group)),
             y = .data[[yname]]
           )),
           params

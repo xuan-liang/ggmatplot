@@ -368,9 +368,18 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
 
   # if both color and fill values are not defined, use default values
   if (is.null(color) & is.null(fill)) {
-    p <- p +
-      scale_fill_discrete(name = legend_title, labels = legend_label) +
-      scale_color_discrete(name = legend_title, labels = legend_label)
+    # removing default coloring by groups for violin and boxplots
+    if(plot_type %in% c("violin","boxplot")){
+      p <- p +
+        scale_fill_manual(name = legend_title, labels = legend_label, values = rep("white",numGroups)) +
+        scale_color_manual(name = legend_title, labels = legend_label, values = rep("black",numGroups)) +
+        theme(legend.position = "none")
+    } else{
+      p <- p +
+        scale_fill_discrete(name = legend_title, labels = legend_label) +
+        scale_color_discrete(name = legend_title, labels = legend_label)
+    }
+
   }
 
   if (!is.null(shape)) {

@@ -48,6 +48,8 @@ The layered grammar of graphics [@Wickham2010-kt], implemented as the `ggplot2` 
 XL: Regarding Francis' question, I don't know if the long format or wide format data are well defined in the literature. If it is, we definitely can mention it. If not, do we need to define it? --commented by XL 
 
 FKCH: @Emi you know the literature best. Can you make a decision on this? Thanks!
+
+ET: I don't think we should mention long/wide -- there's more nuance than that. 
 -->
 
 The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot`  may be considered as a `ggplot` version of `matplot` with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly, such as comparative violin plots. 
@@ -111,7 +113,7 @@ R5 & overall & 3.3\\
 
 \begin{table}
 
-\caption{\label{tab:tab3}The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the R pacakge  	exttt{mosaicData} (Prium, Kaplan \& Horton, 2021).}
+\caption{\label{tab:tab3}The first 6 rows and 11 columns of the snowfall data for Grand Rapids, Michigan in the R pacakge  \texttt{mosaicData} (Prium, Kaplan \& Horton, 2021).}
 \centering
 \begin{tabular}[t]{rrrrrrrrrrr}
 \toprule
@@ -141,7 +143,11 @@ In this section, we demonstrate the use of the `ggmatplot` package and contrast 
 
 The code below constructs a line plot (superimposed with a point) of the various types (food, service and ambience) of ratings, contained in columns 2 to 4 of `wide_df`, against the overall rating in column 5 of `wide_df` as shown in Figure 1.
 
-<!-- Something is wrong in ggmatplot CRAN version with order of legend!!! The legend is displaying things in order of appearance, but the lines are plotting in alphabetical order. See ggplot below for correct order -->
+<!-- Something is wrong in ggmatplot CRAN version with order of legend!!! The legend is displaying things in order of appearance, but the lines are plotting in alphabetical order. See ggplot below for correct order 
+
+ET: fixed in the latest github version.
+
+-->
 
 
 ```r
@@ -173,13 +179,14 @@ wide_df %>%
 
 ## Example 2
 
-The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. removal of the legend). 
+The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. addition of a title). 
 
 
 ```r
 library(ggmatplot)
 ggmatplot(x = SnowGR[, 3:14], plot_type = "boxplot",
-          xlab = "Month",  ylab = "Snowfall")
+          xlab = "Month",  ylab = "Snowfall") + 
+          ggtitle("Grand Rapids, Michigan, 1893-2011")
 ```
 
 ![The distribution of the amount of snowfall at Grand Rapids, Michigan, across months from 1893-2011.](paper_files/figure-latex/matplot3-1.pdf) 
@@ -189,20 +196,24 @@ The equivalent code for the above to produce Figure 2 without using `ggmatplot` 
 
 ```r
 library(ggplot2)
-library(tidyr) # or library(tidyverse)
+library(tidyr) 
+library(forcats) # or library(tidyverse)
 SnowGR %>% 
   pivot_longer(Jul:Jun, 
                names_to = "Month",
                values_to = "Snowfall") %>% 
   mutate(Month = fct_inorder(Month)) %>% 
   ggplot(aes(Month, Snowfall)) + 
-  geom_boxplot()
+  geom_boxplot() + 
+  ggtitle("Grand Rapids, Michigan, 1893-2011")
 ```
 
 
 <!-- FKCH: WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE ABOVE CAN BE DONE BY APPLY `boxplot`, AND HENCE WHY I WROTE VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R? 
 
 XL: The other option is the density plot which can not be done by matplot--commented by XL. But since there are too many months, it might not be a good idea. -
+
+ET: violin plot doesn't look good here so I'd rather stick with boxplot.  I don't think we need to emphasise how it can provide more plots than matplot because it already offers an advantage of being a ggplot object, and thus leverage existing ggplot customisation
 -->
 
 # Discussion

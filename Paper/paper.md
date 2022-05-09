@@ -42,7 +42,7 @@ nocite: '@mosaicData'
 
 # Summary
 
-The layered grammar of graphics [@Wickham2010-kt], implemented as the `ggplot2` package [@Wickham2016] in the statistical language R [@rstats], is a powerful and popular tool to create versatile statistical graphics. However, this graphical system requires input data to be organised in a manner that a data column is mapped to an aesthetic element (e.g. x-coordinate, y-coordinate, color, size), which creates friction in constructing plots with an aesthetic element that span multiple columns in the original data by requiring users to re-organise the data.  
+The layered grammar of graphics [@Wickham2010-kt], implemented as the `ggplot2` package [@Wickham2016] in the statistical language R [@rstats], is a powerful and popular tool to create versatile statistical graphics. However, this graphical system requires input data to be organised in a manner that a data column is mapped to an aesthetic element (e.g., x-coordinate, y-coordinate, color, size), which creates friction in constructing plots with an aesthetic element that spans multiple columns in the original data, as it requires the user to reorganise the data.  
 <!-- FKCH: Should we use the words long and wide format data frames here, or is that wrong? I only ask because I (maybe others?) think about ggplot requiring long format data, but we want to wide formatting? 
 
 XL: Regarding Francis' question, I don't know if the long format or wide format data are well defined in the literature. If it is, we definitely can mention it. If not, do we need to define it? --commented by XL 
@@ -52,12 +52,12 @@ FKCH: @Emi you know the literature best. Can you make a decision on this? Thanks
 ET: I don't think we should mention long/wide -- there's more nuance than that. 
 -->
 
-The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot`  may be considered as a `ggplot` version of `matplot` with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly, such as comparative violin plots. 
+The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot` may be considered as a `ggplot` version of `matplot`, with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly e.g., comparative violin plots. 
 
 
 # Statement of need
 
-Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This generally works well where data is tidied in a long rectangular form, often referred to as "tidy data" [@Wickham2014-gy], where each row represents an observational unit, each column represents a variable, and each cell represents a value. In some cases, what constitutes a variable (or observational unit), and hence a column (or row), in tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. Table \ref{tab:tab3} contains months of the year across a number of column names.
+Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This generally works well where data is tidied in a long rectangular form, often referred to as "tidy data" [@Wickham2014-gy], where each row represents an observational unit, each column represents a variable, and each cell represents a value. However, in some cases what constitutes a variable (or observational unit), and hence a column (or row), in tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can both be considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. Table \ref{tab:tab3} contains months of the year across a number of column names.
 
 \begin{table}
 
@@ -129,7 +129,8 @@ SeasonStart & SeasonEnd & Jul & Aug & Sep & Oct & Nov & Dec & Jan & Feb & Mar\\
 \end{tabular}
 \end{table}
 
-The organisation of the data is largely dependent on the downstream analysis, and there is no one correct way to do this. Some forms of multivariate data, e.g. Table \ref{tab:tab3}, are prevalent in many scientific fields because it aligns with the input data for a particular modelling software, and/or the format is more convenient for input or view of the data in spreadsheet format (say). Unfortunately, this format is not consistent with the required format for `ggplot2`, and consequently plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly visualise these types of data (as part of their exploratory data analysis, say). The `ggmatplot` R-package seeks to provide a solution to this common friction in producing plots with `ggplot2`. 
+The organisation of the data is largely dependent on the subsequent analysis, and there is no one correct way to do this. Some forms of multivariate data, e.g. Table \ref{tab:tab3}, are prevalent in many scientific fields because it aligns with the input data for a particular modelling software, and/or the format is more convenient for input or view of the data in spreadsheet format (say). Unfortunately, this format is not consistent with the required format for `ggplot2`, and consequently plotting with `ggplot2` interrupts the workflow of a user that is trying to quickly visualise these types of data (as part of their exploratory data analysis, for example). The `ggmatplot` R-package seeks to provide a solution to this common friction. 
+<!-- in producing plots with `ggplot2`.  -->
 
 
 
@@ -158,7 +159,7 @@ ggmatplot(x = wide_df[, 5], y = wide_df[, 2:4], plot_type = "both",
 
 ![Line plot of the food, service, and ambience ratings versus overall rating, for five restaurants.](paper_files/figure-latex/matplot2-1.pdf) 
 
-In contrast to the above, using `ggplot2` alone, the data must be wrangled to a long form first before plotting, as exemplified in the code below, in order to obtain the same result as Figure 1. This adds a small, but noticeable, friction to the workflow for the practitioner that is looking to promptly explore their data. 
+In contrast to the above, using `ggplot2` alone to obtain the same result as Figure 1 requires the data be wrangled to a long form first before plotting. This is exemplified in the code below, from which we identify a small, but noticeable, friction to the workflow for the practitioner that is looking to promptly explore their data. 
 
 
 ```r
@@ -179,7 +180,7 @@ wide_df %>%
 
 ## Example 2
 
-The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. addition of a title). 
+The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data, as presented in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g., addition of a title). 
 
 
 ```r
@@ -191,7 +192,7 @@ ggmatplot(x = SnowGR[, 3:14], plot_type = "boxplot",
 
 ![The distribution of the amount of snowfall at Grand Rapids, Michigan, across months from 1893-2011.](paper_files/figure-latex/matplot3-1.pdf) 
 
-The equivalent code for the above to produce Figure 2 without using `ggmatplot` is given below. Again, we observe a slight but non-negligible friction in putting the data in the right format prior to plotting. The original wide data format like those shown in Table \ref{tab:tab3} is common in the environmental sciences among other disciplines, and thus an analyst who has to repeat these tasks can benefit from a quick approach as `ggmatplot` offers.
+The equivalent code to produce Figure 2 without using `ggmatplot` is given below. Again, we observe a slight but non-negligible friction in putting the data in the right format prior to plotting. The original wide data format as seen in Table \ref{tab:tab3} is common in the environmental sciences, among other disciplines, and thus an analyst who has to repeat these tasks can benefit from a quick approach as `ggmatplot` offers.
 
 
 ```r
@@ -218,7 +219,7 @@ ET: violin plot doesn't look good here so I'd rather stick with boxplot.  I don'
 
 # Discussion
 
-The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an excellent start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
+The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While a important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
 
 # Acknowledgements 
 

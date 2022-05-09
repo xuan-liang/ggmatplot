@@ -56,7 +56,7 @@
 \fancyhf{}
 %\renewcommand{\headrulewidth}{0.50pt}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/home/fkch/R/x86_64-pc-linux-gnu-library/3.6/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
 \fancyhead[C]{}
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -151,6 +151,34 @@ data. \textit{Journal of Open Source Software}, (), . \href{https://doi.org/}{ht
             pdfborder={0 0 0},
             breaklinks=true}
 \urlstyle{same}  % don't use monospace font for urls
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% Pandoc syntax highlighting
 \usepackage{color}
 \usepackage{fancyvrb}
 \newcommand{\VerbBar}{|}
@@ -191,40 +219,19 @@ data. \textit{Journal of Open Source Software}, (), . \href{https://doi.org/}{ht
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{graphicx,grffile}
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-\IfFileExists{parskip.sty}{%
-\usepackage{parskip}
-}{% else
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{6pt plus 2pt minus 1pt}
-}
-\setlength{\emergencystretch}{3em}  % prevent overfull lines
+
+% tightlist command for lists without linebreak
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-\setcounter{secnumdepth}{0}
-% Redefines (sub)paragraphs to behave more like sections
-\ifx\paragraph\undefined\else
-\let\oldparagraph\paragraph
-\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
-\fi
-\ifx\subparagraph\undefined\else
-\let\oldsubparagraph\subparagraph
-\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
-\fi
+
 
 % Pandoc citation processing
-\newlength{\csllabelwidth}
-\setlength{\csllabelwidth}{3em}
 \newlength{\cslhangindent}
 \setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
 % for Pandoc 2.8 to 2.10.1
 \newenvironment{cslreferences}%
   {}%
@@ -234,14 +241,15 @@ data. \textit{Journal of Open Source Software}, (), . \href{https://doi.org/}{ht
  {% don't indent paragraphs
   \setlength{\parindent}{0pt}
   % turn on hanging indent if param 1 is 1
-  \ifodd #1 \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces\fi
-  % set entry spacing
-  \ifnum #2 > 0
-  \setlength{\parskip}{#2\baselineskip}
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
   \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
  }%
  {}
-\usepackage{calc} % for calculating minipage widths
+\usepackage{calc}
 \newcommand{\CSLBlock}[1]{#1\hfill\break}
 \newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
 \newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
@@ -313,21 +321,21 @@ The layered grammar of graphics (Wickham, 2010), implemented as the
 (R Core Team, 2021), is a powerful and popular tool to create versatile
 statistical graphics. However, this graphical system requires input data
 to be organised in a manner that a data column is mapped to an aesthetic
-element (e.g.~x-coordinate, y-coordinate, color, size), which creates
-friction in constructing plots with an aesthetic element that span
-multiple columns in the original data by requiring users to re-organise
-the data.\\
+element (e.g., x-coordinate, y-coordinate, color, size), which creates
+friction in constructing plots with an aesthetic element that spans
+multiple columns in the original data, as it requires the user to
+reorganise the data.\\
 
 The \texttt{ggmatplot}, built upon \texttt{ggplot2}, is an R-package
 that allows quick plotting across the columns of matrices or data with
 the result returned as a \texttt{ggplot} object. The package is inspired
 by the function \texttt{matplot()} in the core R \texttt{graphics}
 system -- as such, \texttt{ggmatplot} may be considered as a
-\texttt{ggplot} version of \texttt{matplot} with the benefits of
+\texttt{ggplot} version of \texttt{matplot}, with the benefits of
 customising the plots as any other \texttt{ggplot} objects via
 \texttt{ggplot2} functions, as well as offering several other plotting
-types that are not immediately available from \texttt{matplot} directly,
-such as comparative violin plots.
+types that are not immediately available from \texttt{matplot} directly
+e.g., comparative violin plots.
 
 \hypertarget{statement-of-need}{%
 \section{Statement of need}\label{statement-of-need}}
@@ -337,13 +345,13 @@ organised in a manner that maps data columns to aesthetic elements. This
 generally works well where data is tidied in a long rectangular form,
 often referred to as ``tidy data'' (Wickham, 2014), where each row
 represents an observational unit, each column represents a variable, and
-each cell represents a value. In some cases, what constitutes a variable
-(or observational unit), and hence a column (or row), in tidy data can
-be dependent upon interpretation or downstream interest (e.g.~Tables
-\ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data),
-but a clear violation of tidy data principles is when the column names
-contain data values, e.g.~Table \ref{tab:tab3} contains months of the
-year across a number of column names.
+each cell represents a value. However, in some cases what constitutes a
+variable (or observational unit), and hence a column (or row), in tidy
+data can be dependent upon interpretation or downstream interest
+(e.g.~Tables \ref{tab:tab1} and \ref{tab:tab2} can both be considered as
+tidy data), but a clear violation of tidy data principles is when the
+column names contain data values, e.g.~Table \ref{tab:tab3} contains
+months of the year across a number of column names.
 
 \begin{table}
 
@@ -414,7 +422,7 @@ SeasonStart & SeasonEnd & Jul & Aug & Sep & Oct & Nov & Dec & Jan & Feb & Mar\\
 \end{tabular}
 \end{table}
 
-The organisation of the data is largely dependent on the downstream
+The organisation of the data is largely dependent on the subsequent
 analysis, and there is no one correct way to do this. Some forms of
 multivariate data, e.g.~Table \ref{tab:tab3}, are prevalent in many
 scientific fields because it aligns with the input data for a particular
@@ -423,9 +431,8 @@ view of the data in spreadsheet format (say). Unfortunately, this format
 is not consistent with the required format for \texttt{ggplot2}, and
 consequently plotting with \texttt{ggplot2} interrupts the workflow of a
 user that is trying to quickly visualise these types of data (as part of
-their exploratory data analysis, say). The \texttt{ggmatplot} R-package
-seeks to provide a solution to this common friction in producing plots
-with \texttt{ggplot2}.
+their exploratory data analysis, for example). The \texttt{ggmatplot}
+R-package seeks to provide a solution to this common friction.
 
 \hypertarget{examples}{%
 \section{Examples}\label{examples}}
@@ -460,11 +467,11 @@ column 5 of \texttt{wide\_df} as shown in Figure 1.
 overall rating, for five restaurants.}
 \end{figure}
 
-In contrast to the above, using \texttt{ggplot2} alone, the data must be
-wrangled to a long form first before plotting, as exemplified in the
-code below, in order to obtain the same result as Figure 1. This adds a
-small, but noticeable, friction to the workflow for the practitioner
-that is looking to promptly explore their data.
+In contrast to the above, using \texttt{ggplot2} alone to obtain the
+same result as Figure 1 requires the data be wrangled to a long form
+first before plotting. This is exemplified in the code below, from which
+we identify a small, but noticeable, friction to the workflow for the
+practitioner that is looking to promptly explore their data.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -487,9 +494,9 @@ that is looking to promptly explore their data.
 \subsection{Example 2}\label{example-2}}
 
 The example code draws the boxplot of each column of amount of snowfall
-across months in the \texttt{SnowGR} data as shown in Figure 2. As the
-resulting object is a \texttt{ggplot} object, the user can leverage the
-\texttt{ggplot} functions to modify the output (e.g.~addition of a
+across months in the \texttt{SnowGR} data, as presented in Figure 2. As
+the resulting object is a \texttt{ggplot} object, the user can leverage
+the \texttt{ggplot} functions to modify the output (e.g., addition of a
 title).
 
 \begin{Shaded}
@@ -508,13 +515,13 @@ title).
 Michigan, across months from 1893-2011.}
 \end{figure}
 
-The equivalent code for the above to produce Figure 2 without using
-\texttt{ggmatplot} is given below. Again, we observe a slight but
-non-negligible friction in putting the data in the right format prior to
-plotting. The original wide data format like those shown in Table
-\ref{tab:tab3} is common in the environmental sciences among other
-disciplines, and thus an analyst who has to repeat these tasks can
-benefit from a quick approach as \texttt{ggmatplot} offers.
+The equivalent code to produce Figure 2 without using \texttt{ggmatplot}
+is given below. Again, we observe a slight but non-negligible friction
+in putting the data in the right format prior to plotting. The original
+wide data format as seen in Table \ref{tab:tab3} is common in the
+environmental sciences, among other disciplines, and thus an analyst who
+has to repeat these tasks can benefit from a quick approach as
+\texttt{ggmatplot} offers.
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -538,7 +545,7 @@ benefit from a quick approach as \texttt{ggmatplot} offers.
 The \texttt{ggmatplot} R-package provides a solution to a common
 friction encountered when wanting to quickly plot multivariate data,
 where the primary interest is mapping the column names as an aesthetic
-element. While an excellent start, we also acknowledge that solution
+element. While a important start, we also acknowledge that solution
 provided is a recipe-driven approach, where the user can only produce
 plot types as many there are included in the \texttt{plot\_type} option.
 Future developments of the package could benefit from using a grammar

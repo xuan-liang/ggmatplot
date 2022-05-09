@@ -56,7 +56,7 @@
 \fancyhf{}
 %\renewcommand{\headrulewidth}{0.50pt}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/home/fkch/R/x86_64-pc-linux-gnu-library/3.6/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
 \fancyhead[C]{}
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -485,7 +485,7 @@ practitioner that is looking to promptly explore their data.
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ overall\_rating, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ rating\_type)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}
   \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ rating\_type, }\AttributeTok{linetype =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}
-  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Restaurant"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Rating"}\NormalTok{, }
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Overall rating"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Rating"}\NormalTok{, }
        \AttributeTok{color =} \StringTok{"Type"}\NormalTok{, }\AttributeTok{linetype =} \StringTok{"Type"}\NormalTok{, }\AttributeTok{shape =} \StringTok{"Type"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
@@ -545,7 +545,7 @@ has to repeat these tasks can benefit from a quick approach as
 The \texttt{ggmatplot} R-package provides a solution to a common
 friction encountered when wanting to quickly plot multivariate data,
 where the primary interest is mapping the column names as an aesthetic
-element. While a important start, we also acknowledge that solution
+element. While an important start, we also acknowledge that solution
 provided is a recipe-driven approach, where the user can only produce
 plot types as many there are included in the \texttt{plot\_type} option.
 Future developments of the package could benefit from using a grammar
@@ -564,39 +564,39 @@ Fellowship DE200100435.
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\vadjust pre{\hypertarget{ref-mosaicData}{}}%
+\leavevmode\hypertarget{ref-mosaicData}{}%
 Pruim, R., Kaplan, D., \& Horton, N. (2021). \emph{mosaicData: Project
 MOSAIC data sets}. Retrieved from
 \url{https://CRAN.R-project.org/package=mosaicData}
 
-\leavevmode\vadjust pre{\hypertarget{ref-rstats}{}}%
+\leavevmode\hypertarget{ref-rstats}{}%
 R Core Team. (2021). \emph{R: A language and environment for statistical
 computing}. Vienna, Austria: R Foundation for Statistical Computing.
 Retrieved from \url{https://www.R-project.org/}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2010-kt}{}}%
+\leavevmode\hypertarget{ref-Wickham2010-kt}{}%
 Wickham, H. (2010). A layered grammar of graphics. \emph{Journal of
 computational and graphical statistics: a joint publication of American
 Statistical Association, Institute of Mathematical Statistics, Interface
 Foundation of North America}.
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2014-gy}{}}%
+\leavevmode\hypertarget{ref-Wickham2014-gy}{}%
 Wickham, H. (2014). Tidy data. \emph{Journal of Statistical Software},
 \emph{59}(10), 1--23.
 doi:\href{https://doi.org/10.18637/jss.v059.i10}{10.18637/jss.v059.i10}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2016}{}}%
+\leavevmode\hypertarget{ref-Wickham2016}{}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}.
 Springer-Verlag New York. Retrieved from
 \url{https://ggplot2.tidyverse.org}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wickham2019}{}}%
+\leavevmode\hypertarget{ref-Wickham2019}{}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
 François, R., Grolemund, G., et al. (2019). Welcome to the {tidyverse}.
 \emph{Journal of Open Source Software}, \emph{4}(43), 1686.
 doi:\href{https://doi.org/10.21105/joss.01686}{10.21105/joss.01686}
 
-\leavevmode\vadjust pre{\hypertarget{ref-Wilkinson2005-oz}{}}%
+\leavevmode\hypertarget{ref-Wilkinson2005-oz}{}%
 Wilkinson, L. (2005). \emph{The grammar of graphics}. Springer.
 
 \end{CSLReferences}

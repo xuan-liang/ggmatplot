@@ -155,7 +155,7 @@ wide_df %>%
   ggplot(aes(x = overall_rating, y = rating, color = rating_type)) + 
   geom_point(aes(shape = rating_type)) +
   geom_line(aes(group = rating_type, linetype = rating_type)) +
-  labs(x = "Restaurant", y = "Rating", 
+  labs(x = "Overall rating", y = "Rating", 
        color = "Type", linetype = "Type", shape = "Type")
 ```
 
@@ -197,7 +197,7 @@ ET: violin plot doesn't look good here so I'd rather stick with boxplot.  I don'
 
 # Discussion
 
-The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While a important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
+The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
 
 # Acknowledgements 
 

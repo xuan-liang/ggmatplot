@@ -56,7 +56,7 @@
 \fancyhf{}
 %\renewcommand{\headrulewidth}{0.50pt}
 \renewcommand{\headrulewidth}{0pt}
-\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
+\fancyhead[L]{\hspace{-0.75cm}\includegraphics[width=5.5cm]{/home/fkch/R/x86_64-pc-linux-gnu-library/3.6/rticles/rmarkdown/templates/joss/resources/JOSS-logo.png}}
 \fancyhead[C]{}
 \fancyhead[R]{}
 \renewcommand{\footrulewidth}{0.25pt}
@@ -326,11 +326,6 @@ friction in constructing plots with an aesthetic element that span
 multiple columns in the original data by requiring users to re-organise
 the data.\\
 
-\emph{Regarding Francis' question, I don't know if the long format or
-wide format data are well defined in the literature. If it is, we
-definitely can mention it. If not, do we need to define it? --commented
-by XL}
-
 The \texttt{ggmatplot}, built upon \texttt{ggplot2}, is an R-package
 that allows quick plotting across the columns of matrices or data with
 the result returned as a \texttt{ggplot} object. The package is inspired
@@ -355,9 +350,8 @@ each cell represents a value. In some cases, what constitutes a variable
 be dependent upon interpretation or downstream interest (e.g.~Tables
 \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data),
 but a clear violation of tidy data principles is when the column names
-contain data values, e.g.~\emph{Table \ref{tab:tab3} contain the name of
-the species across a number of column names.} THIS IS WRONG? THERE ARE
-NO SPECIES HERE?
+contain data values, e.g.~Table \ref{tab:tab3} contains months of the
+year across a number of column names.
 
 \begin{table}
 
@@ -456,28 +450,22 @@ wrangling using \texttt{dplyr} and \texttt{tidyr} (Wickham et al.,
 
 The code below constructs a line plot (superimposed with a point) of the
 various types (food, service and ambience) of ratings, contained in
-columns 2 to 4 of \texttt{wide\_df}, against the overall restaurant
-rating in column 5 of \texttt{wide\_df} as shown in Figure 1.
-
-\emph{In example 1, should X lab be restaurant or rating? The one made
-by ggmatplot is different from the one made by ggplot. Currently, the
-plot does not show a clear relationship between various types and the
-overall rating. Is it better to compare the ratings among restaurants?
--- commented by XL}
+columns 2 to 4 of \texttt{wide\_df}, against the overall rating in
+column 5 of \texttt{wide\_df} as shown in Figure 1.
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggmatplot)}
-\FunctionTok{ggmatplot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wide\_df[, }\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], }\AttributeTok{y =}\NormalTok{ wide\_df[, }\DecValTok{5}\NormalTok{], }\AttributeTok{plot\_type =} \StringTok{"both"}\NormalTok{,}
-          \AttributeTok{xlab =} \StringTok{"Rating"}\NormalTok{,  }\AttributeTok{ylab =} \StringTok{"Overall rating"}\NormalTok{, }\AttributeTok{legend\_title =} \StringTok{"Type"}\NormalTok{) }
+\FunctionTok{ggmatplot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ wide\_df[, }\DecValTok{5}\NormalTok{], }\AttributeTok{y =}\NormalTok{ wide\_df[, }\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{], }\AttributeTok{plot\_type =} \StringTok{"both"}\NormalTok{,}
+          \AttributeTok{xlab =} \StringTok{"Overall rating"}\NormalTok{,  }\AttributeTok{ylab =} \StringTok{"Rating"}\NormalTok{, }\AttributeTok{legend\_title =} \StringTok{"Type"}\NormalTok{) }
 \end{Highlighting}
 \end{Shaded}
 
 \begin{figure}
 \centering
 \includegraphics{paper_files/figure-latex/matplot2-1.pdf}
-\caption{Line plot of the food, service and ambience rating against the
-overall restaurant rating.}
+\caption{Line plot of the food, service, and ambience ratings versus
+overall rating, for five restaurants.}
 \end{figure}
 
 In contrast to the above, using \texttt{ggplot2} alone, the data must be
@@ -495,7 +483,7 @@ that is looking to promptly explore their data.
   \FunctionTok{pivot\_longer}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{overall\_rating, }
                \AttributeTok{names\_to =} \StringTok{"rating\_type"}\NormalTok{,}
                \AttributeTok{values\_to =} \StringTok{"rating"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(rating, overall\_rating, }\AttributeTok{color =}\NormalTok{ rating\_type)) }\SpecialCharTok{+} 
+  \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ overall\_rating, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ rating\_type)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}
   \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ rating\_type, }\AttributeTok{linetype =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}
   \FunctionTok{labs}\NormalTok{(}\AttributeTok{x =} \StringTok{"Restaurant"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Rating"}\NormalTok{, }
@@ -510,22 +498,13 @@ The example code draws the boxplot of each column of amount of snowfall
 across months in the \texttt{SnowGR} data as shown in Figure 2. As the
 resulting object is a \texttt{ggplot} object, the user can leverage the
 \texttt{ggplot} functions to modify the output (e.g.~removal of the
-legend). CAN WE \texttt{fct\_inorder} SO THAT THE MONTHS APPEAR IN ORDER
-OF THEIR COLUMN NAMES? EMI HAS ALREADY PICKED THIS UP AS AN
-ISSUE\ldots{}
-
-\emph{Now the color and fill has been removed for boxplot. So by
-default, there is no legend. We may need to change the demonstration of
-Example 2. -- commented by XL} \emph{Another question is that only the
-github version has such setting. Do I need to submit the new version to
-CRAN? -- commented by XL}
+legend).
 
 \begin{Shaded}
 \begin{Highlighting}[]
 \FunctionTok{library}\NormalTok{(ggmatplot)}
 \FunctionTok{ggmatplot}\NormalTok{(}\AttributeTok{x =}\NormalTok{ SnowGR[, }\DecValTok{3}\SpecialCharTok{:}\DecValTok{14}\NormalTok{], }\AttributeTok{plot\_type =} \StringTok{"boxplot"}\NormalTok{,}
-          \AttributeTok{xlab =} \StringTok{"Month"}\NormalTok{,  }\AttributeTok{ylab =} \StringTok{"Snowfall"}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{guides}\NormalTok{(}\AttributeTok{color =} \StringTok{"none"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"none"}\NormalTok{)}
+          \AttributeTok{xlab =} \StringTok{"Month"}\NormalTok{,  }\AttributeTok{ylab =} \StringTok{"Snowfall"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
@@ -552,19 +531,11 @@ benefit from a quick approach as \texttt{ggmatplot} offers.
   \FunctionTok{pivot\_longer}\NormalTok{(Jul}\SpecialCharTok{:}\NormalTok{Jun, }
                \AttributeTok{names\_to =} \StringTok{"Month"}\NormalTok{,}
                \AttributeTok{values\_to =} \StringTok{"Snowfall"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{Month =} \FunctionTok{fct\_inorder}\NormalTok{(Month)) }\SpecialCharTok{\%\textgreater{}\%} 
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(Month, Snowfall)) }\SpecialCharTok{+} 
-  \FunctionTok{geom\_boxplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{color =}\NormalTok{ Month, }\AttributeTok{fill =}\NormalTok{ Month), }\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{) }\SpecialCharTok{+}
-  \FunctionTok{guides}\NormalTok{(}\AttributeTok{color =} \StringTok{"none"}\NormalTok{, }\AttributeTok{fill =} \StringTok{"none"}\NormalTok{)}
+  \FunctionTok{geom\_boxplot}\NormalTok{()}
 \end{Highlighting}
 \end{Shaded}
-
-WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE
-ABOVE CAN BE DONE BY APPLY \texttt{boxplot}, AND HENCE WHY I WROTE
-VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R?
-
-\emph{The other option is the density plot which can not be done by
-matplot--commented by XL. But since there are too many months, it might
-not be a good idea. -- commented by XL}
 
 \hypertarget{discussion}{%
 \section{Discussion}\label{discussion}}
@@ -591,39 +562,39 @@ Fellowship DE200100435.
 
 \hypertarget{refs}{}
 \begin{CSLReferences}{1}{0}
-\leavevmode\hypertarget{ref-mosaicData}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-mosaicData}{}}%
 Pruim, R., Kaplan, D., \& Horton, N. (2021). \emph{mosaicData: Project
 MOSAIC data sets}. Retrieved from
 \url{https://CRAN.R-project.org/package=mosaicData}
 
-\leavevmode\hypertarget{ref-rstats}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-rstats}{}}%
 R Core Team. (2021). \emph{R: A language and environment for statistical
 computing}. Vienna, Austria: R Foundation for Statistical Computing.
 Retrieved from \url{https://www.R-project.org/}
 
-\leavevmode\hypertarget{ref-Wickham2010-kt}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2010-kt}{}}%
 Wickham, H. (2010). A layered grammar of graphics. \emph{Journal of
 computational and graphical statistics: a joint publication of American
 Statistical Association, Institute of Mathematical Statistics, Interface
 Foundation of North America}.
 
-\leavevmode\hypertarget{ref-Wickham2014-gy}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2014-gy}{}}%
 Wickham, H. (2014). Tidy data. \emph{Journal of Statistical Software},
 \emph{59}(10), 1--23.
 doi:\href{https://doi.org/10.18637/jss.v059.i10}{10.18637/jss.v059.i10}
 
-\leavevmode\hypertarget{ref-Wickham2016}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2016}{}}%
 Wickham, H. (2016). \emph{ggplot2: Elegant graphics for data analysis}.
 Springer-Verlag New York. Retrieved from
 \url{https://ggplot2.tidyverse.org}
 
-\leavevmode\hypertarget{ref-Wickham2019}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Wickham2019}{}}%
 Wickham, H., Averick, M., Bryan, J., Chang, W., McGowan, L. D.,
 François, R., Grolemund, G., et al. (2019). Welcome to the {tidyverse}.
 \emph{Journal of Open Source Software}, \emph{4}(43), 1686.
 doi:\href{https://doi.org/10.21105/joss.01686}{10.21105/joss.01686}
 
-\leavevmode\hypertarget{ref-Wilkinson2005-oz}{}%
+\leavevmode\vadjust pre{\hypertarget{ref-Wilkinson2005-oz}{}}%
 Wilkinson, L. (2005). \emph{The grammar of graphics}. Springer.
 
 \end{CSLReferences}

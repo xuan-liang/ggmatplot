@@ -24,7 +24,7 @@ affiliations:
   - name: Department of Econometrics and Business Statistics, Monash University
     index: 2
 citation_author: Liang et. al.
-date: "2022-05-07"
+date: "2022-05-09"
 year: 2022
 bibliography: paper.bib
 output: 
@@ -43,16 +43,19 @@ nocite: '@mosaicData'
 # Summary
 
 The layered grammar of graphics [@Wickham2010-kt], implemented as the `ggplot2` package [@Wickham2016] in the statistical language R [@rstats], is a powerful and popular tool to create versatile statistical graphics. However, this graphical system requires input data to be organised in a manner that a data column is mapped to an aesthetic element (e.g. x-coordinate, y-coordinate, color, size), which creates friction in constructing plots with an aesthetic element that span multiple columns in the original data by requiring users to re-organise the data.  
-<!-- Should we use the words long and wide format data frames here, or is that wrong? I only ask because I (maybe others?) think about ggplot requiring long format data, but we want to wide formatting? -->
+<!-- FKCH: Should we use the words long and wide format data frames here, or is that wrong? I only ask because I (maybe others?) think about ggplot requiring long format data, but we want to wide formatting? 
 
-*Regarding Francis' question, I don't know if the long format or wide format data are well defined in the literature. If it is, we definitely can mention it. If not, do we need to define it? --commented by XL*
+XL: Regarding Francis' question, I don't know if the long format or wide format data are well defined in the literature. If it is, we definitely can mention it. If not, do we need to define it? --commented by XL 
+
+FKCH: @Emi you know the literature best. Can you make a decision on this? Thanks!
+-->
 
 The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot`  may be considered as a `ggplot` version of `matplot` with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly, such as comparative violin plots. 
 
 
 # Statement of need
 
-Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This generally works well where data is tidied in a long rectangular form, often referred to as "tidy data" [@Wickham2014-gy], where each row represents an observational unit, each column represents a variable, and each cell represents a value. In some cases, what constitutes a variable (or observational unit), and hence a column (or row), in tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. *Table \ref{tab:tab3} contain the name of the species across a number of column names.* THIS IS WRONG? THERE ARE NO SPECIES HERE?
+Input data to construct plots with `ggplot2` require data to be organised in a manner that maps data columns to aesthetic elements. This generally works well where data is tidied in a long rectangular form, often referred to as "tidy data" [@Wickham2014-gy], where each row represents an observational unit, each column represents a variable, and each cell represents a value. In some cases, what constitutes a variable (or observational unit), and hence a column (or row), in tidy data can be dependent upon interpretation or downstream interest (e.g. Tables \ref{tab:tab1} and \ref{tab:tab2} can be both considered as tidy data), but a clear violation of tidy data principles is when the column names contain data values, e.g. Table \ref{tab:tab3} contains months of the year across a number of column names.
 
 \begin{table}
 
@@ -136,19 +139,18 @@ In this section, we demonstrate the use of the `ggmatplot` package and contrast 
 
 ## Example 1
 
-The code below constructs a line plot (superimposed with a point) of the various types (food, service and ambience) of ratings, contained in columns 2 to 4 of `wide_df`, against the overall restaurant rating in column 5 of `wide_df` as shown in Figure 1.
+The code below constructs a line plot (superimposed with a point) of the various types (food, service and ambience) of ratings, contained in columns 2 to 4 of `wide_df`, against the overall rating in column 5 of `wide_df` as shown in Figure 1.
 
-*In example 1, should X lab be restaurant or rating? The one made by ggmatplot is different from the one made by ggplot. Currently, the plot does not show a clear relationship between various types and the overall rating. Is it better to compare the ratings among restaurants?  -- commented by XL*
-
+<!-- Something is wrong in ggmatplot CRAN version with order of legend!!! The legend is displaying things in order of appearance, but the lines are plotting in alphabetical order. See ggplot below for correct order -->
 
 
 ```r
 library(ggmatplot)
-ggmatplot(x = wide_df[, 2:4], y = wide_df[, 5], plot_type = "both",
-          xlab = "Rating",  ylab = "Overall rating", legend_title = "Type") 
+ggmatplot(x = wide_df[, 5], y = wide_df[, 2:4], plot_type = "both",
+          xlab = "Overall rating",  ylab = "Rating", legend_title = "Type") 
 ```
 
-![Line plot of the food, service and ambience rating against the overall restaurant rating.](paper_files/figure-latex/matplot2-1.pdf) 
+![Line plot of the food, service, and ambience ratings versus overall rating, for five restaurants.](paper_files/figure-latex/matplot2-1.pdf) 
 
 In contrast to the above, using `ggplot2` alone, the data must be wrangled to a long form first before plotting, as exemplified in the code below, in order to obtain the same result as Figure 1. This adds a small, but noticeable, friction to the workflow for the practitioner that is looking to promptly explore their data. 
 
@@ -161,26 +163,23 @@ wide_df %>%
   pivot_longer(-overall_rating, 
                names_to = "rating_type",
                values_to = "rating") %>% 
-  ggplot(aes(rating, overall_rating, color = rating_type)) + 
+  ggplot(aes(x = overall_rating, y = rating, color = rating_type)) + 
   geom_point(aes(shape = rating_type)) +
   geom_line(aes(group = rating_type, linetype = rating_type)) +
   labs(x = "Restaurant", y = "Rating", 
        color = "Type", linetype = "Type", shape = "Type")
 ```
 
+
 ## Example 2
 
-The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. removal of the legend). CAN WE `fct_inorder` SO THAT THE MONTHS APPEAR IN ORDER OF THEIR COLUMN NAMES? EMI HAS ALREADY PICKED THIS UP AS AN ISSUE...
-
-*Now the color and fill has been removed for boxplot. So by default, there is no legend. We may need to change the demonstration of Example 2. -- commented by XL*
-*Another question is that only the github version has such setting. Do I need to submit the new version to CRAN? -- commented by XL*
+The example code draws the boxplot of each column of amount of snowfall across months in the `SnowGR` data as shown in Figure 2. As the resulting object is a `ggplot` object, the user can leverage the `ggplot` functions to modify the output (e.g. removal of the legend). 
 
 
 ```r
 library(ggmatplot)
 ggmatplot(x = SnowGR[, 3:14], plot_type = "boxplot",
-          xlab = "Month",  ylab = "Snowfall") +
-  guides(color = "none", fill = "none")
+          xlab = "Month",  ylab = "Snowfall")
 ```
 
 ![The distribution of the amount of snowfall at Grand Rapids, Michigan, across months from 1893-2011.](paper_files/figure-latex/matplot3-1.pdf) 
@@ -195,15 +194,16 @@ SnowGR %>%
   pivot_longer(Jul:Jun, 
                names_to = "Month",
                values_to = "Snowfall") %>% 
+  mutate(Month = fct_inorder(Month)) %>% 
   ggplot(aes(Month, Snowfall)) + 
-  geom_boxplot(aes(color = Month, fill = Month), alpha = 0.5) +
-  guides(color = "none", fill = "none")
+  geom_boxplot()
 ```
 
 
-WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE ABOVE CAN BE DONE BY APPLY `boxplot`, AND HENCE WHY I WROTE VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R?
+<!-- FKCH: WOULD IT BENEFIT FROM ALSO SHOWING A PLOT THAT BASE MATPLOT CAN NOT? THE ABOVE CAN BE DONE BY APPLY `boxplot`, AND HENCE WHY I WROTE VIOLIN PLOT AT THE BEGINNING AS IT IS NOT AVAILABLE AT LEAST IN CORE R? 
 
-*The other option is the density plot which can not be done by matplot--commented by XL. But since there are too many months, it might not be a good idea. -- commented by XL*
+XL: The other option is the density plot which can not be done by matplot--commented by XL. But since there are too many months, it might not be a good idea. -
+-->
 
 # Discussion
 

@@ -338,6 +338,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
 
   if (!is.null(color)) {
     color <- validateNumParams(color, numGroups)
+    color <- color[order(unique(data$Group))]
     p <- p + scale_color_manual(
       name = legend_title, labels = legend_label,
       values = color
@@ -353,6 +354,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
 
   if (!is.null(fill)) {
     fill <- validateNumParams(fill, numGroups)
+    fill <- fill[order(unique(data$Group))]
     p <- p + scale_fill_manual(
       name = legend_title, labels = legend_label,
       values = fill
@@ -392,6 +394,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
         plot_type
       ), call. = FALSE)
     }
+    shape <- shape[order(unique(data$Group))]
     p <- p + scale_shape_manual(
       name = legend_title, labels = legend_label,
       values = shape
@@ -410,6 +413,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
         plot_type
       ), call. = FALSE)
     }
+    linetype <- linetype[order(unique(data$Group))]
     p <- p + scale_linetype_manual(
       name = legend_title, labels = legend_label,
       values = linetype

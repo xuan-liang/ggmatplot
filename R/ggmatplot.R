@@ -333,7 +333,7 @@ ggmatplot <- function(x, y, plot_type = "point", color = NULL, fill = NULL,
       ), call. = FALSE)
     }
   } else {
-    legend_label <- unique(data$Group)
+    legend_label <- levels(factor(data$Group))
   }
 
   if (!is.null(color)) {

@@ -141,13 +141,22 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       name = legend_title, labels = legend_label,
       values = color
     )
+    ncolor <- length(unique(color))
+    if(ncolor==1) {
+      plot <- plot + guides(color = "none")
+    }
+
     # if color is defined and fill isn't, update both using color values
     if (is.null(fill)) {
       plot <- plot + scale_fill_manual(
         name = legend_title, labels = legend_label,
         values = color
       )
+      if(ncolor==1) {
+        plot <- plot + guides(fill = "none")
+      }
     }
+
   }
 
   if (!is.null(fill)) {
@@ -155,12 +164,19 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       name = legend_title, labels = legend_label,
       values = fill
     )
+    nfill <- length(unique(fill))
+    if(nfill==1) {
+      plot <- plot + guides(fill = "none")
+    }
     # if fill is defined and color isn't, update both using fill values
     if (is.null(color)) {
       plot <- plot + scale_color_manual(
         name = legend_title, labels = legend_label,
         values = fill
       )
+      if(nfill==1) {
+        plot <- plot + guides(color = "none")
+      }
     }
   }
 
@@ -171,7 +187,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       plot <- plot +
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("white", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
-        theme(legend.position = "none")
+        guides(fill = "none", color = "none")
     } else{
       plot <- plot +
         scale_fill_discrete(name = legend_title, labels = legend_label) +

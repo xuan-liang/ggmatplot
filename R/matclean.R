@@ -7,7 +7,7 @@
 #' @return A list containing:
 #'  * data - the long format data frame.
 #'  * xname - name(s) of the ID column(s)
-#'  * yname - names of the pivoted columns(columns with group names and values)
+#'  * yname - names of the pivoted columns (columns with group names and values)
 #' @noRd
 #'
 #' @examples
@@ -29,19 +29,19 @@ matclean <- function(x, y) {
   }
 
   if (missing(y)) {
-    xname <- "Observation_number"
+    xname <- OBSERVATION_NAME
     yname <- "x"
-    x$Observation_number <- 1:nrow(x)
-    data <- pivotlonger(x, names_to = "Group", values_to = yname, ncolx + 1)
+    x[[OBSERVATION_NAME]] <- 1:nrow(x)
+    data <- pivotlonger(x, names_to = GROUP_NAME, values_to = yname, ncolx + 1)
   } else if (ncolx > ncoly & ncoly == 1) {
     xname <- "x"
     yname <- colnames(y)
     data <- data.frame(x, y)
     ncol <- ncol(data)
     yname <- colnames(data)[ncol]
-    data$Observation_number <- 1:nrow(data)
+    data[[OBSERVATION_NAME]] <- 1:nrow(data)
     data <- pivotlonger(data,
-      names_to = "Group", values_to = xname,
+      names_to = GROUP_NAME, values_to = xname,
       c(ncol, (ncol + 1))
     )
   } else if (ncoly > ncolx & ncolx == 1) {
@@ -49,29 +49,32 @@ matclean <- function(x, y) {
     yname <- "y"
     data <- data.frame(x, y)
     ncol <- ncol(data)
-    data$Observation_number <- 1:nrow(data)
+    data[[OBSERVATION_NAME]] <- 1:nrow(data)
     data <- pivotlonger(data,
-      names_to = "Group", values_to = yname,
+      names_to = GROUP_NAME, values_to = yname,
       c(1, (ncol + 1))
     )
   } else if (ncolx == ncoly) {
     xname <- "x"
     yname <- "y"
     colnames(x) <- colnames(y) <- paste0("Column ", 1:ncolx)
-    x <- pivotlonger(x, names_to = "Group", values_to = xname)
-    x <- x[with(x, order(Group)), ]
-    x$Observation_number <- 1:nrow(x)
-    y <- pivotlonger(y, names_to = "Group", values_to = yname)
-    y <- y[with(y, order(Group)), ]
-    y$Observation_number <- 1:nrow(y)
-    data <- merge(x, y, by = "Observation_number", all = TRUE)
-    names(data)[names(data) == paste0("Group", ".x")] <- "Group"
-    data <- subset(data, select = -c(get(paste0("Group", ".y"))))
+    x <- pivotlonger(x, names_to = GROUP_NAME, values_to = xname)
+    x <- x[order(x[[GROUP_NAME]]), ]
+    x[[OBSERVATION_NAME]] <- 1:nrow(x)
+    y <- pivotlonger(y, names_to = GROUP_NAME, values_to = yname)
+    y <- y[order(y[[GROUP_NAME]]), ]
+    y[[OBSERVATION_NAME]] <- 1:nrow(y)
+    data <- merge(x, y, by = OBSERVATION_NAME, all = TRUE)
+    names(data)[names(data) == paste0(GROUP_NAME, ".x")] <- GROUP_NAME
+    data <- subset(data, select = -c(get(paste0(GROUP_NAME, ".y"))))
   } else {
     stop(
     "Either x or y must have only 1 column, or both x and y must have the same number of columns",
     call. = FALSE)
   }
+
+  # order group variable in order of appearance
+  data[[GROUP_NAME]] <- factor(data[[GROUP_NAME]], levels = unique(data[[GROUP_NAME]]))
 
   return(list(data = data, xname = xname, yname = yname))
 }

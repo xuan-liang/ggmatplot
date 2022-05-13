@@ -18,7 +18,7 @@
 #' errorplotstats(data, desc_stat = "mean_se")
 errorplotstats <- function(data, desc_stat = "") {
   if (desc_stat == "mean_se") {
-    errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
+    errorplot_data <- do.call(rbind, by(data, list(data[[GROUP_NAME]]), function(x) {
       c(
         y = mean(x$x, na.rm = TRUE),
         ymin = mean(x$x, na.rm = TRUE) -
@@ -28,7 +28,7 @@ errorplotstats <- function(data, desc_stat = "") {
       )
     }))
   } else if (desc_stat == "mean_sd") {
-    errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
+    errorplot_data <- do.call(rbind, by(data, list(data[[GROUP_NAME]]), function(x) {
       c(
         y = mean(x$x, na.rm = TRUE),
         ymin = mean(x$x, na.rm = TRUE) - sd(x$x, na.rm = TRUE),
@@ -36,7 +36,7 @@ errorplotstats <- function(data, desc_stat = "") {
       )
     }))
   } else if (desc_stat == "mean_range") {
-    errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
+    errorplot_data <- do.call(rbind, by(data, list(data[[GROUP_NAME]]), function(x) {
       c(
         y = mean(x$x, na.rm = TRUE),
         ymin = min(x$x, na.rm = TRUE),
@@ -44,7 +44,7 @@ errorplotstats <- function(data, desc_stat = "") {
       )
     }))
   } else if (desc_stat == "median_iqr") {
-    errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
+    errorplot_data <- do.call(rbind, by(data, list(data[[GROUP_NAME]]), function(x) {
       c(
         y = median(x$x, na.rm = TRUE),
         ymin = quantile(x$x, probs = 0.25, names = FALSE),
@@ -52,7 +52,7 @@ errorplotstats <- function(data, desc_stat = "") {
       )
     }))
   } else if (desc_stat == "median_range") {
-    errorplot_data <- do.call(rbind, by(data, list(data$Group), function(x) {
+    errorplot_data <- do.call(rbind, by(data, list(data[[GROUP_NAME]]), function(x) {
       c(
         y = median(x$x, na.rm = TRUE),
         ymin = min(x$x, na.rm = TRUE),
@@ -61,8 +61,11 @@ errorplotstats <- function(data, desc_stat = "") {
     }))
   }
 
+  group_df <- data.frame(x = factor(rownames(errorplot_data), levels = rownames(errorplot_data)))
+  names(group_df) <- GROUP_NAME
+
   return(cbind(
-    Group = rownames(errorplot_data),
+    group_df,
     data.frame(errorplot_data, row.names = NULL)
   ))
 }

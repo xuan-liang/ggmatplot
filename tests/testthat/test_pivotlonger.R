@@ -1,5 +1,5 @@
 test_that("can pivot columns to long format based on a single id column", {
-  df <- tibble(x = 1:3, y = 11:13, z = 31:33)
+  df <- data.frame(x = 1:3, y = 11:13, z = 31:33)
   pv <- pivotlonger(df, names_to = "Group", values_to = "Value", id_cols = 1)
 
   expect_named(pv, c("x", "Group", "Value"))
@@ -8,7 +8,7 @@ test_that("can pivot columns to long format based on a single id column", {
 })
 
 test_that("can pivot columns to long format based on a multiple id columns", {
-  df <- tibble(x = 1:3, y = 11:13, z = 31:33, a = 41:43, b = 51:53)
+  df <- data.frame(x = 1:3, y = 11:13, z = 31:33, a = 41:43, b = 51:53)
   pv <- pivotlonger(df,
     names_to = "Group", values_to = "Value",
     id_cols = c(1, 2, 3)
@@ -30,7 +30,7 @@ test_that("NA values are preserved in both id columns and pivoted columns", {
 })
 
 test_that("id columns can have different data types", {
-  df <- tibble(x = 1:3, y = c("a", "b", "c"), z = 31:33)
+  df <- data.frame(x = 1:3, y = c("a", "b", "c"), z = 31:33)
   pv <- pivotlonger(df,
     names_to = "Group", values_to = "Value",
     id_cols = c(1, 2)
@@ -39,6 +39,6 @@ test_that("id columns can have different data types", {
   expect_named(pv, c("x", "y", "Group", "Value"))
   expect_equal(pv$x, c(1, 2, 3))
   expect_equal(pv$y, c("a", "b", "c"))
-  expect_equal(pv$Group, rep(names(df[, 3]), nrow(df)))
+  expect_equal(pv$Group, rep(names(df[, 3, drop = FALSE]), nrow(df)))
   expect_equal(pv$Value, c(31, 32, 33))
 })

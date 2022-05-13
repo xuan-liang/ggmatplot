@@ -161,7 +161,7 @@ test_that("invalid plot types are not allowed", {
   skip_on_os("windows")
   expect_error(
     ggmatplot(x, y, plot_type = "scatterplot"),
-    "plot_type can not take this value"
+    "'arg' should be one of “point”, “line”, “both”, “density”, “histogram”, “boxplot”, “dotplot”, “errorplot”, “violin”, “ecdf”"
   )
 })
 
@@ -270,7 +270,7 @@ test_that("invalid parameter values throw errors", {
   # invalid log value
   expect_error(
     ggmatplot(y, plot_type = "point", log = 1),
-    "invalid log value provided"
+    "invalid `log` value provided"
   )
   # invalid des_stat value
   expect_error(

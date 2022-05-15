@@ -5,6 +5,8 @@ y <- iris[, 2:4]
 
 test_that("plot colors by color values", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # single color value
   expect_doppelganger(
@@ -20,6 +22,8 @@ test_that("plot colors by color values", {
 
 test_that("plot colors by fill values", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # single fill value
   expect_doppelganger(
@@ -35,6 +39,8 @@ test_that("plot colors by fill values", {
 
 test_that("plot colors by color and fill values simultaneously", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # single color value, fill values = number of groups
   expect_doppelganger(
@@ -48,6 +54,8 @@ test_that("plot colors by color and fill values simultaneously", {
 
 test_that("point shapes updated based on shape values", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # single shape value
   expect_doppelganger(
@@ -63,6 +71,8 @@ test_that("point shapes updated based on shape values", {
 
 test_that("line types updated based on linetype values", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # single linetype value
   expect_doppelganger(
@@ -88,6 +98,8 @@ test_that("line types updated based on linetype values", {
 
 test_that("plot axis limits are updated based on xlim and ylim parameters", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # x axis limits only
   suppressWarnings(expect_doppelganger(
@@ -109,6 +121,8 @@ test_that("plot axis limits are updated based on xlim and ylim parameters", {
 test_that("plot axes are transformed to a log scale based on log parameter
           values", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # log(x)
   expect_doppelganger(
@@ -129,6 +143,8 @@ test_that("plot axes are transformed to a log scale based on log parameter
 
 test_that("plot title is updated based on main paramter", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_equal(
     ggmatplot(x, y, plot_type = "line")$labels$title,
@@ -145,6 +161,8 @@ test_that("plot title is updated based on main paramter", {
 
 test_that("plot axis labels are updated based on xlab and ylab paramters", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_equal(
     ggmatplot(x, y, plot_type = "line", xlab = "xlab test")$labels$x,
@@ -158,6 +176,8 @@ test_that("plot axis labels are updated based on xlab and ylab paramters", {
 
 test_that("invalid plot types are not allowed", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_error(
     ggmatplot(x, y, plot_type = "scatterplot"),
@@ -167,6 +187,8 @@ test_that("invalid plot types are not allowed", {
 
 test_that("legend labels are updated", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   # legend label values = number of groups
   expect_doppelganger(
@@ -177,6 +199,8 @@ test_that("legend labels are updated", {
 
 test_that("legend title is updated", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "plot with updated legend title",
@@ -186,6 +210,8 @@ test_that("legend title is updated", {
 
 test_that("plot is resized by aspect ratio(asp)", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "plot resized by aspect ratio",
@@ -195,6 +221,8 @@ test_that("plot is resized by aspect ratio(asp)", {
 
 test_that("errorplot updates using the defined desc_stat", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "errorplot with medians and range errorbars",

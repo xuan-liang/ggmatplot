@@ -5,6 +5,8 @@ y <- iris[, 3:4]
 
 test_that("scatterplot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic scatterplot",
@@ -14,6 +16,8 @@ test_that("scatterplot draws correctly", {
 
 test_that("line plot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic line plot",
@@ -23,6 +27,8 @@ test_that("line plot draws correctly", {
 
 test_that("point + line plot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic point + line plot",
@@ -32,6 +38,8 @@ test_that("point + line plot draws correctly", {
 
 test_that("density plot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic density plot",
@@ -41,6 +49,8 @@ test_that("density plot draws correctly", {
 
 test_that("histogram draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic histogram",
@@ -50,6 +60,8 @@ test_that("histogram draws correctly", {
 
 test_that("violin plot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic violin plot",
@@ -59,6 +71,8 @@ test_that("violin plot draws correctly", {
 
 test_that("boxplot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic boxplot",
@@ -68,6 +82,8 @@ test_that("boxplot draws correctly", {
 
 test_that("dotplot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic dotplot",
@@ -77,6 +93,8 @@ test_that("dotplot draws correctly", {
 
 test_that("ecdf draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic ecdf",
@@ -86,6 +104,8 @@ test_that("ecdf draws correctly", {
 
 test_that("errorplot draws correctly", {
   skip_on_cran()
+  skip_on_ci()
+  skip_on_covr()
   skip_on_os("windows")
   expect_doppelganger(
     "basic errorplot",

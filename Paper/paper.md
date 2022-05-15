@@ -24,7 +24,7 @@ affiliations:
   - name: Department of Econometrics and Business Statistics, Monash University
     index: 2
 citation_author: Liang et. al.
-date: "2022-05-13"
+date: "2022-05-16"
 year: 2022
 bibliography: paper.bib
 output: 
@@ -52,7 +52,7 @@ FKCH: @Emi you know the literature best. Can you make a decision on this? Thanks
 ET: I don't think we should mention long/wide -- there's more nuance than that. 
 -->
 
-The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot` may be considered as a `ggplot` version of `matplot`, with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly e.g., comparative violin plots. 
+The `ggmatplot`, built upon `ggplot2`, is an R-package that allows quick plotting across the columns of matrices or data with the result returned as a `ggplot` object. The package is inspired by the function `matplot()` in the core R `graphics` system -- as such, `ggmatplot` may be considered as a `ggplot` version of `matplot`, with the benefits of customising the plots as any other `ggplot` objects via `ggplot2` functions, as well as offering several other plotting types that are not immediately available from `matplot` directly e.g., comparative violin plots. The `ggmatplot` package is available on the Comprehensive R Archive Network (CRAN) with the latest developmental source code available at \url{https://github.com/xuan-liang/ggmatplot}. 
 
 
 # Statement of need
@@ -219,7 +219,7 @@ ET: violin plot doesn't look good here so I'd rather stick with boxplot.  I don'
 
 # Discussion
 
-The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. 
+The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. The latest developmental source code can be found at  Further examples can be found at \url{https://xuan-liang.github.io/ggmatplot/}. 
 
 # Acknowledgements 
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.15)  13 MAY 2022 16:17
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.5.15)  16 MAY 2022 08:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1259,7 +1259,7 @@ We now make it that large for the rest of the document.
 This may cause the page layout to be inconsistent, however.
 
 LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <8> not available
-(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 446.
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 449.
 [1
 
 ]
@@ -1278,7 +1278,7 @@ wn/templates/joss/resources/JOSS-logo.png>
 File: paper_files/figure-latex/matplot3-1.pdf Graphic file (type pdf)
 <use paper_files/figure-latex/matplot3-1.pdf>
 
-Underfull \hbox (badness 2269) in paragraph at lines 558--560
+Underfull \hbox (badness 2269) in paragraph at lines 563--565
 \TU/lmr/m/n/10 FKCH was supported by an Australian Research Council Discovery F
 ellowship
  []
@@ -1293,11 +1293,11 @@ arkdown/templates/joss/resources/JOSS-logo.png Graphic file (type bmp)
 </Library/Frameworks/R.framework/Versions/4.1/Resources/library/rticles/rmarkdo
 wn/templates/joss/resources/JOSS-logo.png>
 [5]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 604.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 604.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 609.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 609.
 (./paper.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 604.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 604.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 609.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 609.
 Package rerunfilecheck Info: File `paper.out' has not changed.
 (rerunfilecheck)             Checksum: 03A437A28167710B644D79FC6062DF2F;415.
 Package logreq Info: Writing requests to 'paper.run.xml'.
@@ -1307,10 +1307,10 @@ Package logreq Info: Writing requests to 'paper.run.xml'.
 Here is how much of TeX's memory you used:
  36748 strings out of 479294
  722340 string characters out of 5880891
- 1455299 words of memory out of 5000000
+ 1457299 words of memory out of 5000000
  53761 multiletter control sequences out of 15000+600000
  539332 words of font info for 75 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 60i,12n,77p,1194b,790s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 60i,13n,77p,1194b,790s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on paper.pdf (5 pages).

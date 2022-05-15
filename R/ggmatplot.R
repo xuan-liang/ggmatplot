@@ -191,8 +191,7 @@ ggmatplot <- function(x = NULL, y = NULL,
   shape <- validate_nparam(shape, nvar)
   linetype <- validate_nparam(linetype, nvar)
 
-  p <- update_legend_aes(p, plot_type, color, fill, shape, linetype, legend_title, legend_label)
-
+  p <- update_legend_aes(p, plot_type, color, fill, shape, linetype, legend_title, legend_label, nvar)
 
   # labels
   if (!is.null(main)) p <- p + ggtitle(main)

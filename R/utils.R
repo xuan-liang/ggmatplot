@@ -135,14 +135,14 @@ setup_params <- function(params_input, plot_type) {
 }
 
 
-update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, legend_title, legend_label) {
+update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, legend_title, legend_label, nvar) {
   if (!is.null(color)) {
     plot <- plot + scale_color_manual(
       name = legend_title, labels = legend_label,
       values = color
     )
     ncolor <- length(unique(color))
-    if(ncolor==1) {
+    if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
       plot <- plot + guides(color = "none")
     }
 
@@ -152,7 +152,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
         name = legend_title, labels = legend_label,
         values = color
       )
-      if(ncolor==1) {
+      if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
         plot <- plot + guides(fill = "none")
       }
     }
@@ -165,7 +165,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       values = fill
     )
     nfill <- length(unique(fill))
-    if(nfill==1) {
+    if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
       plot <- plot + guides(fill = "none")
     }
     # if fill is defined and color isn't, update both using fill values
@@ -174,7 +174,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
         name = legend_title, labels = legend_label,
         values = fill
       )
-      if(nfill==1) {
+      if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
         plot <- plot + guides(color = "none")
       }
     }
@@ -182,13 +182,19 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
 
   # if both color and fill values are not defined, use default values
   if (is.null(color) & is.null(fill)) {
-    # removing default coloring by groups for violin and boxplots
+
+    # removing default coloring by groups for violin, boxplots and errorplot
     if(plot_type %in% c("violin","boxplot")){
       plot <- plot +
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("white", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         guides(fill = "none", color = "none")
-    } else{
+    } else if (plot_type %in% c("errorplot") || nvar == 1){
+      plot <- plot +
+        scale_fill_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
+        scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
+        guides(fill = "none", color = "none")
+    }else{
       plot <- plot +
         scale_fill_discrete(name = legend_title, labels = legend_label) +
         scale_color_discrete(name = legend_title, labels = legend_label)
@@ -201,7 +207,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       name = legend_title, labels = legend_label,
       values = shape
     )
-  } else {
+  } else{
     plot <- plot + scale_shape_discrete(name = legend_title, labels = legend_label)
   }
 
@@ -210,6 +216,10 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       name = legend_title, labels = legend_label, values = linetype)
   } else {
     plot <- plot + scale_linetype_discrete(name = legend_title, labels = legend_label)
+  }
+
+  if(nvar == 1){
+    plot <- plot + guides(fill = "none", color = "none", shape = "none", linetype = "none")
   }
 
   plot

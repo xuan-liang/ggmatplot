@@ -108,10 +108,10 @@ iris_numeric_long %>%
   geom_density()
 ```
 
-But the wide format data can be directly used with `ggmatplot` to achieve the same result.
+But the wide format data can be directly used with `ggmatplot` to achieve the same result. Note that the order of the categories in the legend follows the column order in the original dataset.
 
 ```{r iris-ggmatplot-density-plot}
-ggmatplot(iris_numeric, plot_type = "density")
+ggmatplot(iris_numeric, plot_type = "density", alpha = 0)
 ```
 
 Suppose we also have the following dataset of the monthly totals of international airline passengers(in thousands) from January 1949 to December 1960.

@@ -103,8 +103,7 @@
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">2</span><span class="op">)</span><span class="op">)</span>
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
-<span class="co">#&gt; [1] -2.240342703  0.990179249  0.003176375  1.744999859  4.415252006</span>
-<span class="co">#&gt; [6]  1.036604535</span>
+<span class="co">#&gt; [1]  0.6669044  2.0506636 -0.8751025  0.2101028  1.1265714  0.1590892</span>
 
 <span class="co"># matrix z</span>
 <span class="va">y</span> <span class="op">&lt;-</span> <span class="va">x</span> <span class="op">*</span> <span class="fl">0.5</span> <span class="op">+</span> <span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span>, sd <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
@@ -114,12 +113,12 @@
 
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">z</span><span class="op">)</span>
 <span class="co">#&gt;       actual      fitted</span>
-<span class="co">#&gt; 1 -2.2228976 -1.22679576</span>
-<span class="co">#&gt; 2  0.3164453  0.59411653</span>
-<span class="co">#&gt; 3  1.0547918  0.03778362</span>
-<span class="co">#&gt; 4  1.1810804  1.01957785</span>
-<span class="co">#&gt; 5  2.7810329  2.52468910</span>
-<span class="co">#&gt; 6  0.9481198  0.62028455</span></code></pre></div>
+<span class="co">#&gt; 1 -0.4259083  0.19942262</span>
+<span class="co">#&gt; 2  0.6771384  0.71543376</span>
+<span class="co">#&gt; 3 -1.6270636 -0.37559993</span>
+<span class="co">#&gt; 4  1.7712603  0.02907889</span>
+<span class="co">#&gt; 5 -1.6431636  0.37083491</span>
+<span class="co">#&gt; 6 -1.0756780  0.01005566</span></code></pre></div>
 <p><code>ggmatplot</code> plots vector <code>x</code> against each column of matrix <code>z</code> using the default <code>plot_type = "point"</code>. This will be represented on the resulting plot as two groups, identified using different shapes and colors.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/xuan-liang/ggmatplot" class="external-link">ggmatplot</a></span><span class="op">)</span>

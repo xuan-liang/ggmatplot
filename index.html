@@ -103,8 +103,8 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"ggmatplot"</span><span class="op">)</span></code></pre></div>
 <p>Or you can install the development version from <a href="https://github.com/xuan-liang/ggmatplot" class="external-link">GitHub</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="co"># install.packages("remotes")</span>
-<span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"xuan-liang/ggmatplot"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="co"># install.packages("devtools")</span>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"xuan-liang/ggmatplot"</span><span class="op">)</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="examples">Examples<a class="anchor" aria-label="anchor" href="#examples"></a>
@@ -126,8 +126,8 @@
 
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>, <span class="va">z</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-point-1.png" width="80%"></p>
-<p>If two matrices with equal number of columns are used, the corresponding columns of the matrices will be plotted against each other. i.e. column 1 of matrix <code>x</code> will be plotted against column 1 of matrix <code>y</code>, column 2 of matrix <code>x</code> will be plotted against column 2 of matrix <code>y</code>, etc.</p>
-<p>The next example uses the iris dataset, with matrices <code>x</code> and <code>y</code> as shown below. The <code>Sepal.Length</code> is plotted against <code>Sepal.Width</code> and the <code>Petal.Length</code> is plotted against <code>Petal.Width</code>. Therefore the groups ‘Column 1’ and ‘Column 2’ can be interpreted as ‘Sepal’ and ‘Petal’ respectively. To make the plot more meaningful, we can further add the legend label and axis names by <code>legend_label</code>, <code>xlab</code> and <code>ylab</code>.</p>
+<p>If two matrices with equal number of columns are used, the corresponding columns of the matrices will be plotted against each other, i.e. column 1 of matrix <code>y</code> will be plotted against column 1 of matrix <code>x</code>, column 2 of matrix <code>y</code> will be plotted against column 2 of matrix <code>x</code>, etc.</p>
+<p>The next example uses the iris dataset, with matrices <code>x</code> and <code>y</code> as shown below. The <code>Sepal.Width</code> is plotted against <code>Sepal.Length</code> and the <code>Petal.Width</code> is plotted against <code>Petal.Length</code>. Therefore the groups ‘Column 1’ and ‘Column 2’ can be interpreted as ‘Sepal’ and ‘Petal’ respectively. To make the plot more meaningful, we can further modify the legend label and axis names by <code>legend_label</code>, <code>xlab</code> and <code>ylab</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">1</span>, <span class="fl">3</span><span class="op">)</span><span class="op">]</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">x</span>, <span class="fl">5</span><span class="op">)</span>
@@ -175,8 +175,8 @@
 <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-line-1.png" width="80%"></p>
-<p>Next is plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can be used with <code><a href="reference/ggmatplot.html">ggmatplot()</a></code>. Note how the expenditure categories to be used on the x axis is used as vector <code>x</code>, and the expenditure values is used in wide format as matrix <code>y</code> - with its columns corresponding to the grouping structure.</p>
-<p>The plot specifies the plot type as <code>plot_type = "both"</code>, which is a combination of ‘point’ and ‘line’ plots. It customized using <code><a href="reference/ggmatplot.html">ggmatplot()</a></code> parameters and a <code>ggplot</code> theme as well.</p>
+<p>Next is the plot of the US personal expenditure over 5 categories and 5 years, and is a simple example of how wide format data can be used with <code><a href="reference/ggmatplot.html">ggmatplot()</a></code>. Note how the expenditure categories to be used on the x axis is used as vector <code>x</code>, and the expenditure values is used in wide format as matrix <code>y</code> - with its columns corresponding to the grouping structure.</p>
+<p>The plot specifies the plot type as <code>plot_type = "both"</code>, which is a combination of ‘point’ and ‘line’ plots. It is further customized by using <code><a href="reference/ggmatplot.html">ggmatplot()</a></code> parameters and a <code>ggplot</code> theme as well.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">USPersonalExpenditure</span>
 <span class="co">#&gt;                       1940   1945  1950 1955  1960</span>
@@ -207,7 +207,7 @@
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes_eval.html" class="external-link">stat</a></span><span class="op">(</span><span class="va">scaled</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_bw</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-density-1.png" width="80%"></p>
-<p>Boxplots accept only a single matrix or data frame as well, and uses its columns as individual groups. While <code>ggmatplot</code> plots are filled by default, the fill color can be made transparent by using <code>alpha = 0</code>.</p>
+<p>Boxplots accept only a single matrix or data frame as well, and uses its columns as individual groups. By default, the fill color is white. But it is easy to customize and the transparency can be modified by the <code>alpha</code> parameter.</p>
 <p>It is also worth noticing that <code>alpha</code> isn’t a parameter defined in <code><a href="reference/ggmatplot.html">ggmatplot()</a></code>, but can be used. This is because <code>ggmatplot</code> is built upon <code>ggplot2</code>, and each <code>plot_type</code> corresponds to a <a href="https://ggplot2.tidyverse.org/reference/index.html#section-geoms" class="external-link"><code>geom</code></a> as listed <a href="https://xuan-liang.github.io/ggmatplot/reference/ggmatplot.html#plot-types" class="external-link">here</a>. Therefore, all valid parameters with the underlying <a href="https://ggplot2.tidyverse.org/reference/index.html#section-geoms" class="external-link"><code>ggplot2 geom</code></a> can be used with <code><a href="reference/ggmatplot.html">ggmatplot()</a></code>.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix x</span>
@@ -215,11 +215,13 @@
 
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>,
   plot_type <span class="op">=</span> <span class="st">"boxplot"</span>,
-  alpha <span class="op">=</span> <span class="fl">0</span>, <span class="co"># removing fill values</span>
+  color <span class="op">=</span> <span class="st">'black'</span>, 
+  fill <span class="op">=</span> <span class="st">'grey'</span>,
+  alpha <span class="op">=</span> <span class="fl">0.8</span>,
   xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-boxplot-1.png" width="80%"></p>
-<p>Violin plots too accepts a single matrix or data frame input, and behaves similar to density plots and boxplots.</p>
+<p>Violin plots accept a single matrix or data frame input, and behave similar to density plots and boxplots.</p>
 <p>This plot updates the colors of the two groups using the <code>color</code> parameter, and it can be seen that the fill of the violin plots has been updated too. This is because updating either the <code>color</code> or <code>fill</code> parameter will automatically update the other, unless they are both defined simultaneously.</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix x</span>
@@ -231,8 +233,7 @@
   xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>
 <span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-violin-1.png" width="80%"></p>
-<p>Dotplots too accept a single matrix input and plots the distribution of each of its columns.</p>
-<p>The next example uses the <code>plot_type = "dotplot"</code> to visualize the distribution of the data, and also customizes the position of the legend using a <code>ggplot</code> theme as well.</p>
+<p>Dotplots too accept a single matrix input and plot the distribution of each of its columns. The next example uses the <code>plot_type = "dotplot"</code> to visualize the distribution of the data with the custom color and binwidth value. Note that the default setting for binwidth is 1/30 of the range of the data.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix x</span>
 <span class="va">x</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="va">iris</span><span class="op">[</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
@@ -240,11 +241,11 @@
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>,
   plot_type <span class="op">=</span> <span class="st">"dotplot"</span>,
   color <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span><span class="op">)</span>,
+  binwidth <span class="op">=</span> <span class="fl">0.1</span>,
   xlab <span class="op">=</span> <span class="st">""</span>, ylab <span class="op">=</span> <span class="st">""</span>
-<span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">"bottom"</span><span class="op">)</span></code></pre></div>
+<span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-dotplot-1.png" width="80%"></p>
-<p>Similar to density, violin, dotplots, and box plots, histograms too accept a single matrix or data frame input and groups the plot using its columns. The histogram in the following example uses a matrix of 4 columns, and therefore groups the plots based on these 4 columns. The plot is also faceted by group.</p>
+<p>Similar to density, violin, dotplots, and box plots, histograms too accept a single matrix or data frame input and group the plot using its columns. The histogram in the following example uses a matrix of 4 columns, and therefore groups the plots based on these 4 columns. The plot is also faceted by group and the legend is removed by a <code>ggplot</code> theme setting.</p>
 <p>The <code>color</code> and <code>fill</code> parameters have been defined simultaneously on this plot. However, only a single <code>color</code> value is defined whereas the number of <code>fill</code> colors correspond to the number of groups. If a single value is defined it will be used over all groups, like the black line color is used across all groups in this example.</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># matrix x</span>
@@ -252,11 +253,12 @@
 
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>,
   plot_type <span class="op">=</span> <span class="st">"histogram"</span>,
-  xlab <span class="op">=</span> <span class="st">"Group"</span>,
+  xlab <span class="op">=</span> <span class="st">""</span>,
   color <span class="op">=</span> <span class="st">"black"</span>,
   fill <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"#F8766D"</span>, <span class="st">"#7CAE00"</span>, <span class="st">"#00BFC4"</span>, <span class="st">"#C77CFF"</span><span class="op">)</span>
 <span class="op">)</span> <span class="op">+</span>
-  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Group</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span></code></pre></div>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html" class="external-link">facet_wrap</a></span><span class="op">(</span><span class="op">~</span><span class="va">Group</span>, scales <span class="op">=</span> <span class="st">"free"</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>legend.position <span class="op">=</span> <span class="st">'none'</span><span class="op">)</span></code></pre></div>
 <p><img src="reference/figures/README-histogram-1.png" width="80%"></p>
 <p>The next example is of the <code>plot_type = ecdf</code>, and also uses a single matrix input to plot out the empirical cumulative distributions of the columns of the matrix individually.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
@@ -265,7 +267,8 @@
 
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>,
   plot_type <span class="op">=</span> <span class="st">"ecdf"</span>,
-  xlab <span class="op">=</span> <span class="st">"Group"</span>,
+  xlab <span class="op">=</span> <span class="st">""</span>,
+  ylab <span class="op">=</span> <span class="st">'Empirical CDF'</span>,
   size <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -279,7 +282,7 @@
 <span class="fu"><a href="reference/ggmatplot.html">ggmatplot</a></span><span class="op">(</span><span class="va">x</span>,
   plot_type <span class="op">=</span> <span class="st">"errorplot"</span>,
   desc_stat <span class="op">=</span> <span class="st">"median_iqr"</span>,
-  xlab <span class="op">=</span> <span class="st">"Group"</span>,
+  xlab <span class="op">=</span> <span class="st">""</span>,
   size <span class="op">=</span> <span class="fl">1</span>
 <span class="op">)</span> <span class="op">+</span>
   <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>

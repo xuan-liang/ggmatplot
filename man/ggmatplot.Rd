@@ -5,9 +5,10 @@
 \title{ggmatplot}
 \usage{
 ggmatplot(
-  x,
-  y,
-  plot_type = "point",
+  x = NULL,
+  y = NULL,
+  plot_type = c("point", "line", "both", "density", "histogram", "boxplot", "dotplot",
+    "errorplot", "violin", "ecdf"),
   color = NULL,
   fill = NULL,
   shape = NULL,

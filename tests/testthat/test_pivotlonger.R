@@ -30,9 +30,10 @@ test_that("NA values are preserved in both id columns and pivoted columns", {
 })
 
 test_that("id columns can have different data types", {
-  df <- data.frame(x = 1:3, y = c("a", "b", "c"), z = 31:33)
+  df <- data.frame(x = 1:3, y = c("a", "b", "c"), z = 31:33, stringsAsFactors = FALSE)
   pv <- pivotlonger(df,
-    names_to = "Group", values_to = "Value",
+    names_to = "Group",
+    values_to = "Value",
     id_cols = c(1, 2)
   )
 

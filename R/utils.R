@@ -142,7 +142,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       values = color
     )
     ncolor <- length(unique(color))
-    if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
+    if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot", "dotplot")) {
       plot <- plot + guides(color = "none")
     }
 
@@ -152,7 +152,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
         name = legend_title, labels = legend_label,
         values = color
       )
-      if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
+      if(ncolor==1 || plot_type %in% c("violin", "boxplot", "errorplot", "dotplot")) {
         plot <- plot + guides(fill = "none")
       }
     }
@@ -165,7 +165,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       values = fill
     )
     nfill <- length(unique(fill))
-    if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
+    if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot", "dotplot")) {
       plot <- plot + guides(fill = "none")
     }
     # if fill is defined and color isn't, update both using fill values
@@ -174,7 +174,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
         name = legend_title, labels = legend_label,
         values = fill
       )
-      if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot")) {
+      if(nfill==1 || plot_type %in% c("violin", "boxplot", "errorplot", "dotplot")) {
         plot <- plot + guides(color = "none")
       }
     }
@@ -189,7 +189,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("white", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         guides(fill = "none", color = "none")
-    } else if (plot_type %in% c("errorplot") || nvar == 1) {
+    } else if (plot_type %in% c("errorplot","dotplot") || nvar == 1) {
       plot <- plot +
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +

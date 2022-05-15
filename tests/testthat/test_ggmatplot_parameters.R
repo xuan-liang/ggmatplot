@@ -161,7 +161,7 @@ test_that("invalid plot types are not allowed", {
   skip_on_os("windows")
   expect_error(
     ggmatplot(x, y, plot_type = "scatterplot"),
-    "'arg' should be one of “point”, “line”, “both”, “density”, “histogram”, “boxplot”, “dotplot”, “errorplot”, “violin”, “ecdf”"
+    "'arg' should be one of \"point\", \"line\", \"both\", \"density\", \"histogram\", \"boxplot\", \"dotplot\", \"errorplot\", \"violin\", \"ecdf\""
   )
 })
 

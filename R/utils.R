@@ -184,17 +184,17 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
   if (is.null(color) & is.null(fill)) {
 
     # removing default coloring by groups for violin, boxplots and errorplot
-    if(plot_type %in% c("violin","boxplot")){
+    if(plot_type %in% c("violin","boxplot")) {
       plot <- plot +
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("white", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         guides(fill = "none", color = "none")
-    } else if (plot_type %in% c("errorplot") || nvar == 1){
+    } else if (plot_type %in% c("errorplot") || nvar == 1) {
       plot <- plot +
         scale_fill_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         scale_color_manual(name = legend_title, labels = legend_label, values = rep("black", length(legend_label))) +
         guides(fill = "none", color = "none")
-    }else{
+    }else {
       plot <- plot +
         scale_fill_discrete(name = legend_title, labels = legend_label) +
         scale_color_discrete(name = legend_title, labels = legend_label)
@@ -207,7 +207,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
       name = legend_title, labels = legend_label,
       values = shape
     )
-  } else{
+  } else {
     plot <- plot + scale_shape_discrete(name = legend_title, labels = legend_label)
   }
 
@@ -218,7 +218,7 @@ update_legend_aes <- function(plot, plot_type, color, fill, shape, linetype, leg
     plot <- plot + scale_linetype_discrete(name = legend_title, labels = legend_label)
   }
 
-  if(nvar == 1){
+  if(nvar == 1) {
     plot <- plot + guides(fill = "none", color = "none", shape = "none", linetype = "none")
   }
 

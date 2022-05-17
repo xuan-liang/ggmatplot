@@ -170,6 +170,7 @@ wide_df %>%
   pivot_longer(-overall_rating, 
                names_to = "rating_type",
                values_to = "rating") %>% 
+  mutate(rating_type = fct_inorder(rating_type))%>%
   ggplot(aes(x = overall_rating, y = rating, color = rating_type)) + 
   geom_point(aes(shape = rating_type)) +
   geom_line(aes(group = rating_type, linetype = rating_type)) +
@@ -205,7 +206,7 @@ SnowGR %>%
                values_to = "Snowfall") %>% 
   mutate(Month = fct_inorder(Month)) %>% 
   ggplot(aes(Month, Snowfall)) + 
-  geom_boxplot() + 
+  geom_boxplot(alpha = 0.5) + 
   ggtitle("Grand Rapids, Michigan, 1893-2011")
 ```
 

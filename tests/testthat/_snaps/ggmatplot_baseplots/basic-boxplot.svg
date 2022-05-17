@@ -26,17 +26,7 @@
   </clipPath>
 </defs>
 <g clip-path='url(#cpMjcuOTB8NzE0LjUyfDIyLjc4fDU0NS4xMQ==)'>
-<rect x='27.90' y='22.78' width='686.62' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #EBEBEB;' />
-<polyline points='27.90,458.52 714.52,458.52 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,318.86 714.52,318.86 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,179.20 714.52,179.20 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,39.54 714.52,39.54 ' style='stroke-width: 0.53; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,528.35 714.52,528.35 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,388.69 714.52,388.69 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,249.03 714.52,249.03 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='27.90,109.37 714.52,109.37 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='215.16,545.11 215.16,22.78 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
-<polyline points='527.26,545.11 527.26,22.78 ' style='stroke-width: 1.07; stroke: #FFFFFF; stroke-linecap: butt;' />
+<rect x='27.90' y='22.78' width='686.62' height='522.33' style='stroke-width: 1.07; stroke: none; fill: #FFFFFF;' />
 <line x1='215.16' y1='172.22' x2='215.16' y2='46.53' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <line x1='215.16' y1='416.63' x2='215.16' y2='458.52' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polygon points='98.12,172.22 98.12,416.63 332.20,416.63 332.20,172.22 98.12,172.22 ' style='stroke-width: 1.07; fill: #FFFFFF; fill-opacity: 0.50;' />
@@ -45,6 +35,7 @@
 <line x1='527.26' y1='507.40' x2='527.26' y2='521.37' style='stroke-width: 1.07; stroke-linecap: butt;' />
 <polygon points='410.22,402.66 410.22,507.40 644.30,507.40 644.30,402.66 410.22,402.66 ' style='stroke-width: 1.07; fill: #FFFFFF; fill-opacity: 0.50;' />
 <line x1='410.22' y1='437.57' x2='644.30' y2='437.57' style='stroke-width: 2.13; stroke-linecap: butt;' />
+<rect x='27.90' y='22.78' width='686.62' height='522.33' style='stroke-width: 1.07; stroke: #333333;' />
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
 <text x='22.97' y='531.38' text-anchor='end' style='font-size: 8.80px; fill: #4D4D4D; font-family: sans;' textLength='4.89px' lengthAdjust='spacingAndGlyphs'>0</text>

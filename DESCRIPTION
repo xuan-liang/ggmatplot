@@ -36,10 +36,11 @@ Imports:
 Suggests:
     rmarkdown,
     knitr,
-    testthat,
+    testthat (>= 3.0.0),
     vdiffr,
     tibble,
     tidyr,
     dplyr,
     covr
 VignetteBuilder: knitr
+Config/testthat/edition: 3

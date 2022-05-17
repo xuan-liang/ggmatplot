@@ -24,7 +24,7 @@ affiliations:
   - name: Department of Econometrics and Business Statistics, Monash University
     index: 2
 citation_author: Liang et. al.
-date: "2022-05-16"
+date: "2022-05-17"
 year: 2022
 bibliography: paper.bib
 output: 
@@ -219,7 +219,7 @@ ET: violin plot doesn't look good here so I'd rather stick with boxplot.  I don'
 
 # Discussion
 
-The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. The latest developmental source code can be found at  Further examples can be found at \url{https://xuan-liang.github.io/ggmatplot/}. 
+The `ggmatplot` R-package provides a solution to a common friction encountered when wanting to quickly plot multivariate data, where the primary interest is mapping the column names as an aesthetic element. While an important start, we also acknowledge that solution provided is a recipe-driven approach, where the user can only produce plot types as many there are included in the `plot_type` option. Future developments of the package could benefit from using a grammar approach, like in @Wilkinson2005-oz and @Wickham2010-kt, where plot types can be extensible. The latest developmental source code can be found at \url{https://github.com/xuan-liang/ggmatplot}. Further examples can be found at \url{https://xuan-liang.github.io/ggmatplot/}. 
 
 # Acknowledgements 
 

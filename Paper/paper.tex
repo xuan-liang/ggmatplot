@@ -485,7 +485,7 @@ practitioner that is looking to promptly explore their data.
   \FunctionTok{pivot\_longer}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{overall\_rating, }
                \AttributeTok{names\_to =} \StringTok{"rating\_type"}\NormalTok{,}
                \AttributeTok{values\_to =} \StringTok{"rating"}\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%} 
-  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rating\_type =} \FunctionTok{fct\_inorder}\NormalTok{(rating\_type))}\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}\AttributeTok{rating\_type =} \FunctionTok{fct\_inorder}\NormalTok{(rating\_type)) }\SpecialCharTok{\%\textgreater{}\%}
   \FunctionTok{ggplot}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ overall\_rating, }\AttributeTok{y =}\NormalTok{ rating, }\AttributeTok{color =}\NormalTok{ rating\_type)) }\SpecialCharTok{+} 
   \FunctionTok{geom\_point}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{shape =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}
   \FunctionTok{geom\_line}\NormalTok{(}\FunctionTok{aes}\NormalTok{(}\AttributeTok{group =}\NormalTok{ rating\_type, }\AttributeTok{linetype =}\NormalTok{ rating\_type)) }\SpecialCharTok{+}

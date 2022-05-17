@@ -152,11 +152,7 @@ wide_df %>%
   pivot_longer(-overall_rating, 
                names_to = "rating_type",
                values_to = "rating") %>% 
-<<<<<<< HEAD
   mutate(rating_type = fct_inorder(rating_type)) %>%
-=======
-  mutate(rating_type = fct_inorder(rating_type))%>%
->>>>>>> 3f9b121e17145223c5b4e5bc7b95e35806f07271
   ggplot(aes(x = overall_rating, y = rating, color = rating_type)) + 
   geom_point(aes(shape = rating_type)) +
   geom_line(aes(group = rating_type, linetype = rating_type)) +

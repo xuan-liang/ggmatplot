@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/195039918.svg)](https://zenodo.org/badge/latestdoi/195039918)
 
 # ggmatplot
 

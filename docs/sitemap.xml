@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>url/404.html</loc>
+  </url>
+  <url>
+    <loc>url/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>url/articles/ggmatplot.html</loc>
+  </url>
+  <url>
+    <loc>url/articles/index.html</loc>
+  </url>
+  <url>
+    <loc>url/authors.html</loc>
+  </url>
+  <url>
     <loc>url/index.html</loc>
+  </url>
+  <url>
+    <loc>url/news/index.html</loc>
   </url>
   <url>
     <loc>url/reference/ggmatplot.html</loc>
   </url>
   <url>
-    <loc>url/articles/ggmatplot.html</loc>
+    <loc>url/reference/index.html</loc>
   </url>
 </urlset>

@@ -7,8 +7,11 @@ bibentry(
               person("Francis", "Hui"),
               person("Emi", "Tanaka"),
               person("Dilinie", "Seimon")),
-  year     = {2021},
-  url      = "https://github.com/xuan-liang/ggmatplot",
-  textVersion = "Xuan Liang, Francis Hui, Emi Tanaka and Dilinie Seimon (2021).
-  ggmatplot: A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2."
+  year     = "2022",
+  publisher = "Zenodo",
+  version = "v0.1.2",
+  doi = "10.5281/zenodo.6610553",
+  url      = "https://doi.org/10.5281/zenodo.6610553",
+  textVersion = "Xuan Liang, Francis Hui, Emi Tanaka and Dilinie Seimon (2022).
+  ggmatplot: A quick and easy way of plotting the columns of two matrices or data frames against each other using ggplot2. Zenodo. https://doi.org/10.5281/zenodo.6610553"
 )

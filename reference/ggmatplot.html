@@ -103,10 +103,14 @@ and <code>y</code> are the same.</p></li>
 <li><p>If either <code>x</code> or <code>y</code> is missing, the other is used as <code>y</code> and a vector of
 <code>1:n</code> is used as <code>x</code>.</p></li>
 </ul></dd>
+
+
 <dt>plot_type</dt>
 <dd><p>A string specifying the type of plot. Possible plot types
 are <code>point</code>, <code>line</code>, <code>both</code>(point + line), <code>density</code>, <code>histogram</code>, <code>boxplot</code>,
 <code>dotplot</code>, <code>errorplot</code>, <code>violin</code>, and <code>ecdf</code>. Default plot_type is <code>point</code>.</p></dd>
+
+
 <dt>color, fill</dt>
 <dd><p>Vectors of colors. Defining only one of them will update
 both <code>color</code> and <code>fill</code> aesthetics of the plot by default, unless they are
@@ -115,12 +119,16 @@ matrices <code>x</code> or <code>y</code>, and will correspond to each of those 
 <li><p>If only a single color is given, the same color will be used for all
 columns.</p></li>
 </ul></dd>
+
+
 <dt>shape, linetype</dt>
 <dd><p>A vector of shapes or line types respectively.</p><ul><li><p>The number of shapes/line types should match the higher number of columns
 of matrices <code>x</code> or <code>y</code>, and will correspond to each of those columns.</p></li>
 <li><p>If only a single shape/line type is given, the same shape/line type will
 be used for all columns.</p></li>
 </ul></dd>
+
+
 <dt>xlim, ylim</dt>
 <dd><p>Ranges of x and y axes.</p><ul><li><p>Each of them should be a two element vector specifying the lower and upper
 limits of the scale.</p></li>
@@ -128,27 +136,42 @@ limits of the scale.</p></li>
 the limits is given as <code>NA</code>, the corresponding limit from the range of data
 will be used.</p></li>
 </ul></dd>
+
+
 <dt>log</dt>
 <dd><p>A string defining which axes to transform into a log scale.
 (<code>x</code>, <code>y</code> or <code>xy</code>)</p></dd>
+
+
 <dt>main, xlab, ylab, legend_title</dt>
 <dd><p>Strings to update plot title, x axis
 label, y axis label and legend title respectively.</p></dd>
+
+
 <dt>legend_label</dt>
 <dd><p>A vector of strings, to rename the legend labels.</p></dd>
+
+
 <dt>desc_stat</dt>
 <dd><p>Descriptive statistics to be used for visualizing errors,
 in <code>errorplot</code>. Possible values are <code>mean_se</code>, <code>mean_sd</code>, <code>mean_range</code>,
 <code>median_iqr</code> and <code>median_range</code>. Default desc_stat is <code>mean_se</code>.</p></dd>
+
+
 <dt>asp</dt>
 <dd><p>The y/x aspect ratio.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Other arguments passed on to the plot. Possible arguments are
 those that can be passed on to the <a href="#plot-types">underlying ggplot layers</a>.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A ggplot object. The columns of the input matrices will be plotted
+    
+
+<p>A ggplot object. The columns of the input matrices will be plotted
 against each other using the defined plot type.</p>
     </div>
     <div id="plot-types">
@@ -200,7 +223,7 @@ or <a href="https://ggplot2.tidyverse.org/reference/index.html#section-stats" cl
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.3.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.4.</p>
 </div>
 
       </footer></div>

@@ -39,7 +39,7 @@ Suggests:
     testthat (>= 3.0.0),
     vdiffr,
     tibble,
-    dplyr,
+    tidyr,
     covr
 VignetteBuilder: knitr
 Config/testthat/edition: 3

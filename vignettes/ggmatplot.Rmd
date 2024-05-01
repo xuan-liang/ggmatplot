@@ -83,18 +83,15 @@ ggmatplot(x, z,
 Suppose we want to use the `iris` dataset to plot the distributions of its numeric variables individually.
 
 ```{r iris-data}
-library(tidyr)
-library(dplyr)
 
-iris_numeric <- iris %>%
-  select(is.numeric)
-
+iris_numeric <- iris[, setdiff(colnames(iris), "Species")]
 head(iris_numeric)
 ```
 
 If we were to plot this data using [`ggplot2`](https://ggplot2.tidyverse.org/), we'd have to wrangle the data into long format before plotting.
 
 ```{r iris-ggplot2-density-plot}
+library(tidyr)
 iris_numeric_long <- iris_numeric %>%
   pivot_longer(cols = everything(),
                names_to = "Feature",
@@ -102,9 +99,7 @@ iris_numeric_long <- iris_numeric %>%
 
 head(iris_numeric_long)
 
-iris_numeric_long %>%
-  ggplot(aes(x = Measurement,
-             color = Feature)) +
+ggplot(iris_numeric_long, aes(x = Measurement, color = Feature)) +
   geom_density()
 ```
 

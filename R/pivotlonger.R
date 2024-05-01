@@ -22,15 +22,16 @@ pivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
   n_widecols <- ncol(data) - length(id_cols)
   ifelse(!is.null(id_cols), widecols <- data[-1 * id_cols], widecols <- data)
   for (i in 0:nrow(data) - 1) {
-    for (j in 1:n_widecols) {
-      if (!is.null(id_cols)) {
+    if (!is.null(id_cols)) {
+      for (j in 1:n_widecols) {
         for (k in 1:length(id_cols)) {
           long_df[n_widecols * i + j, k] <- data[i + 1, id_cols[k]]
         }
       }
-      long_df[n_widecols * i + j, names_to] <- colnames(widecols)[j]
-      long_df[n_widecols * i + j, values_to] <- widecols[i + 1, j]
     }
+    #browser()
+    long_df[n_widecols * i + 1:n_widecols, names_to] <- colnames(widecols)
+    long_df[n_widecols * i + 1:n_widecols, values_to] <- do.call(c, as.list(widecols[i + 1, ]))
   }
   return(long_df)
 }

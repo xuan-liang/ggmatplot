@@ -10,5 +10,5 @@
 ^cran-comments\.md$
 ^\.github$
 ^codecov\.yml$
-^Paper$
+^paper$
 ^CRAN-SUBMISSION$

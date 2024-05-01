@@ -43,3 +43,10 @@ test_that("id columns can have different data types", {
   expect_equal(pv$Group, rep(names(df[, 3, drop = FALSE]), nrow(df)))
   expect_equal(pv$Value, c(31, 32, 33))
 })
+
+
+test_that("Expect date class to be preserved.", {
+  dates <- seq(as.Date("2023-01-01"), as.Date("2023-01-05"), by = "1 day")
+  pv <- pivotlonger(data.frame(date = dates))
+  expect_equal(pv$value, dates)
+})

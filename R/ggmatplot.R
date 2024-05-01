@@ -104,7 +104,6 @@ ggmatplot <- function(x = NULL, y = NULL,
                       ylim = c(NA, NA), log = NULL, main = NULL, xlab = NULL,
                       ylab = NULL, legend_label = NULL, legend_title = NULL,
                       desc_stat = "mean_se", asp = NA, ...) {
-
   # binding global variables to objects
   Variable <- ymin <- ymax <- NULL
   params_input <- list(...)

@@ -16,7 +16,7 @@
 #' pivotlonger(data = iris_sub, names_to = "Measurement", values_to = "Value",
 #' id_cols = c(1, 2))
 #'
-pivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
+pivotlonger <- function(data, names_to = "name", values_to = "value", id_cols = NULL) {
   long_df <- data.frame(matrix(ncol = 2 + length(id_cols), nrow = 0))
   colnames(long_df) <- c(colnames(data[id_cols]), names_to, values_to)
   n_widecols <- ncol(data) - length(id_cols)
@@ -29,9 +29,10 @@ pivotlonger <- function(data, names_to = "", values_to = "", id_cols = NULL) {
         }
       }
     }
-    #browser()
+
     long_df[n_widecols * i + 1:n_widecols, names_to] <- colnames(widecols)
     long_df[n_widecols * i + 1:n_widecols, values_to] <- do.call(c, as.list(widecols[i + 1, ]))
   }
+  class(long_df[[values_to]]) <- class(widecols[[1]])
   return(long_df)
 }

@@ -1,9 +1,9 @@
-pandoc: 2.7.3
-pkgdown: 2.0.4
+pandoc: 3.1.11
+pkgdown: 2.0.9
 pkgdown_sha: ~
 articles:
   ggmatplot: ggmatplot.html
-last_built: 2022-06-21T00:02Z
+last_built: 2024-05-01T02:00Z
 urls:
   reference: url/reference
   article: url/articles

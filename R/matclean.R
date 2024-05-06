@@ -35,7 +35,6 @@ matclean <- function(x, y) {
     data <- pivotlonger(x, names_to = GROUP_NAME, values_to = yname, ncolx + 1)
   } else if (ncolx > ncoly & ncoly == 1) {
     xname <- "x"
-    yname <- colnames(y)
     data <- data.frame(x, y)
     ncol <- ncol(data)
     yname <- colnames(data)[ncol]

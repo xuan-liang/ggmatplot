@@ -33,6 +33,12 @@ pivotlonger <- function(data, names_to = "name", values_to = "value", id_cols = 
     long_df[n_widecols * i + 1:n_widecols, names_to] <- colnames(widecols)
     long_df[n_widecols * i + 1:n_widecols, values_to] <- do.call(c, as.list(widecols[i + 1, ]))
   }
-  class(long_df[[values_to]]) <- class(widecols[[1]])
+  if(is.null(id_cols)) {
+    class(long_df[[values_to]]) <- class(widecols[[1]])
+  } else if(id_cols[1] == 1) {
+    class(long_df[["x"]]) <- class(data[["x"]])
+  } else if(id_cols[1] == ncol(data) - 1) {
+    class(long_df[["y"]]) <- class(data[["y"]])
+  }
   return(long_df)
 }

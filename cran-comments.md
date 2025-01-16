@@ -3,6 +3,6 @@
 0 errors | 0 warnings | 0 notes
 
 ## Submssion
-This is a new submission for a new version. In this version I have:
+This is a submission for a new version. In this version I have:
 
-* modified the default legend setting.
+* fixed the issue so that class of the input data is preserved when transformed under the hood.

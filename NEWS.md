@@ -1,4 +1,6 @@
-# ggmatplot (development version)
+# ggmatplot 0.1.3
+
+* Fixed so that class of the input data is preserved when transformed under the hood.
 
 # ggmatplot 0.1.2
 

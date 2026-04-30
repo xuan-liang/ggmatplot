@@ -8,7 +8,7 @@ test_that("scatterplot draws correctly", {
   skip_on_ci()
   skip_on_covr()
   skip_on_os("windows")
-  expect_doppelganger(
+  vdiffr::expect_doppelganger(
     "basic scatterplot",
     ggmatplot(x, y, plot_type = "point")
   )

@@ -1,3 +1,5 @@
+# ggmatplot 0.1.4
+
 # ggmatplot 0.1.3
 
 * Fixed so that class of the input data is preserved when transformed under the hood.

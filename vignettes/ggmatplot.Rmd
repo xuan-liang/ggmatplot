@@ -60,7 +60,7 @@ ggmatplot(x, z,
 
 Since `ggmatplot` is built upon [`ggplot2`](https://ggplot2.tidyverse.org/) and creates a ggplot object, [ggplot add ons](https://ggplot2.tidyverse.org/reference/index.html) such as scales, faceting specifications, coordinate systems, and themes can be added on to plots created using `ggmatplot` too.
 
-Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2 geom` (geometric object), as listed [here](../reference/ggmatplot.html#plot-types). Therefore, `ggmatplot()` will support additional parameters specific to each plot type. These are often aesthetics, used to set an aesthetic to a fixed value, like `size = 2` or `alpha = 0.5`. However, they can also be other parameters specific to different types of plots.
+Each `plot_type` allowed by the `ggmatplot()` function is also built upon a `ggplot2 geom` (geometric object), as listed [here](https://xuan-liang.github.io/ggmatplot/reference/ggmatplot.html#plot-types). Therefore, `ggmatplot()` will support additional parameters specific to each plot type. These are often aesthetics, used to set an aesthetic to a fixed value, like `size = 2` or `alpha = 0.5`. However, they can also be other parameters specific to different types of plots.
 
 
 ```{r point-plot-w-theme}
@@ -74,7 +74,7 @@ ggmatplot(x, z,
 
 ```
 
-[This list of examples](../index.html#examples) includes other types of plots we can create using `ggmatplot`.
+[This list of examples](https://xuan-liang.github.io/ggmatplot/index.html#examples) includes other types of plots we can create using `ggmatplot`.
 
 ## When can we use `ggmatplot` over `ggplot2`?
 
